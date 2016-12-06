@@ -1,9 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+
+/*
+ * A script to move the player with Inputs set in InputManager
+ * You can change inputs in Unity: Edit -> Project Settings -> Input
+ * 
+ * The Player needs a RigidBody2D
+ */
 public class Player_Movement : MonoBehaviour
 {
-    // Speed of the movement, set in Inspector
+    // Speed of the movement, change it in the Inspector
     public float speed;
 
     // This object's RigidBody2D component
