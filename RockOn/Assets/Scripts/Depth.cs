@@ -13,11 +13,12 @@ using System.Collections;
 public class Depth : MonoBehaviour
 {
 
-    //this GameObject's Transform component
+    // this GameObject's Transform component
     private Transform _transform;
 
     void Start()
     {
+        // initializing this GameObject's Transform
         _transform = GetComponent<Transform>();
     }
 

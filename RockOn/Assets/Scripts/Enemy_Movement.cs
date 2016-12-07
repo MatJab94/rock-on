@@ -4,18 +4,19 @@ using System.Collections;
 public class Enemy_Movement : MonoBehaviour
 {
 
-    public float speed;
-    public float maxRange;
-    public float minRange;
+    // set these public values in Inspector
+    public float speed; // movement speed
+    public float maxRange; // max range at which it stops chasing the target
+    public float minRange; // min range at which it stops chasing the target
 
-    private Transform _target;
-    private float _distance;
-    private Transform _enemy;
-    private Rigidbody2D _rb;
+    private Transform _target; // target's position
+    private Transform _enemy; // this object's position
+    private Rigidbody2D _rb; // this objects's rigidbody2d
+    private float _distance; // distance between enemy and target
 
-    // Use this for initialization
     void Start()
     {
+        // initializing variables
         _target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         _enemy = GetComponent<Transform>();
         _rb = GetComponent<Rigidbody2D>();
@@ -23,12 +24,16 @@ public class Enemy_Movement : MonoBehaviour
 
     void FixedUpdate()
     {
+        // calculate distance between enemy and target (player)
         _distance = Vector2.Distance(_enemy.position, _target.position);
 
+        // chase target only within set range
         if (_distance <= maxRange && _distance >= minRange)
         {
-            Vector2 direction = new Vector2(_target.position.x - _enemy.position.x, _target.position.y - _enemy.position.y);
-            _rb.AddForce(direction.normalized * speed, ForceMode2D.Impulse);
+            // calculate direction (and normalize it so it doesn't change the speed of movement)
+            Vector2 direction = new Vector2(_target.position.x - _enemy.position.x, _target.position.y - _enemy.position.y).normalized;
+            // move enemy according to the direction vector
+            _rb.AddForce(direction * speed, ForceMode2D.Impulse);
         }
     }
 }
