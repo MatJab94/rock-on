@@ -2,14 +2,14 @@
 using System.Collections;
 
 /*
- * Script attached to "Attack_Range" (child of Player).
- * Attack_Range has a collider with "Is Trigger" checked.
+ * Script attached to "AoE_Attack_Range" (child of Player).
+ * It has a circle collider with "Is Trigger" checked.
  * 
  * Once an object with RigidBody2D collides with it,
  * the OnTrigger methods are called.
  */
 
-public class Player_Attack : MonoBehaviour
+public class Player_AoE_Attack : MonoBehaviour
 {
     // list that contains all enemies in range
     private ArrayList _targets = new ArrayList();
@@ -17,16 +17,27 @@ public class Player_Attack : MonoBehaviour
     // a flag used to make attack trigger only once per click
     private bool _isAttacking = false;
 
+    // this object's sprite renderer
+    private SpriteRenderer _sr;
+
+    public void Start()
+    {
+        _sr = gameObject.GetComponent<SpriteRenderer>();
+    }
+
     public void Update()
     {
-        // if Attack1 is pressed (Left Mouse Button)
-        if (Input.GetAxisRaw("Attack1") != 0)
+        // if AoE Attack is pressed (Space)
+        if (Input.GetAxisRaw("Attack_AoE") != 0)
         {
 
             if (_isAttacking == false)
             {
                 // changing the flag so this code runs only once per click
                 _isAttacking = true;
+
+                // highlights the collider while attacking
+                StartCoroutine("highlightCollider");
 
                 // calling applyDamage() method for every enemy in range
                 foreach (GameObject target in _targets)
@@ -35,14 +46,31 @@ public class Player_Attack : MonoBehaviour
                 }
             }
         }
-        // if Attack1 is no longer pressed
-        if (Input.GetAxisRaw("Attack1") == 0)
+        // if AoE Attack is no longer pressed
+        if (Input.GetAxisRaw("Attack_AoE") == 0)
         {
             // changing the flag so the attack can be triggered on next click
             _isAttacking = false;
         }
     }
 
+    // highlights the collider while attacking
+    IEnumerator highlightCollider()
+    {
+        Color c = _sr.color;
+        for (float f = 0.25f; f <= 0.75f; f += 0.05f)
+        {
+            c.a = f;
+            _sr.color = c;
+            yield return null;
+        }
+        for (float f = 0.75f; f >= 0.25f; f -= 0.05f)
+        {
+            c.a = f;
+            _sr.color = c;
+            yield return null;
+        }
+    }
 
     // event that is called if enemy enters this Object's collider (is in range)
     private void OnTriggerEnter2D(Collider2D collision)

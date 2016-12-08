@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PlayerAudio : MonoBehaviour
+public class Player_Audio : MonoBehaviour
 {
     // variables holding sound assets, set in Inspector
     public AudioClip E_chord;
@@ -25,8 +25,8 @@ public class PlayerAudio : MonoBehaviour
         // playing different chords based on current Attack's Color
         // the IF makes sure that sound is triggered only once per click
 
-        // if Attack1 is pressed (Left Mouse Button)
-        if (Input.GetAxisRaw("Attack1") != 0)
+        // if Attack is pressed (Left Mouse Button)
+        if (Input.GetAxisRaw("Attack_Horizontal") != 0 || Input.GetAxisRaw("Attack_Vertical") != 0 || Input.GetAxisRaw("Attack_AoE") != 0)
         {
             if (_isAttacking == false)
             {
@@ -49,8 +49,8 @@ public class PlayerAudio : MonoBehaviour
                 }
             }
         }
-        // if Attack1 is no longer pressed
-        if (Input.GetAxisRaw("Attack1") == 0)
+        // if Attack is no longer pressed
+        if (Input.GetAxisRaw("Attack_Horizontal") == 0 && Input.GetAxisRaw("Attack_Vertical") == 0 && Input.GetAxisRaw("Attack_AoE") == 0)
         {
             // changing the flag so the chords can be played on next click
             _isAttacking = false;

@@ -3,7 +3,6 @@ using System.Collections;
 
 public class Enemy_Movement : MonoBehaviour
 {
-
     // set these public values in Inspector
     public float speed; // movement speed
     public float maxRange; // max range at which it stops chasing the target
