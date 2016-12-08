@@ -48,6 +48,9 @@ public class Enemy_Health : MonoBehaviour
             // -1 HP
             _health--;
 
+            // fades enemy after he's hit
+            StartCoroutine("fadeEnemy");
+
             // if it's dead respawn it (just for testing, use Destroy(gameObject) to kill it)
             if (_health < 0)
             {
@@ -91,4 +94,23 @@ public class Enemy_Health : MonoBehaviour
         _currentColorIndex = Random.Range(0, 3); // 0 = red, 1 = green, 2 = blue
         changeForm();
     }
+
+    // fades enemy after he's hit
+    IEnumerator fadeEnemy()
+    {
+        Color c = _sr.color;
+        for (float f = 1f; f >= 0.25; f -= 0.05f)
+        {
+            c.a = f;
+            _sr.color = c;
+            yield return null;
+        }
+        for (float f = 0.25f; f <= 1; f += 0.05f)
+        {
+            c.a = f;
+            _sr.color = c;
+            yield return null;
+        }
+    }
+
 }

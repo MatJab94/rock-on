@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-
 /* 
  * Simple script for adding "depth" to our 2D world.
  * Just add this script to the GameObject and voila.

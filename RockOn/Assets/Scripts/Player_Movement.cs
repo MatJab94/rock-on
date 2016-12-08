@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-
 /*
  * A script to move the player with Inputs set in InputManager
  * You can change inputs in Unity: Edit -> Project Settings -> Input
@@ -33,7 +32,7 @@ public class Player_Movement : MonoBehaviour
     {
         // Move Character based on inputs, set in InputManager
         // GetAxisRaw returns 0 if button is not pressed, and 1 if it's pressed
-        Vector2 movement = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+        Vector2 movement = new Vector2(Input.GetAxisRaw("Move_Horizontal"), Input.GetAxisRaw("Move_Vertical"));
 
         // if we are moving
         if (movement != Vector2.zero)
