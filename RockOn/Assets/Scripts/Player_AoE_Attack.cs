@@ -11,7 +11,7 @@ using System.Collections;
 
 public class Player_AoE_Attack : MonoBehaviour
 {
-    // list that contains all enemies in range
+    // list that contains all enemies (gameObjects) in range
     private ArrayList _targets = new ArrayList();
 
     // a flag used to make attack trigger only once per click
@@ -42,7 +42,7 @@ public class Player_AoE_Attack : MonoBehaviour
                 // calling applyDamage() method for every enemy in range
                 foreach (GameObject target in _targets)
                 {
-                    target.SendMessage("applyDamage");
+                    target.GetComponent<Enemy_Health>().applyDamage();
                 }
             }
         }

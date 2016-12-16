@@ -6,9 +6,11 @@ public class Player_Health : MonoBehaviour
     // arrays that hold sprites of the enemies, set in Inspector
     public Sprite[] sprites;
 
-    // this Object's SpriteRenderer and Transform
+    // Player's SpriteRenderer and Transform, set in Inspector
     public SpriteRenderer sr;
     public Transform tf;
+
+    private SpriteRenderer _healthSR;
 
     // the sprite of the enemy, based on it's color and health
     private Sprite _currentSprite;
@@ -26,7 +28,7 @@ public class Player_Health : MonoBehaviour
     void Start()
     {
         _respawnPosition = new Vector3(tf.position.x, tf.position.y, tf.position.z);
-
+        _healthSR = gameObject.GetComponent<SpriteRenderer>();
         // spawn the enemy with random health and color
         spawnPlayer();
     }
@@ -53,8 +55,8 @@ public class Player_Health : MonoBehaviour
             // if not dead randomly change it's color and update sprite
             else
             {
-                Debug.Log(_health);
-                sr.sprite = sprites[_health];
+                Debug.Log("Player: " + _health + " HP");
+                _healthSR.sprite = sprites[_health];
             } 
         }
         
@@ -67,7 +69,7 @@ public class Player_Health : MonoBehaviour
     {
         tf.position = _respawnPosition;
         _health = _maxHealth;
-        sr.sprite = sprites[_health];
+        _healthSR.sprite = sprites[_health];
 
     }
 
