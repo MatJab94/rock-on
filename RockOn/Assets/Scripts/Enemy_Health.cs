@@ -26,10 +26,14 @@ public class Enemy_Health : MonoBehaviour
     // used to respawn enemies, just for testing
     private Vector3 _respawnPosition;
 
+    // Rythm Battle flag for bonuses and stuff
+    private RythmBattle rythmBattle;
+
     void Start()
     {
         // initialise variables
         _playerColor = GameObject.FindGameObjectWithTag("Player").GetComponent<Color_Change>();
+        rythmBattle = GameObject.FindGameObjectWithTag("RythmBattle").GetComponent<RythmBattle>();
         _sr = GetComponent<SpriteRenderer>();
         _tf = GetComponent<Transform>();
         _respawnPosition = new Vector3(_tf.position.x, _tf.position.y, _tf.position.z);
@@ -45,6 +49,12 @@ public class Enemy_Health : MonoBehaviour
         // if Player's and Demon's color match
         if (_playerColor.currentColorIndex == _currentColorIndex)
         {
+            // add bonus if enemy was hit in rythm
+            if (rythmBattle.rythmFlag == true)
+            {
+                rythmBattle.addBonus();
+            }
+
             // -1 HP
             _health--;
 
@@ -62,6 +72,11 @@ public class Enemy_Health : MonoBehaviour
                 _currentColorIndex = Random.Range(0, 3);
                 changeForm();
             }
+        }
+        else
+        {
+            // if Player's and Demon's color don't match restart bonus
+            rythmBattle.resetBonus();
         }
     }
 

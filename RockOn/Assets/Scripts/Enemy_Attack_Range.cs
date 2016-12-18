@@ -2,24 +2,26 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy_Attack_Range : MonoBehaviour {
+public class Enemy_Attack_Range : MonoBehaviour
+{
 
-    public GameObject playerHealth;
+    private bool _canAttack = false;
+    private Player_Health _playerHealth;
 
-    private bool _canAttack=false;
+    // Use this for initialization
+    void Start()
+    {
+        _playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<Player_Health>();
+    }
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void FixedUpdate () {
+    // Update is called once per frame
+    void FixedUpdate()
+    {
         if (_canAttack)
         {
-            playerHealth.SendMessage("applyDamage");
+            _playerHealth.applyDamage();
         }
-	}
+    }
 
     // event that is called if enemy enters this Object's collider (is in range)
     private void OnTriggerEnter2D(Collider2D collision)

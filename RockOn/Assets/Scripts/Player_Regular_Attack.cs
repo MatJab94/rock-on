@@ -18,6 +18,9 @@ public class Player_Regular_Attack : MonoBehaviour
     private SpriteRenderer _up;
     private SpriteRenderer _down;
 
+    // Rythm Battle flag for bonuses and stuff
+    private RythmBattle rythmBattle;
+
     public void Start()
     {
         _targetsLeft = GameObject.Find("Regular_Attack_Left").GetComponent<Regular_Attack_Collider>().targets;
@@ -30,6 +33,7 @@ public class Player_Regular_Attack : MonoBehaviour
         _up = GameObject.Find("Regular_Attack_Up").GetComponent<SpriteRenderer>();
         _down = GameObject.Find("Regular_Attack_Down").GetComponent<SpriteRenderer>();
 
+        rythmBattle = GameObject.FindGameObjectWithTag("RythmBattle").GetComponent<RythmBattle>();
     }
 
     public void Update()
@@ -61,7 +65,7 @@ public class Player_Regular_Attack : MonoBehaviour
             StartCoroutine("highlightCollider", _left);
             foreach (GameObject target in _targetsLeft)
             {
-                target.SendMessage("applyDamage");
+                target.GetComponent<Enemy_Health>().applyDamage();
             }
         }
         if (Input.GetAxisRaw("Attack_Horizontal") > 0)
@@ -69,7 +73,7 @@ public class Player_Regular_Attack : MonoBehaviour
             StartCoroutine("highlightCollider", _right);
             foreach (GameObject target in _targetsRight)
             {
-                target.SendMessage("applyDamage");
+                target.GetComponent<Enemy_Health>().applyDamage();
             }
         }
         if (Input.GetAxisRaw("Attack_Vertical") < 0)
@@ -77,7 +81,7 @@ public class Player_Regular_Attack : MonoBehaviour
             StartCoroutine("highlightCollider", _down);
             foreach (GameObject target in _targetsDown)
             {
-                target.SendMessage("applyDamage");
+                target.GetComponent<Enemy_Health>().applyDamage();
             }
         }
         if (Input.GetAxisRaw("Attack_Vertical") > 0)
@@ -85,7 +89,7 @@ public class Player_Regular_Attack : MonoBehaviour
             StartCoroutine("highlightCollider", _up);
             foreach (GameObject target in _targetsUp)
             {
-                target.SendMessage("applyDamage");
+                target.GetComponent<Enemy_Health>().applyDamage();
             }
         }
     }
