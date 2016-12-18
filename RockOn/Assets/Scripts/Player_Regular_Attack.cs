@@ -32,8 +32,6 @@ public class Player_Regular_Attack : MonoBehaviour
         _right = GameObject.Find("Regular_Attack_Right").GetComponent<SpriteRenderer>();
         _up = GameObject.Find("Regular_Attack_Up").GetComponent<SpriteRenderer>();
         _down = GameObject.Find("Regular_Attack_Down").GetComponent<SpriteRenderer>();
-
-        rythmBattle = GameObject.FindGameObjectWithTag("RythmBattle").GetComponent<RythmBattle>();
     }
 
     public void Update()

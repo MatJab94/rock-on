@@ -20,9 +20,12 @@ public class Player_AoE_Attack : MonoBehaviour
     // this object's sprite renderer
     private SpriteRenderer _sr;
 
+    private Player_Mana _playerMana;
+
     public void Start()
     {
         _sr = gameObject.GetComponent<SpriteRenderer>();
+        _playerMana = GameObject.FindGameObjectWithTag("UI").GetComponentInChildren<Player_Mana>();
     }
 
     public void Update()
@@ -36,14 +39,21 @@ public class Player_AoE_Attack : MonoBehaviour
                 // changing the flag so this code runs only once per click
                 _isAttacking = true;
 
-                // highlights the collider while attacking
-                StartCoroutine("highlightCollider");
-
-                // calling applyDamage() method for every enemy in range
-                foreach (GameObject target in _targets)
+                if (_playerMana.getMana() > 0)
                 {
-                    target.GetComponent<Enemy_Health>().applyDamage();
+                    // highlights the collider while attacking
+                    StartCoroutine("highlightCollider");
+
+                    // subtract mana for attack
+                    _playerMana.subtractMana();
+
+                    // calling applyDamage() method for every enemy in range
+                    foreach (GameObject target in _targets)
+                    {
+                        target.GetComponent<Enemy_Health>().applyDamage();
+                    }
                 }
+                
             }
         }
         // if AoE Attack is no longer pressed

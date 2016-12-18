@@ -7,6 +7,7 @@ TagManager:
   - Enemy
   - Wall
   - RythmBattle
+  - UI
   layers:
   - Default
   - TransparentFX

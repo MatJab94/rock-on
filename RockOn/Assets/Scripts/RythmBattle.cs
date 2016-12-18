@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class RythmBattle : MonoBehaviour
 {
@@ -22,6 +23,10 @@ public class RythmBattle : MonoBehaviour
     private float _badRythmEnd; // the end of range in which rythmFlag is false
 
     private int _combo; // counts how well the player hits in rythm
+    private Player_Mana _playerMana;
+
+    
+    public GameObject _textCombo;
 
     // Use this for initialization
     void Start()
@@ -36,7 +41,10 @@ public class RythmBattle : MonoBehaviour
 
         _combo = 0;
 
-         Debug.Log("Audio length = " + _clipLength);
+        _playerMana = GameObject.FindGameObjectWithTag("UI").GetComponentInChildren<Player_Mana>();
+        _textCombo.GetComponent<Text>().text = "Combo = 0";
+
+        Debug.Log("Audio length = " + _clipLength);
          Debug.Log("Beat length = " + _beatLength);
          Debug.Log("Bad Rythm Start = " + _badRythmStart);
          Debug.Log("Bad Rythm End = " + _badRythmEnd);
@@ -86,14 +94,21 @@ public class RythmBattle : MonoBehaviour
 
     public void addBonus()
     {
-        Debug.Log("C-c-c-combo!!! Combo = " + _combo);
         _combo++;
+        Debug.Log("C-c-c-combo!!! Combo = " + _combo);
+        _textCombo.GetComponent<Text>().text = "Combo = " + _combo.ToString();
+        if (_combo >= 3)
+        {
+            resetBonus();
+            _playerMana.addMana();
+        }
     }
 
     public void resetBonus()
     {
         _combo = 0;
         Debug.Log("Bonus restarted! Combo = " + _combo);
+        _textCombo.GetComponent<Text>().text = "Combo = " + _combo.ToString();
     }
 
 }
