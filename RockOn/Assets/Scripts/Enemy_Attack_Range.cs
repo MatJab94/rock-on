@@ -11,7 +11,7 @@ public class Enemy_Attack_Range : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        _playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<Player_Health>();
+        _playerHealth = GameObject.FindGameObjectWithTag("UI").GetComponentInChildren<Player_Health>();
     }
 
     // Update is called once per frame
