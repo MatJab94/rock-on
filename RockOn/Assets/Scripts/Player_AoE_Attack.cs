@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 /*
  * Script attached to "AoE_Attack_Range" (child of Player).
@@ -11,14 +12,20 @@ using System.Collections;
 
 public class Player_AoE_Attack : MonoBehaviour
 {
+    // sprites with range "animation", set in Inspector
+    public Sprite[] _sprites;
+
     // list that contains all enemies (gameObjects) in range
     private ArrayList _targets;
 
     // a flag used to make attack trigger only once per click
     private bool _isAttacking;
 
-    // this object's sprite renderer (for highlighting the range when attacking)
+    // this object's sprite renderer (for "animating" the range when attacking)
     private SpriteRenderer _sr;
+
+    // this transform for changing scale ("animating")
+    private Transform _tf;
 
     // current player's color, from it's Color_Change script
     private Player_Color_Change _playerColor;
@@ -29,27 +36,19 @@ public class Player_AoE_Attack : MonoBehaviour
     // mana bar in GUI
     private Player_Mana _playerMana;
 
-    // min and max opacity and +- step for highlighting collider;
-    private float _minOpacity;
-    private float _maxOpacity;
-    private float _step;
-
     public void Start()
     {
         _targets = new ArrayList();
 
         _isAttacking = false;
 
-        _sr = gameObject.GetComponent<SpriteRenderer>();
-        _sr.color = new Color(0.0f, 0.0f, 0.0f, 0.0f);
+        _sr = GetComponent<SpriteRenderer>();
+        _tf = GetComponent<Transform>();
+        _tf.localScale = Vector3.zero;
 
         _playerColor = GameObject.FindGameObjectWithTag("Player").GetComponent<Player_Color_Change>();
         _playerAudio = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<Player_Audio>();
         _playerMana = GameObject.FindGameObjectWithTag("Player").GetComponent<Player_Mana>();
-
-        _minOpacity = 0.0f;
-        _maxOpacity = 0.4f;
-        _step = 0.02f;
     }
 
     public void Update()
@@ -80,8 +79,8 @@ public class Player_AoE_Attack : MonoBehaviour
         // attack only if player has enough mana
         if (_playerMana.getMana() > 0)
         {
-            // highlights the range while attacking
-            StartCoroutine("highlightCollider", _playerColor.getCurrentColor());
+            // change sprite of the range to match chosen color
+            updateSprite();
 
             // subtract mana for attack
             _playerMana.subtractMana();
@@ -89,38 +88,57 @@ public class Player_AoE_Attack : MonoBehaviour
             // play attack's sound
             _playerAudio.playChordSound();
 
-            // apply damage to every enemy in range
-            foreach (GameObject target in _targets)
-            {
-                target.GetComponent<Demon_Health>().applyDamage();
-            }
+            // animates the range while attacking and applies damage to targets
+            StartCoroutine("animateAndAttack");
+        }
+    }
+
+    private void updateSprite()
+    {
+        _sr.sprite = _sprites[_playerColor.currentColorIndex];
+    }
+
+    private void attackTargets()
+    {
+        foreach (GameObject target in _targets)
+        {
+            target.GetComponent<Demon_Health>().applyDamage();
         }
     }
 
     // highlights the collider while attacking
-    IEnumerator highlightCollider(Color c)
+    IEnumerator animateAndAttack()
     {
-        _sr.color = c;
+        Color c = Color.white;
+        Vector3 scale = Vector3.zero;
 
-        // highlights the range
-        for (float f = _minOpacity; f <= _maxOpacity; f += _step)
+        _sr.color = c;
+        _tf.localScale = scale;
+
+        // scales the range UP
+        for (float f = 0.0f; f <= 1.0f; f += 0.05f)
+        {
+            scale.x = f;
+            scale.y = f;
+            _tf.localScale = scale;
+            yield return null;
+        }
+
+        // apply damage to every enemy in range after range's scale is maximum
+        attackTargets();
+
+        // fades range to transparent
+        for (float f = 1.0f; f >= 0.0f; f -= 0.03f)
         {
             c.a = f;
             _sr.color = c;
             yield return null;
         }
 
-        // and fades it back to transparent
-        for (float f = _maxOpacity; f >= _minOpacity; f -= _step)
-        {
-            c.a = f;
-            _sr.color = c;
-            yield return null;
-        }
-
-        // makes sure it equals exactly _minOpacity at the end, and not slightly less
-        c.a = _minOpacity;
+        c.a = 1.0f;
         _sr.color = c;
+
+        _tf.localScale = Vector3.zero;
     }
 
     // event that is called if enemy enters this Object's collider (is in range)

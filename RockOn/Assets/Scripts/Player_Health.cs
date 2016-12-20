@@ -6,7 +6,7 @@ public class Player_Health : MonoBehaviour
     // array that holds sprites of Health Bar, set in Inspector
     public Sprite[] sprites;
 
-    // Player's SpriteRenderer and Transform, set in Inspector
+    // Player's SpriteRenderer and Transform
     private SpriteRenderer _sr;
     private Transform _tf;
 
@@ -66,7 +66,7 @@ public class Player_Health : MonoBehaviour
             else
             {
                 // Debug.Log("Player: " + _health + " HP");
-                _healthGUI.sprite = sprites[_health - 1];
+                updateGUI();
             }
         }
     }
@@ -76,8 +76,13 @@ public class Player_Health : MonoBehaviour
     {
         _tf.position = _respawnPosition;
         _health = _maxHealth;
-        _healthGUI.sprite = sprites[_health - 1];
+        updateGUI();
 
+    }
+
+    public void updateGUI()
+    {
+        _healthGUI.sprite = sprites[_health - 1];
     }
 
     // timer counts down after player's hit, during this time player is invincible

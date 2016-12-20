@@ -13,6 +13,7 @@ TagManager:
   - GUI_Attack_Color
   - GUI_Combo_Counter
   - GUI_Screen_Fader
+  - Player_AoE
   layers:
   - Default
   - TransparentFX

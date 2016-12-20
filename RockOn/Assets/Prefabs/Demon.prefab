@@ -136,23 +136,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteRed:
-  - {fileID: 21300026, guid: 3574a9b8e769e884e869f4c1d86ff2bf, type: 3}
-  - {fileID: 21300028, guid: 3574a9b8e769e884e869f4c1d86ff2bf, type: 3}
-  - {fileID: 21300030, guid: 3574a9b8e769e884e869f4c1d86ff2bf, type: 3}
-  - {fileID: 21300032, guid: 3574a9b8e769e884e869f4c1d86ff2bf, type: 3}
-  - {fileID: 21300034, guid: 3574a9b8e769e884e869f4c1d86ff2bf, type: 3}
+  - {fileID: 21300008, guid: 73ae5352ed28df14fba74b76031a46fc, type: 3}
+  - {fileID: 21300010, guid: 73ae5352ed28df14fba74b76031a46fc, type: 3}
+  - {fileID: 21300012, guid: 73ae5352ed28df14fba74b76031a46fc, type: 3}
   spriteGreen:
-  - {fileID: 21300008, guid: 3574a9b8e769e884e869f4c1d86ff2bf, type: 3}
-  - {fileID: 21300010, guid: 3574a9b8e769e884e869f4c1d86ff2bf, type: 3}
-  - {fileID: 21300012, guid: 3574a9b8e769e884e869f4c1d86ff2bf, type: 3}
-  - {fileID: 21300014, guid: 3574a9b8e769e884e869f4c1d86ff2bf, type: 3}
-  - {fileID: 21300016, guid: 3574a9b8e769e884e869f4c1d86ff2bf, type: 3}
+  - {fileID: 21300000, guid: 73ae5352ed28df14fba74b76031a46fc, type: 3}
+  - {fileID: 21300002, guid: 73ae5352ed28df14fba74b76031a46fc, type: 3}
+  - {fileID: 21300004, guid: 73ae5352ed28df14fba74b76031a46fc, type: 3}
   spriteBlue:
-  - {fileID: 21300044, guid: 3574a9b8e769e884e869f4c1d86ff2bf, type: 3}
-  - {fileID: 21300046, guid: 3574a9b8e769e884e869f4c1d86ff2bf, type: 3}
-  - {fileID: 21300048, guid: 3574a9b8e769e884e869f4c1d86ff2bf, type: 3}
-  - {fileID: 21300050, guid: 3574a9b8e769e884e869f4c1d86ff2bf, type: 3}
-  - {fileID: 21300052, guid: 3574a9b8e769e884e869f4c1d86ff2bf, type: 3}
+  - {fileID: 21300016, guid: 73ae5352ed28df14fba74b76031a46fc, type: 3}
+  - {fileID: 21300018, guid: 73ae5352ed28df14fba74b76031a46fc, type: 3}
+  - {fileID: 21300020, guid: 73ae5352ed28df14fba74b76031a46fc, type: 3}
 --- !u!114 &114000011969789692
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -217,7 +211,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 994355489
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300080, guid: 3574a9b8e769e884e869f4c1d86ff2bf, type: 3}
+  m_Sprite: {fileID: 21300006, guid: 73ae5352ed28df14fba74b76031a46fc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

@@ -49,25 +49,4 @@ public class Player_Color_Change : MonoBehaviour
         // sr.color changes the object's color
         // currentColorIndex is used by other scripts to easily determine the current color
     }
-
-    // returns a new color that is the same as the current (ie. for highlighting the AoE collider)
-    public Color getCurrentColor()
-    {
-        if (currentColorIndex == 0)
-        {
-            return new Color(_red.r, _red.g, _red.b);
-        }
-        else
-        {
-            if (currentColorIndex == 1)
-            {
-                return new Color(_green.r, _green.g, _green.b);
-            }
-            else
-            {
-                return new Color(_blue.r, _blue.g, _blue.b);
-            }
-        }
-
-    }
 }

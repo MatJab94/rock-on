@@ -647,15 +647,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprites:
-  - {fileID: 21300000, guid: e09cc9c43d15a264db76a7ef36c65d10, type: 3}
-  - {fileID: 21300002, guid: e09cc9c43d15a264db76a7ef36c65d10, type: 3}
-  - {fileID: 21300004, guid: e09cc9c43d15a264db76a7ef36c65d10, type: 3}
-  - {fileID: 21300006, guid: e09cc9c43d15a264db76a7ef36c65d10, type: 3}
-  - {fileID: 21300008, guid: e09cc9c43d15a264db76a7ef36c65d10, type: 3}
-  - {fileID: 21300010, guid: e09cc9c43d15a264db76a7ef36c65d10, type: 3}
-  - {fileID: 21300012, guid: e09cc9c43d15a264db76a7ef36c65d10, type: 3}
-  - {fileID: 21300014, guid: e09cc9c43d15a264db76a7ef36c65d10, type: 3}
-  - {fileID: 21300016, guid: e09cc9c43d15a264db76a7ef36c65d10, type: 3}
+  - {fileID: 21300000, guid: 44f1cb2d630b8e848a019c32f104f6cf, type: 3}
+  - {fileID: 21300002, guid: 44f1cb2d630b8e848a019c32f104f6cf, type: 3}
+  - {fileID: 21300004, guid: 44f1cb2d630b8e848a019c32f104f6cf, type: 3}
+  - {fileID: 21300006, guid: 44f1cb2d630b8e848a019c32f104f6cf, type: 3}
+  - {fileID: 21300008, guid: 44f1cb2d630b8e848a019c32f104f6cf, type: 3}
+  - {fileID: 21300010, guid: 44f1cb2d630b8e848a019c32f104f6cf, type: 3}
+  - {fileID: 21300012, guid: 44f1cb2d630b8e848a019c32f104f6cf, type: 3}
+  - {fileID: 21300014, guid: 44f1cb2d630b8e848a019c32f104f6cf, type: 3}
+  - {fileID: 21300016, guid: 44f1cb2d630b8e848a019c32f104f6cf, type: 3}
 --- !u!114 &114099255033945064
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -667,6 +667,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c814381e4c72624099004aa8b848d27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _sprites: []
 --- !u!114 &114195341603139088
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -712,9 +713,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprites:
-  - {fileID: 21300000, guid: 26d95f40525fa1941baaad9195b0b3ce, type: 3}
-  - {fileID: 21300000, guid: 75e28b6eda4bf334fa29ea1cbbf6f022, type: 3}
-  - {fileID: 21300000, guid: ba180809ae3776c4a9eed2a2c5df112c, type: 3}
+  - {fileID: 21300000, guid: 2311bc20eb8b87d4ba3ef702cdec5943, type: 3}
+  - {fileID: 21300002, guid: 2311bc20eb8b87d4ba3ef702cdec5943, type: 3}
+  - {fileID: 21300004, guid: 2311bc20eb8b87d4ba3ef702cdec5943, type: 3}
+  - {fileID: 21300006, guid: 2311bc20eb8b87d4ba3ef702cdec5943, type: 3}
+  - {fileID: 21300008, guid: 2311bc20eb8b87d4ba3ef702cdec5943, type: 3}
 --- !u!114 &114866346443055762
 MonoBehaviour:
   m_ObjectHideFlags: 1

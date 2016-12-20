@@ -68,7 +68,7 @@ public class RythmBattle : MonoBehaviour
         {
             _f -= _beatLength;
             _numOfBeatsElapsed++;
-            // Debug.Log("BEAT");
+            //Debug.Log("BEAT");
         }
 
         // every frame add differance in time since last frame

@@ -57,6 +57,10 @@ public class Demon_Health : MonoBehaviour
             {
                 rythmBattle.addBonus();
             }
+            else
+            {
+                rythmBattle.resetBonus();
+            }
 
             // -1 HP
             _health--;
@@ -69,10 +73,9 @@ public class Demon_Health : MonoBehaviour
             {
                 spawnEnemy();
             }
-            // if not dead randomly change it's color and update sprite
+            // if not dead just update sprite
             else
             {
-                _currentColorIndex = Random.Range(0, 3);
                 changeForm();
             }
         }
@@ -84,7 +87,7 @@ public class Demon_Health : MonoBehaviour
     }
 
     // updates Demon's sprite based on current health and color
-    // health is also an index in the sprite arrays (0-4)
+    // health is also an index in the sprite arrays (0-2)
     private void changeForm()
     {
         switch (_currentColorIndex)
@@ -108,8 +111,14 @@ public class Demon_Health : MonoBehaviour
     private void spawnEnemy()
     {
         _tf.position = _respawnPosition;
-        _health = Random.Range(0, _maxHealth); // 0, 1, 2, 3, 4
+
+        // initial health is random
+        _health = Random.Range(0, _maxHealth); // 0, 1, 2
+
+        // initial color is random
         _currentColorIndex = Random.Range(0, 3); // 0 = red, 1 = green, 2 = blue
+
+        // update sprite
         changeForm();
     }
 
