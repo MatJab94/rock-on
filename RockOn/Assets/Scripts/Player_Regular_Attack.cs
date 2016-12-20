@@ -21,17 +21,22 @@ public class Player_Regular_Attack : MonoBehaviour
     // Rythm Battle flag for bonuses and stuff
     private RythmBattle rythmBattle;
 
+    // player's audio script for making sounds when attacking
+    private Player_Audio _playerAudio;
+
     public void Start()
     {
-        _targetsLeft = GameObject.Find("Regular_Attack_Left").GetComponent<Regular_Attack_Collider>().targets;
-        _targetsRight = GameObject.Find("Regular_Attack_Right").GetComponent<Regular_Attack_Collider>().targets;
-        _targetsUp = GameObject.Find("Regular_Attack_Up").GetComponent<Regular_Attack_Collider>().targets;
-        _targetsDown = GameObject.Find("Regular_Attack_Down").GetComponent<Regular_Attack_Collider>().targets;
+        _targetsLeft = GameObject.Find("Regular_Attack_Left").GetComponent<Player_Regular_Attack_Trigger>().targets;
+        _targetsRight = GameObject.Find("Regular_Attack_Right").GetComponent<Player_Regular_Attack_Trigger>().targets;
+        _targetsUp = GameObject.Find("Regular_Attack_Up").GetComponent<Player_Regular_Attack_Trigger>().targets;
+        _targetsDown = GameObject.Find("Regular_Attack_Down").GetComponent<Player_Regular_Attack_Trigger>().targets;
 
         _left = GameObject.Find("Regular_Attack_Left").GetComponent<SpriteRenderer>();
         _right = GameObject.Find("Regular_Attack_Right").GetComponent<SpriteRenderer>();
         _up = GameObject.Find("Regular_Attack_Up").GetComponent<SpriteRenderer>();
         _down = GameObject.Find("Regular_Attack_Down").GetComponent<SpriteRenderer>();
+
+        _playerAudio = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<Player_Audio>();
     }
 
     public void Update()
@@ -56,14 +61,18 @@ public class Player_Regular_Attack : MonoBehaviour
         }
     }
 
+    // attack enemies in range, based on attack direction
     private void attackEnemies()
     {
+        // play attack's sound
+        _playerAudio.playChordSound();
+
         if (Input.GetAxisRaw("Attack_Horizontal") < 0)
         {
             StartCoroutine("highlightCollider", _left);
             foreach (GameObject target in _targetsLeft)
             {
-                target.GetComponent<Enemy_Health>().applyDamage();
+                target.GetComponent<Demon_Health>().applyDamage();
             }
         }
         if (Input.GetAxisRaw("Attack_Horizontal") > 0)
@@ -71,7 +80,7 @@ public class Player_Regular_Attack : MonoBehaviour
             StartCoroutine("highlightCollider", _right);
             foreach (GameObject target in _targetsRight)
             {
-                target.GetComponent<Enemy_Health>().applyDamage();
+                target.GetComponent<Demon_Health>().applyDamage();
             }
         }
         if (Input.GetAxisRaw("Attack_Vertical") < 0)
@@ -79,7 +88,7 @@ public class Player_Regular_Attack : MonoBehaviour
             StartCoroutine("highlightCollider", _down);
             foreach (GameObject target in _targetsDown)
             {
-                target.GetComponent<Enemy_Health>().applyDamage();
+                target.GetComponent<Demon_Health>().applyDamage();
             }
         }
         if (Input.GetAxisRaw("Attack_Vertical") > 0)
@@ -87,7 +96,7 @@ public class Player_Regular_Attack : MonoBehaviour
             StartCoroutine("highlightCollider", _up);
             foreach (GameObject target in _targetsUp)
             {
-                target.GetComponent<Enemy_Health>().applyDamage();
+                target.GetComponent<Demon_Health>().applyDamage();
             }
         }
     }

@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public class Regular_Attack_Collider : MonoBehaviour
+public class Player_Regular_Attack_Trigger : MonoBehaviour
 {
     // list that contains all enemies in range
     [HideInInspector]

@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class RythmBattle : MonoBehaviour
@@ -23,10 +21,8 @@ public class RythmBattle : MonoBehaviour
     private float _badRythmEnd; // the end of range in which rythmFlag is false
 
     private int _combo; // counts how well the player hits in rythm
-    private Player_Mana _playerMana;
-
-    
-    public GameObject _textCombo;
+    private Text _textCombo; // text in GUI, shows current combo
+    private Player_Mana _playerMana; // player mana script for adding bonuses
 
     // Use this for initialization
     void Start()
@@ -40,14 +36,15 @@ public class RythmBattle : MonoBehaviour
         _badRythmEnd = _beatLength - range;
 
         _combo = 0;
+        _playerMana = GameObject.FindGameObjectWithTag("Player").GetComponent<Player_Mana>();
+        _textCombo = GameObject.FindGameObjectWithTag("GUI_Combo_Counter").GetComponent<Text>();
 
-        _playerMana = GameObject.FindGameObjectWithTag("UI").GetComponentInChildren<Player_Mana>();
-        _textCombo.GetComponent<Text>().text = "Combo = 0";
+        _textCombo.text = "Combo = 0";
 
-        Debug.Log("Audio length = " + _clipLength);
-         Debug.Log("Beat length = " + _beatLength);
-         Debug.Log("Bad Rythm Start = " + _badRythmStart);
-         Debug.Log("Bad Rythm End = " + _badRythmEnd);
+        //Debug.Log("Audio length = " + _clipLength);
+        //Debug.Log("Beat length = " + _beatLength);
+        //Debug.Log("Bad Rythm Start = " + _badRythmStart);
+        //Debug.Log("Bad Rythm End = " + _badRythmEnd);
 
         _numOfBeatsElapsed = 0;
         _f = 0.0f;
@@ -71,7 +68,7 @@ public class RythmBattle : MonoBehaviour
         {
             _f -= _beatLength;
             _numOfBeatsElapsed++;
-            Debug.Log("BEAT");
+            // Debug.Log("BEAT");
         }
 
         // every frame add differance in time since last frame
@@ -95,7 +92,7 @@ public class RythmBattle : MonoBehaviour
     public void addBonus()
     {
         _combo++;
-        Debug.Log("C-c-c-combo!!! Combo = " + _combo);
+        //Debug.Log("C-c-c-combo!!! Combo = " + _combo);
         _textCombo.GetComponent<Text>().text = "Combo = " + _combo.ToString();
         if (_combo >= 3)
         {
@@ -107,7 +104,7 @@ public class RythmBattle : MonoBehaviour
     public void resetBonus()
     {
         _combo = 0;
-        Debug.Log("Bonus restarted! Combo = " + _combo);
+        //Debug.Log("Bonus restarted! Combo = " + _combo);
         _textCombo.GetComponent<Text>().text = "Combo = " + _combo.ToString();
     }
 

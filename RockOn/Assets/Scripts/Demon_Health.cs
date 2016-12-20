@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Enemy_Health : MonoBehaviour
+public class Demon_Health : MonoBehaviour
 {
     // arrays that hold sprites of the enemies, set in Inspector
     public Sprite[] spriteRed;
@@ -18,10 +18,10 @@ public class Enemy_Health : MonoBehaviour
     private int _health;
 
     // maximum allowed health for Demon
-    private const int _maxHealth = 5;
+    private int _maxHealth;
 
     // current player's color, from it's Color_Change script
-    private Color_Change _playerColor;
+    private Player_Color_Change _playerColor;
 
     // used to respawn enemies, just for testing
     private Vector3 _respawnPosition;
@@ -32,11 +32,14 @@ public class Enemy_Health : MonoBehaviour
     void Start()
     {
         // initialise variables
-        _playerColor = GameObject.FindGameObjectWithTag("Player").GetComponent<Color_Change>();
+        _playerColor = GameObject.FindGameObjectWithTag("Player").GetComponent<Player_Color_Change>();
         rythmBattle = GameObject.FindGameObjectWithTag("RythmBattle").GetComponent<RythmBattle>();
         _sr = GetComponent<SpriteRenderer>();
         _tf = GetComponent<Transform>();
         _respawnPosition = new Vector3(_tf.position.x, _tf.position.y, _tf.position.z);
+
+        // max health is equal to amount of sprites
+        _maxHealth = spriteRed.Length;
 
         // spawn the enemy with random health and color
         spawnEnemy();

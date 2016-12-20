@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 /* 
  * Simple script for adding "depth" to our 2D world.
@@ -17,11 +16,12 @@ public class Depth : MonoBehaviour
 
     void Start()
     {
-        // initializing this GameObject's Transform
+        // initializing the variable with this GameObject's Transform
         _transform = GetComponent<Transform>();
     }
 
-    void Update()
+    // movement already happens in FixedUpdate, so changing the depth can also be in FixedUpdate
+    void FixedUpdate()
     {
         // update the Z position to be equal the Y position
         _transform.position = new Vector3(_transform.position.x, _transform.position.y, _transform.position.y);

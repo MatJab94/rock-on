@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 /*
  * A script to move the player with Inputs set in InputManager
@@ -12,13 +11,13 @@ using System.Collections;
  */
 public class Player_Movement : MonoBehaviour
 {
-    // Speed of the movement, change it in the Inspector
-    public float speed;
+    // Speed of the movement
+    private float _speed;
 
-    // This object's RigidBody2D component
+    // This object's RigidBody2D component, for physics (like colliding with objects)
     private Rigidbody2D _rb;
 
-    // This object's Animator component
+    // This object's Animator component, to animate when walking
     private Animator _anim;
 
     void Start()
@@ -26,8 +25,11 @@ public class Player_Movement : MonoBehaviour
         // initialising variables with this object's components
         _rb = GetComponent<Rigidbody2D>();
         _anim = GetComponent<Animator>();
+
+        _speed = 2.5f;
     }
 
+    // using FixedUpdate for constant movement speed, regardless of framerate
     void FixedUpdate()
     {
         // Move Character based on inputs, set in InputManager
@@ -37,14 +39,15 @@ public class Player_Movement : MonoBehaviour
         // if we are moving
         if (movement != Vector2.zero)
         {
-            // tell the Animator we are moving, start animating
+            // tell the Animator we are moving, start movement animation
             _anim.SetBool("isMoving", true);
-            // move character
-            _rb.AddForce(movement * speed, ForceMode2D.Impulse);
+
+            // move character based on movement vector and speed
+            _rb.AddForce(movement * _speed, ForceMode2D.Impulse);
         }
         else
         {
-            // tell the Animator we are NOT moving, stop animating
+            // tell the Animator we are NOT moving, start idle animation
             _anim.SetBool("isMoving", false);
         }
     }

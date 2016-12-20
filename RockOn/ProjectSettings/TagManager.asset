@@ -8,6 +8,11 @@ TagManager:
   - Wall
   - RythmBattle
   - UI
+  - GUI_Mana
+  - GUI_Health
+  - GUI_Attack_Color
+  - GUI_Combo_Counter
+  - GUI_Screen_Fader
   layers:
   - Default
   - TransparentFX

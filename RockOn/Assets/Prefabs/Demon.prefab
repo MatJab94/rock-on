@@ -22,8 +22,8 @@ GameObject:
   - component: {fileID: 212000014291470944}
   - component: {fileID: 50000012696276110}
   - component: {fileID: 61000014281943020}
-  - component: {fileID: 114000012922598350}
   - component: {fileID: 114000011969789692}
+  - component: {fileID: 114000012922598350}
   - component: {fileID: 114000010378730386}
   m_Layer: 0
   m_Name: Demon
@@ -56,7 +56,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013601848012}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.5, y: 2.74, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4685640629055778}
@@ -175,9 +175,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6733981c774bf2347a416f1085ddaf6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
-  maxRange: 2.5
-  minRange: 0.67
 --- !u!114 &114163041995711472
 MonoBehaviour:
   m_ObjectHideFlags: 1
