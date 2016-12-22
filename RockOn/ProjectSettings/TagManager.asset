@@ -14,6 +14,8 @@ TagManager:
   - GUI_Combo_Counter
   - GUI_Screen_Fader
   - Player_AoE
+  - TargetForCursor
+  - Cursor
   layers:
   - Default
   - TransparentFX
@@ -59,4 +61,7 @@ TagManager:
     locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: UI
+    uniqueID: 3428825459
     locked: 0

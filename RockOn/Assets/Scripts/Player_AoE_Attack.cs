@@ -18,9 +18,6 @@ public class Player_AoE_Attack : MonoBehaviour
     // list that contains all enemies (gameObjects) in range
     private ArrayList _targets;
 
-    // a flag used to make attack trigger only once per click
-    private bool _isAttacking;
-
     // this object's sprite renderer (for "animating" the range when attacking)
     private SpriteRenderer _sr;
 
@@ -40,8 +37,6 @@ public class Player_AoE_Attack : MonoBehaviour
     {
         _targets = new ArrayList();
 
-        _isAttacking = false;
-
         _sr = GetComponent<SpriteRenderer>();
         _tf = GetComponent<Transform>();
         _tf.localScale = Vector3.zero;
@@ -54,23 +49,10 @@ public class Player_AoE_Attack : MonoBehaviour
     public void Update()
     {
         // if AoE Attack is pressed (Space)
-        if (Input.GetAxisRaw("Attack_AoE") != 0)
+        if (Input.GetButtonDown("Attack_AoE"))
         {
-
-            if (_isAttacking == false)
-            {
-                // changing the flag so this code runs only once per click
-                _isAttacking = true;
-
-                // do the AoE attack
-                aoeAttack();
-            }
-        }
-        // if AoE Attack is no longer pressed
-        if (Input.GetAxisRaw("Attack_AoE") == 0)
-        {
-            // changing the flag so the attack can be triggered on next click
-            _isAttacking = false;
+            // do the AoE attack
+            aoeAttack();
         }
     }
 
