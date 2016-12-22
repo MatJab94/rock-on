@@ -9,8 +9,8 @@ InputManager:
     m_Name: Move_Horizontal
     descriptiveName: Move right
     descriptiveNegativeName: Move left
-    negativeButton: left
-    positiveButton: right
+    negativeButton: a
+    positiveButton: d
     altNegativeButton: 
     altPositiveButton: 
     gravity: 10
@@ -25,8 +25,8 @@ InputManager:
     m_Name: Move_Vertical
     descriptiveName: Move up
     descriptiveNegativeName: Move down
-    negativeButton: down
-    positiveButton: up
+    negativeButton: s
+    positiveButton: w
     altNegativeButton: 
     altPositiveButton: 
     gravity: 10
@@ -38,45 +38,13 @@ InputManager:
     axis: 1
     joyNum: 0
   - serializedVersion: 3
-    m_Name: Attack_Horizontal
-    descriptiveName: Regular Attack (right)
-    descriptiveNegativeName: Regular Attack (left)
-    negativeButton: a
-    positiveButton: d
-    altNegativeButton: 
-    altPositiveButton: 
-    gravity: 10
-    dead: 0.001
-    sensitivity: 100
-    snap: 0
-    invert: 0
-    type: 0
-    axis: 0
-    joyNum: 0
-  - serializedVersion: 3
-    m_Name: Attack_Vertical
-    descriptiveName: Regular Attack (up)
-    descriptiveNegativeName: Regular Attack (down)
-    negativeButton: s
-    positiveButton: w
-    altNegativeButton: 
-    altPositiveButton: 
-    gravity: 10
-    dead: 0.001
-    sensitivity: 100
-    snap: 0
-    invert: 0
-    type: 0
-    axis: 1
-    joyNum: 0
-  - serializedVersion: 3
     m_Name: Attack_AoE
     descriptiveName: Special AoE Attack
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: space
+    positiveButton: mouse 1
     altNegativeButton: 
-    altPositiveButton: left shift
+    altPositiveButton: space
     gravity: 10
     dead: 0.001
     sensitivity: 100
@@ -171,6 +139,22 @@ InputManager:
     descriptiveNegativeName: 
     negativeButton: 
     positiveButton: escape
+    altNegativeButton: 
+    altPositiveButton: joystick button 1
+    gravity: 1000
+    dead: 0.001
+    sensitivity: 1000
+    snap: 0
+    invert: 0
+    type: 0
+    axis: 0
+    joyNum: 0
+  - serializedVersion: 3
+    m_Name: Regular_Attack
+    descriptiveName: Regular attack
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: mouse 0
     altNegativeButton: 
     altPositiveButton: joystick button 1
     gravity: 1000

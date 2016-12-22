@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Enemy_Health : MonoBehaviour
+public class Demon_Health : MonoBehaviour
 {
     // arrays that hold sprites of the enemies, set in Inspector
     public Sprite[] spriteRed;
@@ -18,10 +18,10 @@ public class Enemy_Health : MonoBehaviour
     private int _health;
 
     // maximum allowed health for Demon
-    private const int _maxHealth = 5;
+    private int _maxHealth;
 
     // current player's color, from it's Color_Change script
-    private Color_Change _playerColor;
+    private Player_Color_Change _playerColor;
 
     // used to respawn enemies, just for testing
     private Vector3 _respawnPosition;
@@ -32,11 +32,14 @@ public class Enemy_Health : MonoBehaviour
     void Start()
     {
         // initialise variables
-        _playerColor = GameObject.FindGameObjectWithTag("Player").GetComponent<Color_Change>();
+        _playerColor = GameObject.FindGameObjectWithTag("Player").GetComponent<Player_Color_Change>();
         rythmBattle = GameObject.FindGameObjectWithTag("RythmBattle").GetComponent<RythmBattle>();
         _sr = GetComponent<SpriteRenderer>();
         _tf = GetComponent<Transform>();
         _respawnPosition = new Vector3(_tf.position.x, _tf.position.y, _tf.position.z);
+
+        // max health is equal to amount of sprites
+        _maxHealth = spriteRed.Length;
 
         // spawn the enemy with random health and color
         spawnEnemy();
@@ -54,6 +57,10 @@ public class Enemy_Health : MonoBehaviour
             {
                 rythmBattle.addBonus();
             }
+            else
+            {
+                rythmBattle.resetBonus();
+            }
 
             // -1 HP
             _health--;
@@ -66,10 +73,9 @@ public class Enemy_Health : MonoBehaviour
             {
                 spawnEnemy();
             }
-            // if not dead randomly change it's color and update sprite
+            // if not dead just update sprite
             else
             {
-                _currentColorIndex = Random.Range(0, 3);
                 changeForm();
             }
         }
@@ -81,7 +87,7 @@ public class Enemy_Health : MonoBehaviour
     }
 
     // updates Demon's sprite based on current health and color
-    // health is also an index in the sprite arrays (0-4)
+    // health is also an index in the sprite arrays (0-2)
     private void changeForm()
     {
         switch (_currentColorIndex)
@@ -105,8 +111,14 @@ public class Enemy_Health : MonoBehaviour
     private void spawnEnemy()
     {
         _tf.position = _respawnPosition;
-        _health = Random.Range(0, _maxHealth); // 0, 1, 2, 3, 4
+
+        // initial health is random
+        _health = Random.Range(0, _maxHealth); // 0, 1, 2
+
+        // initial color is random
         _currentColorIndex = Random.Range(0, 3); // 0 = red, 1 = green, 2 = blue
+
+        // update sprite
         changeForm();
     }
 

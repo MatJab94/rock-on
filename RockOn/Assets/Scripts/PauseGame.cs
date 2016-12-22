@@ -1,40 +1,40 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.UI;
 
-public class PauseGame : MonoBehaviour {
+public class PauseGame : MonoBehaviour
+{
+    private Image _screenFader;
+    private Color _fadeColor;
+    private bool _paused;
 
+    // Use this for initialization
+    void Start()
+    {
+        // TO-DO: Screen fading
+        _screenFader = GameObject.FindGameObjectWithTag("GUI_Screen_Fader").GetComponent<Image>();
+        _fadeColor = Color.black;
+        _fadeColor.a = 0.0f;
+        _screenFader.color = _fadeColor;
 
-    public bool paused;
-
-	// Use this for initialization
-	void Start () {
-		
-        paused = false;
-	}
+        _paused = false;
+    }
 
     // Update is called once per frame
-    void Update() {
-
+    void Update()
+    {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-
-            paused = !paused;
+            _paused = !_paused;
         }
-        if (paused) {
+        if (_paused)
+        {
 
             Time.timeScale = 0;
         }
-        else if (!paused)
+        else if (!_paused)
         {
             Time.timeScale = 1;
         }
-    
-       
-
-    }
-    public void Pause()
-    {
 
     }
 }

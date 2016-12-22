@@ -1,20 +1,18 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class Enemy_Attack_Range : MonoBehaviour
+public class Demon_Attack_Range : MonoBehaviour
 {
-
+    // flag shows if enemy is in range to attack the player
     private bool _canAttack = false;
+
+    // Health Bar in GUI
     private Player_Health _playerHealth;
 
-    // Use this for initialization
     void Start()
     {
-        _playerHealth = GameObject.FindGameObjectWithTag("UI").GetComponentInChildren<Player_Health>();
+        _playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<Player_Health>();
     }
 
-    // Update is called once per frame
     void FixedUpdate()
     {
         if (_canAttack)

@@ -3,110 +3,101 @@ using UnityEngine;
 
 public class Player_Regular_Attack : MonoBehaviour
 {
-    // a flag used to make attack trigger only once per click
-    private bool _isAttacking = false;
+    // player's transform for drawing line
+    private Transform _playerTransform;
 
-    // targets in range
-    private ArrayList _targetsLeft;
-    private ArrayList _targetsRight;
-    private ArrayList _targetsUp;
-    private ArrayList _targetsDown;
+    // target detection script from cursor
+    private Cursor_TargetDetection _targetDetection;
 
-    // sprites of the attacks
-    private SpriteRenderer _left;
-    private SpriteRenderer _right;
-    private SpriteRenderer _up;
-    private SpriteRenderer _down;
+    // currently chosen target
+    private GameObject _target;
 
-    // Rythm Battle flag for bonuses and stuff
-    private RythmBattle rythmBattle;
+    // max range at which target can be interacted with
+    private float _maxRange;
 
-    public void Start()
+    // player's audio script for making sounds when attacking
+    private Player_Audio _playerAudio;
+
+    // drawing line when attacking
+    private LineRenderer _lr;
+
+    void Start()
     {
-        _targetsLeft = GameObject.Find("Regular_Attack_Left").GetComponent<Regular_Attack_Collider>().targets;
-        _targetsRight = GameObject.Find("Regular_Attack_Right").GetComponent<Regular_Attack_Collider>().targets;
-        _targetsUp = GameObject.Find("Regular_Attack_Up").GetComponent<Regular_Attack_Collider>().targets;
-        _targetsDown = GameObject.Find("Regular_Attack_Down").GetComponent<Regular_Attack_Collider>().targets;
+        _playerTransform = GetComponentInParent<Transform>();
+        _targetDetection = GameObject.FindGameObjectWithTag("Cursor").GetComponent<Cursor_TargetDetection>();
+        _playerAudio = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<Player_Audio>();
+        _lr = GetComponent<LineRenderer>();
 
-        _left = GameObject.Find("Regular_Attack_Left").GetComponent<SpriteRenderer>();
-        _right = GameObject.Find("Regular_Attack_Right").GetComponent<SpriteRenderer>();
-        _up = GameObject.Find("Regular_Attack_Up").GetComponent<SpriteRenderer>();
-        _down = GameObject.Find("Regular_Attack_Down").GetComponent<SpriteRenderer>();
+        _maxRange = 2.5f;
+
+        _target = null;
     }
 
-    public void Update()
+    // Update is called once per frame
+    void Update()
     {
-        // if Attack is pressed (Left/Right/Up/Down arrow)
-        if (Input.GetAxisRaw("Attack_Horizontal") != 0 || Input.GetAxisRaw("Attack_Vertical") != 0)
+        // if player clicks the attack button (mouse 0 by default)
+        if (Input.GetButtonDown("Regular_Attack"))
         {
-            if (_isAttacking == false)
-            {
-                // changing the flag so this code runs only once per click
-                _isAttacking = true;
+            // select current target
+            _target = _targetDetection.target;
 
-                // attack enemies in range
-                attackEnemies();
-            }
-        }
-        // if Attack is no longer pressed
-        if (Input.GetAxisRaw("Attack_Horizontal") == 0 && Input.GetAxisRaw("Attack_Vertical") == 0)
-        {
-            // changing the flag so the attack can be triggered on next click
-            _isAttacking = false;
-        }
-    }
+            // if there is a target
+            if (_target != null)
+            {
+                // and check if target is in range
+                if (isInRange(_target.GetComponent<Transform>().position))
+                {
+                    // play attack's sound
+                    _playerAudio.playChordSound();
 
-    private void attackEnemies()
-    {
-        if (Input.GetAxisRaw("Attack_Horizontal") < 0)
-        {
-            StartCoroutine("highlightCollider", _left);
-            foreach (GameObject target in _targetsLeft)
-            {
-                target.GetComponent<Enemy_Health>().applyDamage();
-            }
-        }
-        if (Input.GetAxisRaw("Attack_Horizontal") > 0)
-        {
-            StartCoroutine("highlightCollider", _right);
-            foreach (GameObject target in _targetsRight)
-            {
-                target.GetComponent<Enemy_Health>().applyDamage();
-            }
-        }
-        if (Input.GetAxisRaw("Attack_Vertical") < 0)
-        {
-            StartCoroutine("highlightCollider", _down);
-            foreach (GameObject target in _targetsDown)
-            {
-                target.GetComponent<Enemy_Health>().applyDamage();
-            }
-        }
-        if (Input.GetAxisRaw("Attack_Vertical") > 0)
-        {
-            StartCoroutine("highlightCollider", _up);
-            foreach (GameObject target in _targetsUp)
-            {
-                target.GetComponent<Enemy_Health>().applyDamage();
+                    // draw a line from player to target
+                    StartCoroutine("drawLine", (Vector2)_target.GetComponent<Transform>().position);
+
+                    // hit the enemy
+                    _target.GetComponentInParent<Demon_Health>().applyDamage();
+                }
+                else
+                {
+                    // target is not in range
+                    // calculate the point in maxRange from player
+                    Vector2 pointInRange;
+                    pointInRange = _target.GetComponent<Transform>().position - _playerTransform.position;
+                    pointInRange = pointInRange.normalized * _maxRange;
+                    pointInRange = (Vector2)_playerTransform.position + pointInRange;
+                    
+                    StartCoroutine("drawLine", pointInRange);
+                }
             }
         }
     }
 
-    // highlights the collider while attacking
-    IEnumerator highlightCollider(SpriteRenderer sr)
+    private bool isInRange(Vector2 target)
     {
-        Color c = sr.color;
-        for (float f = 0.2f; f <= 0.75f; f += 0.05f)
+        // calculate distance between player and target
+        float _distance = Vector2.Distance(_playerTransform.position, target);
+
+        if (_distance > _maxRange)
         {
-            c.a = f;
-            sr.color = c;
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
+
+    // draws a line between player and target when attacking
+    IEnumerator drawLine(Vector2 target)
+    {
+        for (float f = 0.0f; f <= 0.15f; f += Time.deltaTime)
+        {
+            _lr.SetPosition(0, _playerTransform.position);
+            _lr.SetPosition(1, target);
             yield return null;
         }
-        for (float f = 0.75f; f >= 0.2; f -= 0.05f)
-        {
-            c.a = f;
-            sr.color = c;
-            yield return null;
-        }
+
+        _lr.SetPosition(0, _playerTransform.position);
+        _lr.SetPosition(1, _playerTransform.position);
     }
 }
