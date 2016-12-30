@@ -55,7 +55,7 @@ public class Player_Regular_Attack : MonoBehaviour
                     StartCoroutine("drawLine", (Vector2)_target.GetComponent<Transform>().position);
 
                     // hit the enemy
-                    _target.GetComponentInParent<Demon_Health>().applyDamage();
+                    _target.GetComponentInParent<Demon_Health>().applyDamage(1);
                 }
                 else
                 {

@@ -84,7 +84,7 @@ public class Player_AoE_Attack : MonoBehaviour
     {
         foreach (GameObject target in _targets)
         {
-            target.GetComponent<Demon_Health>().applyDamage();
+            target.GetComponent<Demon_Health>().applyDamage(3);
         }
     }
 
