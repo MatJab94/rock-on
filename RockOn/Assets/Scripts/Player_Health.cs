@@ -42,6 +42,18 @@ public class Player_Health : MonoBehaviour
         spawnPlayer();
     }
 
+    // called when players grabs a beer
+    public void healPlayer(int hp)
+    {
+        _health += hp;
+
+        if (_health > _maxHealth)
+        {
+            _health = _maxHealth;
+        }
+
+        updateGUI();
+    }
 
     // called when enemy attacks the player
     public void applyDamage()
@@ -75,7 +87,7 @@ public class Player_Health : MonoBehaviour
     private void spawnPlayer()
     {
         _tf.position = _respawnPosition;
-        _health = _maxHealth;
+        _health = _maxHealth-2;
         updateGUI();
 
     }

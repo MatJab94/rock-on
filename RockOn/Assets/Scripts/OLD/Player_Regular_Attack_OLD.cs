@@ -72,7 +72,7 @@ public class Player_Regular_Attack_OLD : MonoBehaviour
             StartCoroutine("highlightCollider", _left);
             foreach (GameObject target in _targetsLeft)
             {
-                target.GetComponent<Demon_Health>().applyDamage();
+                target.GetComponent<Demon_Health>().applyDamage(1);
             }
         }
         if (Input.GetAxisRaw("Attack_Horizontal") > 0)
@@ -80,7 +80,7 @@ public class Player_Regular_Attack_OLD : MonoBehaviour
             StartCoroutine("highlightCollider", _right);
             foreach (GameObject target in _targetsRight)
             {
-                target.GetComponent<Demon_Health>().applyDamage();
+                target.GetComponent<Demon_Health>().applyDamage(1);
             }
         }
         if (Input.GetAxisRaw("Attack_Vertical") < 0)
@@ -88,7 +88,7 @@ public class Player_Regular_Attack_OLD : MonoBehaviour
             StartCoroutine("highlightCollider", _down);
             foreach (GameObject target in _targetsDown)
             {
-                target.GetComponent<Demon_Health>().applyDamage();
+                target.GetComponent<Demon_Health>().applyDamage(1);
             }
         }
         if (Input.GetAxisRaw("Attack_Vertical") > 0)
@@ -96,7 +96,7 @@ public class Player_Regular_Attack_OLD : MonoBehaviour
             StartCoroutine("highlightCollider", _up);
             foreach (GameObject target in _targetsUp)
             {
-                target.GetComponent<Demon_Health>().applyDamage();
+                target.GetComponent<Demon_Health>().applyDamage(1);
             }
         }
     }

@@ -47,7 +47,7 @@ public class Demon_Health : MonoBehaviour
 
 
     // called when player attacks the Demon
-    public void applyDamage()
+    public void applyDamage(int damage)
     {
         // if Player's and Demon's color match
         if (_playerColor.currentColorIndex == _currentColorIndex)
@@ -63,15 +63,19 @@ public class Demon_Health : MonoBehaviour
             }
 
             // -1 HP
-            _health--;
+            _health -= damage;
 
             // fades enemy after he's hit
             StartCoroutine("fadeEnemy");
 
-            // if it's dead respawn it (just for testing, use Destroy(gameObject) to kill it)
+            // if it's dead destroy the object
             if (_health < 0)
             {
-                spawnEnemy();
+                // there's a bug when destroying the enemy immediately, so I'm 
+                // moving him somewhere else and killing him after a second
+                _tf.position = new Vector3(1000, 1000, 1000);
+                StartCoroutine("killEnemy");
+                // spawnEnemy();
             }
             // if not dead just update sprite
             else
@@ -113,10 +117,11 @@ public class Demon_Health : MonoBehaviour
         _tf.position = _respawnPosition;
 
         // initial health is random
-        _health = Random.Range(0, _maxHealth); // 0, 1, 2
+        //_health = Random.Range(0, _maxHealth); // 0, 1, 2
+        _health = _maxHealth-1;
 
         // initial color is random
-        _currentColorIndex = Random.Range(0, 3); // 0 = red, 1 = green, 2 = blue
+        _currentColorIndex = Random.Range(0, 300)%3; // 0 = red, 1 = green, 2 = blue
 
         // update sprite
         changeForm();
@@ -126,18 +131,28 @@ public class Demon_Health : MonoBehaviour
     IEnumerator fadeEnemy()
     {
         Color c = _sr.color;
-        for (float f = 1f; f >= 0.25; f -= 0.05f)
+        for (float f = 1.0f; f >= 0.25f; f -= 0.05f)
         {
             c.a = f;
             _sr.color = c;
             yield return null;
         }
-        for (float f = 0.25f; f <= 1; f += 0.05f)
+        for (float f = 0.25f; f <= 1.0f; f += 0.05f)
         {
             c.a = f;
             _sr.color = c;
             yield return null;
         }
+    }
+
+    // kills enemy when HP<0
+    IEnumerator killEnemy()
+    {
+        for (float f = 1.0f; f >= 0; f -= Time.deltaTime)
+        {
+            yield return null;
+        }
+        Destroy(gameObject);
     }
 
 }
