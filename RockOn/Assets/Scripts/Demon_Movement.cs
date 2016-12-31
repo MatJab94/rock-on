@@ -18,8 +18,8 @@ public class Demon_Movement : MonoBehaviour
         _enemy = GetComponent<Transform>();
         _rb = GetComponent<Rigidbody2D>();
 
-        _speed = 1.2f;
-        _maxRange = 2.5f;
+        _speed = 1.25f;
+        _maxRange = 3.0f;
         _minRange = 0.67f;
     }
 
