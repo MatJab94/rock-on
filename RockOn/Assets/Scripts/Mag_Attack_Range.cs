@@ -7,14 +7,17 @@ public class Mag_Attack_Range : MonoBehaviour
     // set in Inspector
     public GameObject fireballPrefab;
 
-    // this Object's SpriteRenderer
+    // Mage's SpriteRenderer
     private SpriteRenderer _sr;
 
     // flag shows if enemy is in range to attack the player
     private bool _canAttack = false;
 
     // flag shows if attacking coroutine can be started again
-    private bool _canStartCoroutine = true;
+    private bool _attacking = false;
+
+    // shows if attack is finished and enemy waits for next attack
+    private bool _cooldown = false;
 
     // Health Bar in GUI
     private Player_Health _playerHealth;
@@ -29,23 +32,23 @@ public class Mag_Attack_Range : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (_canAttack && _canStartCoroutine)
+        if (_canAttack && !_attacking && !_cooldown)
         {
-            _canStartCoroutine = false;
+            _attacking = true;
             StartCoroutine("shootFireball");
         }
     }
 
-    // kills enemy when health <= 0
+    // shoots a fireball towards player
     IEnumerator shootFireball()
     {
-        // wait for a second before attacking
+        // wait for some time before attacking
         for (float f = 0.75f; f >= 0; f -= Time.deltaTime)
         {
             yield return null;
         }
         
-        // make enemy darker just before attack
+        // make enemy darker just before the attack
         Color c = _sr.color;
         for (float f = 1.0f; f >= 0.6f; f -= Time.deltaTime)
         {
@@ -71,13 +74,16 @@ public class Mag_Attack_Range : MonoBehaviour
         c.b = 1.0f;
         _sr.color = c;
 
+        // attack is completed, cooldown starts
+        _attacking = false;
+        _cooldown = true;
 
-        // wait for some time before Mag can attack again
+        // wait for some time before Mage can attack again
         for (float f = 1.5f; f >= 0; f -= Time.deltaTime)
         {
             yield return null;
         }
-        _canStartCoroutine = true;
+        _cooldown = false;
     }
 
     // event that is called if player enters this Object's collider (is in range)
@@ -96,5 +102,16 @@ public class Mag_Attack_Range : MonoBehaviour
         {
             _canAttack = false;
         }
+    }
+
+    // can be used to stop enemy from moving while attacking or something
+    public bool isCooldown()
+    {
+        return _cooldown;
+    }
+
+    public bool isAttacking()
+    {
+        return _attacking;
     }
 }

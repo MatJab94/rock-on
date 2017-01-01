@@ -95,6 +95,9 @@ public class Fireball_Health : MonoBehaviour
 
         // update animation color
         _anim.SetInteger("colorIndex", _currentColorIndex);
+
+        // kills fireball after some time to prevent to many fireballs fired
+        StartCoroutine("timedKillFireball");
     }
 
     // fades enemy after he's hit
@@ -115,7 +118,7 @@ public class Fireball_Health : MonoBehaviour
         }
     }
 
-    // kills enemy when health <= 0
+    // kills fireball when health <= 0
     IEnumerator killFireball()
     {
         // there's some bugs when destroying the object immediately,
@@ -127,6 +130,16 @@ public class Fireball_Health : MonoBehaviour
             yield return null;
         }
         Destroy(gameObject);
+    }
+
+    // kills fireball after some time to prevent to many fireballs fired
+    IEnumerator timedKillFireball()
+    {
+        for (float f = 10.0f; f >= 0; f -= Time.deltaTime)
+        {
+            yield return null;
+        }
+        StartCoroutine("killFireball");
     }
 
 }

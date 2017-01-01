@@ -1,9 +1,19 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class Demon_Attack_Range : MonoBehaviour
 {
+    // Demon's SpriteRenderer
+    private SpriteRenderer _sr;
+
     // flag shows if enemy is in range to attack the player
     private bool _canAttack = false;
+
+    // flag shows if attacking coroutine can be started again
+    private bool _attacking = false;
+
+    // shows if attack is finished and enemy waits for next attack
+    private bool _cooldown = false;
 
     // Health Bar in GUI
     private Player_Health _playerHealth;
@@ -11,14 +21,57 @@ public class Demon_Attack_Range : MonoBehaviour
     void Start()
     {
         _playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<Player_Health>();
+        _sr = GetComponentInParent<SpriteRenderer>();
     }
 
     void FixedUpdate()
     {
-        if (_canAttack)
+        if (_canAttack && !_attacking)
         {
-            _playerHealth.applyDamage(1);
+            _attacking = true;
+            StartCoroutine("attackPlayer");
         }
+    }
+    
+    IEnumerator attackPlayer()
+    {
+        // make enemy darker just before attack
+        Color c = _sr.color;
+        for (float f = 1.0f; f >= 0.7f; f -= Time.deltaTime)
+        {
+            c.r = f;
+            c.g = f;
+            c.b = f;
+            _sr.color = c;
+            yield return null;
+        }
+
+        for (float f = 0.1f; f >= 0; f -= Time.deltaTime)
+        {
+            // wait a little more
+            yield return null;
+        }
+
+        // attack
+        _playerHealth.applyDamage(1);
+
+        // change color back to original
+        c.r = 1.0f;
+        c.g = 1.0f;
+        c.b = 1.0f;
+        _sr.color = c;
+
+
+        _cooldown = true;
+        // wait for some time before Demon can attack again
+        for (float f = 1.0f; f >= 0; f -= Time.deltaTime)
+        {
+            yield return null;
+        }
+        _cooldown = false;
+
+        // change flag so the next attack can start
+        _attacking = false;
     }
 
     // event that is called if player enters this Object's collider (is in range)
@@ -39,4 +92,9 @@ public class Demon_Attack_Range : MonoBehaviour
         }
     }
 
+    // can be used to stop enemy from moving while attacking or something
+    public bool isCooldown()
+    {
+        return _cooldown;
+    }
 }

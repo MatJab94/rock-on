@@ -33,6 +33,9 @@ public class Player_AoE_Attack : MonoBehaviour
     // mana bar in GUI
     private Player_Mana _playerMana;
 
+    // script that stops player from continuously attacking
+    private Player_AttackTimeOut _timeoutScript;
+
     public void Start()
     {
         _targets = new ArrayList();
@@ -44,15 +47,19 @@ public class Player_AoE_Attack : MonoBehaviour
         _playerColor = GameObject.FindGameObjectWithTag("Player").GetComponent<Player_Color_Change>();
         _playerAudio = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<Player_Audio>();
         _playerMana = GameObject.FindGameObjectWithTag("Player").GetComponent<Player_Mana>();
+        _timeoutScript = GameObject.FindGameObjectWithTag("Player").GetComponent<Player_AttackTimeOut>();
     }
 
     public void Update()
     {
         // if AoE Attack is pressed (Space)
-        if (Input.GetButtonDown("Attack_AoE"))
+        if (Input.GetButtonDown("Attack_AoE") && _timeoutScript.getTimeoutFlag() == false)
         {
             // do the AoE attack
             aoeAttack();
+
+            // start timeout after attacking
+            _timeoutScript.startTimeout();
         }
     }
 
