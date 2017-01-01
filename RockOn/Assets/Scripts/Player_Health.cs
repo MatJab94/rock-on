@@ -56,12 +56,12 @@ public class Player_Health : MonoBehaviour
     }
 
     // called when enemy attacks the player
-    public void applyDamage()
+    public void applyDamage(int damage)
     {
         if (!_invincibleFlag)
         {
             // -1 HP
-            _health--;
+            _health-= damage;
 
             // make player invincible for a moment, so enemies can't kill him instantly
             StartCoroutine("invincibleTime");

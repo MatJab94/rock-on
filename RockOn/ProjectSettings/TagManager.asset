@@ -4,7 +4,6 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Enemy
   - Wall
   - RythmBattle
   - UI
@@ -16,6 +15,9 @@ TagManager:
   - Player_AoE
   - TargetForCursor
   - Cursor
+  - Demon
+  - Mag
+  - Fireball
   layers:
   - Default
   - TransparentFX

@@ -17,11 +17,11 @@ public class Demon_Attack_Range : MonoBehaviour
     {
         if (_canAttack)
         {
-            _playerHealth.applyDamage();
+            _playerHealth.applyDamage(1);
         }
     }
 
-    // event that is called if enemy enters this Object's collider (is in range)
+    // event that is called if player enters this Object's collider (is in range)
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")
@@ -30,7 +30,7 @@ public class Demon_Attack_Range : MonoBehaviour
         }
     }
 
-    // event that is called if enemy exits this Object's collider (is out of range)
+    // event that is called if player exits this Object's collider (is out of range)
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")

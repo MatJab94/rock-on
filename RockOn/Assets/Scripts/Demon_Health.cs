@@ -13,8 +13,12 @@ public class Demon_Health : MonoBehaviour
     private Transform _tf;
 
     // the sprite of the enemy, based on it's color and health
-    private int _currentColorIndex;
     private Sprite _currentSprite;
+
+    // randomized on spawn, determines enemy's color
+    private int _currentColorIndex;
+
+    // current health of the enemy
     private int _health;
 
     // maximum allowed health for Demon
@@ -118,10 +122,10 @@ public class Demon_Health : MonoBehaviour
 
         // initial health is random
         //_health = Random.Range(0, _maxHealth); // 0, 1, 2
-        _health = _maxHealth-1;
+        _health = _maxHealth - 1;
 
         // initial color is random
-        _currentColorIndex = Random.Range(0, 300)%3; // 0 = red, 1 = green, 2 = blue
+        _currentColorIndex = Random.Range(0, 300) % 3; // 0 = red, 1 = green, 2 = blue
 
         // update sprite
         changeForm();

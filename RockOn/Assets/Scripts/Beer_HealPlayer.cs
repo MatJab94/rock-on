@@ -1,18 +1,7 @@
 ﻿using UnityEngine;
 
-public class Beer_HealPlayer : MonoBehaviour {
-
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-
-
+public class Beer_HealPlayer : MonoBehaviour
+{
     // event that is called if player enters this Object's collider
     private void OnTriggerEnter2D(Collider2D collision)
     {
