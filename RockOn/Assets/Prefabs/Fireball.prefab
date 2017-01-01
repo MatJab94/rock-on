@@ -35,6 +35,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4635846218329198}
+  - component: {fileID: 95196420641672490}
   - component: {fileID: 212548593782110038}
   - component: {fileID: 58862025836903800}
   - component: {fileID: 50711383924608634}
@@ -168,6 +169,23 @@ CircleCollider2D:
   m_Offset: {x: -0.36, y: 0}
   serializedVersion: 2
   m_Radius: 0.1
+--- !u!95 &95196420641672490
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1439231446090428}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 81160138223e3bf498c3bad9252e5890, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &114276436911060720
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -179,9 +197,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e65d9d8983656a40adcf34c87e2435b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spriteRed: {fileID: 21300006, guid: 495b9d26764c4ce46b975fbe4c9eb5c4, type: 3}
-  spriteGreen: {fileID: 21300014, guid: 495b9d26764c4ce46b975fbe4c9eb5c4, type: 3}
-  spriteBlue: {fileID: 21300022, guid: 495b9d26764c4ce46b975fbe4c9eb5c4, type: 3}
 --- !u!114 &114300786087571242
 MonoBehaviour:
   m_ObjectHideFlags: 1

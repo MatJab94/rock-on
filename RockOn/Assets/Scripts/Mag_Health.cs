@@ -4,10 +4,8 @@ using UnityEngine;
 
 public class Mag_Health : MonoBehaviour
 {
-    // sprites of the enemies, set in Inspector
-    public Sprite spriteRed;
-    public Sprite spriteGreen;
-    public Sprite spriteBlue;
+    // this object's animator
+    private Animator _anim;
 
     // this Object's SpriteRenderer and Transform
     private SpriteRenderer _sr;
@@ -39,6 +37,7 @@ public class Mag_Health : MonoBehaviour
         rythmBattle = GameObject.FindGameObjectWithTag("RythmBattle").GetComponent<RythmBattle>();
         _sr = GetComponent<SpriteRenderer>();
         _tf = GetComponent<Transform>();
+        _anim = GetComponent<Animator>();
 
         // max health for Mag is 2
         _maxHealth = 2;
@@ -73,11 +72,7 @@ public class Mag_Health : MonoBehaviour
             // if it's dead destroy the object
             if (_health <= 0)
             {
-                // there's a bug when destroying the enemy immediately, so I'm 
-                // moving him somewhere else and killing him after a second
-                _tf.position = new Vector3(1000, 1000, 1000);
                 StartCoroutine("killEnemy");
-                // spawnEnemy();
             }
         }
         else
@@ -96,22 +91,8 @@ public class Mag_Health : MonoBehaviour
         // initial color is random
         _currentColorIndex = Random.Range(0, 300) % 3; // 0 = red, 1 = green, 2 = blue
 
-        // update sprite
-        switch (_currentColorIndex)
-        {
-            case 0: // red
-                _sr.sprite = spriteRed;
-                break;
-            case 1: // green
-                _sr.sprite = spriteGreen;
-                break;
-            case 2: // blue
-                _sr.sprite = spriteBlue;
-                break;
-            default:
-                Destroy(gameObject); // illegal color number?
-                break;
-        }
+        // update animation color
+        _anim.SetInteger("colorIndex", _currentColorIndex);
     }
 
     // fades enemy after he's hit
@@ -135,6 +116,10 @@ public class Mag_Health : MonoBehaviour
     // kills enemy when health <= 0
     IEnumerator killEnemy()
     {
+        // there's some bugs when destroying the object immediately,
+        //  so I'm moving it somewhere else and killing it after a second
+        _tf.position = new Vector3(-10000, -10000, -10000);
+
         for (float f = 1.0f; f >= 0; f -= Time.deltaTime)
         {
             yield return null;

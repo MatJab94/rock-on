@@ -37,6 +37,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4404626344135496}
   - component: {fileID: 212535367405948064}
+  - component: {fileID: 95779289579581358}
   - component: {fileID: 50560425484152380}
   - component: {fileID: 61583250418584520}
   - component: {fileID: 114285351703797106}
@@ -97,8 +98,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1418506097318994}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 34, y: -43.6, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.31909943, y: -1.9346809, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4192377580247738}
@@ -195,6 +196,23 @@ BoxCollider2D:
   m_Offset: {x: 0, y: -0.25}
   serializedVersion: 2
   m_Size: {x: 0.5, y: 0.31}
+--- !u!95 &95779289579581358
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1418506097318994}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 10db22e0bdd8100488983e002f824427, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &114203853264358338
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -206,9 +224,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b2fc2eaee0735c4a92085e3fad2d06f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spriteRed: {fileID: 21300002, guid: b906bc0fe5f91164abcce7c5e4dda90a, type: 3}
-  spriteGreen: {fileID: 21300004, guid: b906bc0fe5f91164abcce7c5e4dda90a, type: 3}
-  spriteBlue: {fileID: 21300000, guid: b906bc0fe5f91164abcce7c5e4dda90a, type: 3}
+  spriteRed: {fileID: 21300000, guid: 02baac80340990841af141dab549a4cb, type: 3}
+  spriteGreen: {fileID: 21300008, guid: 02baac80340990841af141dab549a4cb, type: 3}
+  spriteBlue: {fileID: 21300016, guid: 02baac80340990841af141dab549a4cb, type: 3}
 --- !u!114 &114285351703797106
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -275,7 +293,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 994355489
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300006, guid: b906bc0fe5f91164abcce7c5e4dda90a, type: 3}
+  m_Sprite: {fileID: 21300024, guid: 02baac80340990841af141dab549a4cb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

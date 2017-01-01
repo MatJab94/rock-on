@@ -75,11 +75,7 @@ public class Demon_Health : MonoBehaviour
             // if it's dead destroy the object
             if (_health < 0)
             {
-                // there's a bug when destroying the enemy immediately, so I'm 
-                // moving him somewhere else and killing him after a second
-                _tf.position = new Vector3(1000, 1000, 1000);
                 StartCoroutine("killEnemy");
-                // spawnEnemy();
             }
             // if not dead just update sprite
             else
@@ -152,6 +148,10 @@ public class Demon_Health : MonoBehaviour
     // kills enemy when HP<0
     IEnumerator killEnemy()
     {
+        // there's some bugs when destroying the object immediately,
+        // so I'm moving it somewhere else and killing it after a second
+        _tf.position = new Vector3(-10000, -10000, -10000);
+
         for (float f = 1.0f; f >= 0; f -= Time.deltaTime)
         {
             yield return null;
