@@ -224,9 +224,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b2fc2eaee0735c4a92085e3fad2d06f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spriteRed: {fileID: 21300000, guid: 02baac80340990841af141dab549a4cb, type: 3}
-  spriteGreen: {fileID: 21300008, guid: 02baac80340990841af141dab549a4cb, type: 3}
-  spriteBlue: {fileID: 21300016, guid: 02baac80340990841af141dab549a4cb, type: 3}
 --- !u!114 &114285351703797106
 MonoBehaviour:
   m_ObjectHideFlags: 1
