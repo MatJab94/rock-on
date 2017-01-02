@@ -99,23 +99,32 @@ public class Mag_Health : MonoBehaviour
     IEnumerator fadeEnemy()
     {
         Color c = _sr.color;
-        for (float f = 1.0f; f >= 0.25f; f -= 0.05f)
+        for (float f = 1.0f; f >= 0.25f; f -= 0.03f)
         {
             c.a = f;
             _sr.color = c;
             yield return null;
         }
-        for (float f = 0.25f; f <= 1.0f; f += 0.05f)
+        for (float f = 0.25f; f <= 1.0f; f += 0.03f)
         {
             c.a = f;
             _sr.color = c;
             yield return null;
         }
+
+        // restart to default color at the end
+        _sr.color = Color.white;
     }
 
     // kills enemy when health <= 0
     IEnumerator killEnemy()
     {
+        // small delay before killing the object
+        for (float f = 0.2f; f >= 0; f -= Time.deltaTime)
+        {
+            yield return null;
+        }
+
         // there's some bugs when destroying the object immediately,
         //  so I'm moving it somewhere else and killing it after a second
         _tf.position = new Vector3(-10000, -10000, -10000);

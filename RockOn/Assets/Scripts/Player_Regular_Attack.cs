@@ -77,10 +77,10 @@ public class Player_Regular_Attack : MonoBehaviour
                     if (_target.transform.parent.gameObject.tag == "Chest")
                     {
                         // simple version
-                        _target.GetComponentInParent<Chest_Open>().openChest();
+                        //_target.GetComponentInParent<Chest_Open>().openChest();
                         
                         // final version [IN PROGRESS]
-                        //_target.GetComponentInParent<Chest_Open>().hitChest();
+                        _target.GetComponentInParent<Chest_Open>().hitChest();
                     }
                 }
                 else

@@ -17,6 +17,9 @@ public class Chest_Open : MonoBehaviour
     // code script of this chest
     private Chest_Code _codeScript;
 
+    // sprite renderers of the keys objects
+    private SpriteRenderer[] _keysSR;
+
     // Use this for initialization
     void Start()
     {
@@ -26,14 +29,15 @@ public class Chest_Open : MonoBehaviour
         _codeScript = GetComponentInChildren<Chest_Code>();
     }
 
+    // public method for easier calling of the method in codeScript
     public void hitChest()
     {
-        _codeScript.checkCurrentKey();
+        _codeScript.hitChest();
     }
 
     public void openChest()
     {
-        StartCoroutine("chestInteraction");
+        StartCoroutine("openChestCoroutine");
     }
 
     private void spawnTreasure()
@@ -42,7 +46,8 @@ public class Chest_Open : MonoBehaviour
         Instantiate(treasures[index], gameObject.transform.position, Quaternion.identity);
     }
 
-    IEnumerator chestInteraction()
+    // opens the chest, spawn a treasure and dosposes of the chest object
+    IEnumerator openChestCoroutine()
     {
         // small delay before opening
         for (float f = 0.1f; f >= 0; f -= Time.deltaTime)
@@ -50,10 +55,10 @@ public class Chest_Open : MonoBehaviour
             yield return null;
         }
 
-        //open the chest
+        // play opening animation
         _anim.SetTrigger("open");
 
-        // delay before disposing of the chest
+        // delay for animation to end
         for (float f = 1.0f; f >= 0; f -= Time.deltaTime)
         {
             yield return null;
@@ -62,12 +67,16 @@ public class Chest_Open : MonoBehaviour
         // spawn the treasure
         spawnTreasure();
 
-        // fade the chest
+        // fade the chest to make it disappear
         Color c = _sr.color;
+        _keysSR = _codeScript.getKeysSR();
         for (float f = 1.0f; f >= 0.0f; f -= Time.deltaTime)
         {
             c.a = f;
             _sr.color = c;
+            _keysSR[0].color = c;
+            _keysSR[1].color = c;
+            _keysSR[2].color = c;
             yield return null;
         }
 

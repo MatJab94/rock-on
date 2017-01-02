@@ -19,7 +19,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4192719542224096}
-  - component: {fileID: 58434379084983936}
+  - component: {fileID: 60722473083419656}
   m_Layer: 0
   m_Name: TargetForCursor
   m_TagString: TargetForCursor
@@ -72,7 +72,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1314775243593256}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -99,7 +99,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1439231446090428}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 30.47, y: -44.62, z: 0}
+  m_LocalPosition: {x: 32.381275, y: -44.51918, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children:
   - {fileID: 4192719542224096}
@@ -127,20 +127,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!58 &58434379084983936
-CircleCollider2D:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1314775243593256}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_Offset: {x: -0.36, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.4
 --- !u!58 &58586019908569984
 CircleCollider2D:
   m_ObjectHideFlags: 1
@@ -169,6 +155,29 @@ CircleCollider2D:
   m_Offset: {x: -0.36, y: 0}
   serializedVersion: 2
   m_Radius: 0.1
+--- !u!60 &60722473083419656
+PolygonCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1314775243593256}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: 0}
+  m_Points:
+    m_Paths:
+    - - {x: -0.49269104, y: 0.32083893}
+      - {x: -0.25661469, y: 0.3249054}
+      - {x: -0.049118042, y: 0.14774323}
+      - {x: 0.027252197, y: -0.010772705}
+      - {x: -0.046455383, y: -0.1510849}
+      - {x: -0.21759033, y: -0.31947327}
+      - {x: -0.5048828, y: -0.3273697}
+      - {x: -1.1941681, y: -0.0440979}
+      - {x: -1.1958275, y: 0.032661438}
 --- !u!95 &95196420641672490
 Animator:
   serializedVersion: 3
@@ -261,7 +270,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 994355489
   m_SortingOrder: 3
-  m_Sprite: {fileID: 21300024, guid: 495b9d26764c4ce46b975fbe4c9eb5c4, type: 3}
+  m_Sprite: {fileID: 21300030, guid: 495b9d26764c4ce46b975fbe4c9eb5c4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
