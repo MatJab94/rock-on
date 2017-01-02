@@ -20,7 +20,7 @@ public class Player_Health : MonoBehaviour
     private int _maxHealth;
 
     // how long is player invincible after he's hit
-    private float _invincible;
+    private float _invincibleTime;
     private bool _invincibleFlag;
 
     // used to respawn enemies, just for testing
@@ -36,7 +36,7 @@ public class Player_Health : MonoBehaviour
 
         _maxHealth = sprites.Length;
 
-        _invincible = 1.0f;
+        _invincibleTime = 1.0f;
         _invincibleFlag = false;
 
         spawnPlayer();
@@ -56,18 +56,18 @@ public class Player_Health : MonoBehaviour
     }
 
     // called when enemy attacks the player
-    public void applyDamage()
+    public void applyDamage(int damage)
     {
         if (!_invincibleFlag)
         {
             // -1 HP
-            _health--;
+            _health -= damage;
 
             // make player invincible for a moment, so enemies can't kill him instantly
             StartCoroutine("invincibleTime");
 
-            // fades enemy after he's hit
-            StartCoroutine("fadeEnemy");
+            // fades player after he's hit
+            StartCoroutine("fadePlayer");
 
             // if it's dead respawn it (just for testing, use Destroy(gameObject) to kill it)
             if (_health <= 0)
@@ -87,7 +87,7 @@ public class Player_Health : MonoBehaviour
     private void spawnPlayer()
     {
         _tf.position = _respawnPosition;
-        _health = _maxHealth-2;
+        _health = _maxHealth - 2;
         updateGUI();
 
     }
@@ -101,7 +101,7 @@ public class Player_Health : MonoBehaviour
     IEnumerator invincibleTime()
     {
         _invincibleFlag = true;
-        for (float time = _invincible; time > 0; time -= Time.deltaTime)
+        for (float time = _invincibleTime; time > 0; time -= Time.deltaTime)
         {
             yield return null;
         }
@@ -109,20 +109,42 @@ public class Player_Health : MonoBehaviour
     }
 
     // fades the player after he's hit
-    IEnumerator fadeEnemy()
+    IEnumerator fadePlayer()
     {
         Color c = _sr.color;
-        for (float f = 1f; f >= 0.25; f -= 0.05f)
+
+        // flash the player while he's invincible after being attacked
+        do
         {
-            c.a = f;
-            _sr.color = c;
-            yield return null;
-        }
-        for (float f = 0.25f; f <= 1; f += 0.05f)
-        {
-            c.a = f;
-            _sr.color = c;
-            yield return null;
-        }
+            // fade in
+            for (float f = 1.0f; f >= 0.25f; f -= 0.05f)
+            {
+                c.a = f;
+                _sr.color = c;
+                yield return null;
+            }
+
+            // fade out
+            for (float f = 0.25f; f <= 1; f += 0.05f)
+            {
+                c.a = f;
+                _sr.color = c;
+                yield return null;
+            }
+        } while (_invincibleFlag);
+
+        // restart color at the end
+        c.a = 1.0f;
+        _sr.color = c;
+    }
+
+    public int getHealth()
+    {
+        return _health;
+    }
+
+    public int getMaxHealth()
+    {
+        return _maxHealth;
     }
 }

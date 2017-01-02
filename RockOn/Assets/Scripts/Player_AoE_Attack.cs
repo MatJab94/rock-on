@@ -33,6 +33,9 @@ public class Player_AoE_Attack : MonoBehaviour
     // mana bar in GUI
     private Player_Mana _playerMana;
 
+    // script that stops player from continuously attacking
+    private Player_AttackTimeOut _timeoutScript;
+
     public void Start()
     {
         _targets = new ArrayList();
@@ -44,15 +47,19 @@ public class Player_AoE_Attack : MonoBehaviour
         _playerColor = GameObject.FindGameObjectWithTag("Player").GetComponent<Player_Color_Change>();
         _playerAudio = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<Player_Audio>();
         _playerMana = GameObject.FindGameObjectWithTag("Player").GetComponent<Player_Mana>();
+        _timeoutScript = GameObject.FindGameObjectWithTag("Player").GetComponent<Player_AttackTimeOut>();
     }
 
     public void Update()
     {
         // if AoE Attack is pressed (Space)
-        if (Input.GetButtonDown("Attack_AoE"))
+        if (Input.GetButtonDown("Attack_AoE") && _timeoutScript.getTimeoutFlag() == false)
         {
             // do the AoE attack
             aoeAttack();
+
+            // start timeout after attacking
+            _timeoutScript.startTimeout();
         }
     }
 
@@ -84,7 +91,18 @@ public class Player_AoE_Attack : MonoBehaviour
     {
         foreach (GameObject target in _targets)
         {
-            target.GetComponent<Demon_Health>().applyDamage(3);
+            if(target.tag == "Demon")
+            {
+                target.GetComponent<Demon_Health>().applyDamage(3);
+            }
+            if (target.tag == "Mag")
+            {
+                target.GetComponent<Mag_Health>().applyDamage(3);
+            }
+            if (target.tag == "Fireball")
+            {
+                target.GetComponent<Fireball_Health>().applyDamage(3, false);
+            }
         }
     }
 
@@ -126,7 +144,7 @@ public class Player_AoE_Attack : MonoBehaviour
     // event that is called if enemy enters this Object's collider (is in range)
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Enemy")
+        if (collision.gameObject.tag == "Demon" || collision.gameObject.tag == "Mag" || collision.gameObject.tag == "Fireball")
         {
             // add this object to the list of enemies in range
             _targets.Add(collision.gameObject);
@@ -136,7 +154,7 @@ public class Player_AoE_Attack : MonoBehaviour
     // event that is called if enemy exits this Object's collider (is out of range)
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Enemy")
+        if (collision.gameObject.tag == "Demon" || collision.gameObject.tag == "Mag" || collision.gameObject.tag == "Fireball")
         {
             // remove this object from the list of enemies in range
             _targets.Remove(collision.gameObject);

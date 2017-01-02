@@ -3,18 +3,20 @@ using System.Collections;
 
 public class Demon_Health : MonoBehaviour
 {
-    // arrays that hold sprites of the enemies, set in Inspector
-    public Sprite[] spriteRed;
-    public Sprite[] spriteGreen;
-    public Sprite[] spriteBlue;
+    // this object's animator
+    private Animator _anim;
 
     // this Object's SpriteRenderer and Transform
     private SpriteRenderer _sr;
     private Transform _tf;
 
     // the sprite of the enemy, based on it's color and health
-    private int _currentColorIndex;
     private Sprite _currentSprite;
+
+    // randomized on spawn, determines enemy's color
+    private int _currentColorIndex;
+
+    // current health of the enemy
     private int _health;
 
     // maximum allowed health for Demon
@@ -38,8 +40,10 @@ public class Demon_Health : MonoBehaviour
         _tf = GetComponent<Transform>();
         _respawnPosition = new Vector3(_tf.position.x, _tf.position.y, _tf.position.z);
 
-        // max health is equal to amount of sprites
-        _maxHealth = spriteRed.Length;
+        _anim = GetComponent<Animator>();
+
+        // max health for Demon is 3
+        _maxHealth = 3;
 
         // spawn the enemy with random health and color
         spawnEnemy();
@@ -69,13 +73,9 @@ public class Demon_Health : MonoBehaviour
             StartCoroutine("fadeEnemy");
 
             // if it's dead destroy the object
-            if (_health < 0)
+            if (_health <= 0)
             {
-                // there's a bug when destroying the enemy immediately, so I'm 
-                // moving him somewhere else and killing him after a second
-                _tf.position = new Vector3(1000, 1000, 1000);
                 StartCoroutine("killEnemy");
-                // spawnEnemy();
             }
             // if not dead just update sprite
             else
@@ -90,38 +90,26 @@ public class Demon_Health : MonoBehaviour
         }
     }
 
-    // updates Demon's sprite based on current health and color
-    // health is also an index in the sprite arrays (0-2)
+    
     private void changeForm()
     {
-        switch (_currentColorIndex)
-        {
-            case 0: // red
-                _sr.sprite = spriteRed[_health];
-                break;
-            case 1: // green
-                _sr.sprite = spriteGreen[_health];
-                break;
-            case 2: // blue
-                _sr.sprite = spriteBlue[_health];
-                break;
-            default:
-                Destroy(gameObject); // illegal color number?
-                break;
-        }
+        // update animation form based on health
+        _anim.SetInteger("form", _health);
     }
 
     // spawn an enemy with random stats
     private void spawnEnemy()
     {
         _tf.position = _respawnPosition;
-
-        // initial health is random
-        //_health = Random.Range(0, _maxHealth); // 0, 1, 2
-        _health = _maxHealth-1;
+        
+        // initial health
+        _health = _maxHealth;
 
         // initial color is random
-        _currentColorIndex = Random.Range(0, 300)%3; // 0 = red, 1 = green, 2 = blue
+        _currentColorIndex = Random.Range(0, 300) % 3; // 0 = red, 1 = green, 2 = blue
+
+        // update animation color
+        _anim.SetInteger("colorIndex", _currentColorIndex);
 
         // update sprite
         changeForm();
@@ -143,11 +131,24 @@ public class Demon_Health : MonoBehaviour
             _sr.color = c;
             yield return null;
         }
+
+        // restart to default color at the end
+        _sr.color = Color.white;
     }
 
     // kills enemy when HP<0
     IEnumerator killEnemy()
     {
+        // small delay before killing the object
+        for (float f = 0.2f; f >= 0; f -= Time.deltaTime)
+        {
+            yield return null;
+        }
+
+        // there's some bugs when destroying the object immediately,
+        // so I'm moving it somewhere else and killing it after a second
+        _tf.position = new Vector3(-10000, -10000, -10000);
+
         for (float f = 1.0f; f >= 0; f -= Time.deltaTime)
         {
             yield return null;

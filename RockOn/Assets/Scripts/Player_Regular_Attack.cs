@@ -21,12 +21,16 @@ public class Player_Regular_Attack : MonoBehaviour
     // drawing line when attacking
     private LineRenderer _lr;
 
+    // script that stops player from continuously attacking
+    private Player_AttackTimeOut _timeoutScript;
+
     void Start()
     {
         _playerTransform = GetComponentInParent<Transform>();
         _targetDetection = GameObject.FindGameObjectWithTag("Cursor").GetComponent<Cursor_TargetDetection>();
         _playerAudio = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<Player_Audio>();
         _lr = GetComponent<LineRenderer>();
+        _timeoutScript = GameObject.FindGameObjectWithTag("Player").GetComponent<Player_AttackTimeOut>();
 
         _maxRange = 2.5f;
 
@@ -37,7 +41,7 @@ public class Player_Regular_Attack : MonoBehaviour
     void Update()
     {
         // if player clicks the attack button (mouse 0 by default)
-        if (Input.GetButtonDown("Regular_Attack"))
+        if (Input.GetButtonDown("Regular_Attack") && _timeoutScript.getTimeoutFlag() == false)
         {
             // select current target
             _target = _targetDetection.target;
@@ -45,6 +49,9 @@ public class Player_Regular_Attack : MonoBehaviour
             // if there is a target
             if (_target != null)
             {
+                // start timeout after attacking
+                _timeoutScript.startTimeout();
+
                 // and check if target is in range
                 if (isInRange(_target.GetComponent<Transform>().position))
                 {
@@ -54,8 +61,27 @@ public class Player_Regular_Attack : MonoBehaviour
                     // draw a line from player to target
                     StartCoroutine("drawLine", (Vector2)_target.GetComponent<Transform>().position);
 
-                    // hit the enemy
-                    _target.GetComponentInParent<Demon_Health>().applyDamage(1);
+                    // hit or interact with the target object
+                    if (_target.transform.parent.gameObject.tag == "Demon")
+                    {
+                        _target.GetComponentInParent<Demon_Health>().applyDamage(1);
+                    }
+                    if (_target.transform.parent.gameObject.tag == "Mag")
+                    {
+                        _target.GetComponentInParent<Mag_Health>().applyDamage(1);
+                    }
+                    if (_target.transform.parent.gameObject.tag == "Fireball")
+                    {
+                        _target.GetComponentInParent<Fireball_Health>().applyDamage(1, false);
+                    }
+                    if (_target.transform.parent.gameObject.tag == "Chest")
+                    {
+                        // simple version
+                        //_target.GetComponentInParent<Chest_Open>().openChest();
+                        
+                        // final version [IN PROGRESS]
+                        _target.GetComponentInParent<Chest_Open>().hitChest();
+                    }
                 }
                 else
                 {
