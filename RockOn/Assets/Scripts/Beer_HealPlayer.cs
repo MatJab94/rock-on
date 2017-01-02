@@ -2,7 +2,6 @@
 
 public class Beer_HealPlayer : MonoBehaviour
 {
-
     private Player_Health _playerHealth;
 
     private void Start()
@@ -17,9 +16,9 @@ public class Beer_HealPlayer : MonoBehaviour
         {
             if(_playerHealth.getHealth() < _playerHealth.getMaxHealth())
             {
-                collision.gameObject.GetComponent<Player_Health>().healPlayer(1);
+                _playerHealth.healPlayer(1);
                 
-                Destroy(gameObject, 0.2f);
+                Destroy(gameObject, 0.05f);
             }
         }
     }

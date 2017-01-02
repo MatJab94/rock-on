@@ -49,7 +49,6 @@ public class Player_Regular_Attack : MonoBehaviour
             // if there is a target
             if (_target != null)
             {
-
                 // start timeout after attacking
                 _timeoutScript.startTimeout();
 
@@ -62,7 +61,7 @@ public class Player_Regular_Attack : MonoBehaviour
                     // draw a line from player to target
                     StartCoroutine("drawLine", (Vector2)_target.GetComponent<Transform>().position);
 
-                    // hit the enemy
+                    // hit or interact with the target object
                     if (_target.transform.parent.gameObject.tag == "Demon")
                     {
                         _target.GetComponentInParent<Demon_Health>().applyDamage(1);
@@ -74,6 +73,14 @@ public class Player_Regular_Attack : MonoBehaviour
                     if (_target.transform.parent.gameObject.tag == "Fireball")
                     {
                         _target.GetComponentInParent<Fireball_Health>().applyDamage(1, false);
+                    }
+                    if (_target.transform.parent.gameObject.tag == "Chest")
+                    {
+                        // simple version
+                        _target.GetComponentInParent<Chest_Open>().openChest();
+                        
+                        // final version [IN PROGRESS]
+                        //_target.GetComponentInParent<Chest_Open>().hitChest();
                     }
                 }
                 else

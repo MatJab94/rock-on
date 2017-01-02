@@ -17,6 +17,7 @@ public class Fireball_Movement : MonoBehaviour
         _target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         _fireball = GetComponent<Transform>();
         _rb = GetComponent<Rigidbody2D>();
+
         _moveSpeed = 0.9f;
         _rotateSpeed = 1.1f;
 

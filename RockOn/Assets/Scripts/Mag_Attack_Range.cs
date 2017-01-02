@@ -19,13 +19,9 @@ public class Mag_Attack_Range : MonoBehaviour
     // shows if attack is finished and enemy waits for next attack
     private bool _cooldown = false;
 
-    // Health Bar in GUI
-    private Player_Health _playerHealth;
-
     // Use this for initialization
     void Start()
     {
-        _playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<Player_Health>();
         _sr = GetComponentInParent<SpriteRenderer>();
     }
 

@@ -97,7 +97,7 @@ public class RythmBattle : MonoBehaviour
         if (_combo >= 3)
         {
             resetBonus();
-            _playerMana.addMana();
+            _playerMana.addMana(1);
         }
     }
 

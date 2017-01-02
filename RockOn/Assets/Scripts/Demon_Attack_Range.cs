@@ -15,7 +15,7 @@ public class Demon_Attack_Range : MonoBehaviour
     // shows if attack is finished and enemy waits for next attack
     private bool _cooldown = false;
 
-    // Health Bar in GUI
+    // Player's Health script
     private Player_Health _playerHealth;
 
     void Start()
@@ -37,7 +37,7 @@ public class Demon_Attack_Range : MonoBehaviour
     {
         // make enemy darker just before attack
         Color c = _sr.color;
-        for (float f = 1.0f; f >= 0.7f; f -= Time.deltaTime)
+        for (float f = 1.0f; f >= 0.67f; f -= Time.deltaTime*2)
         {
             c.r = f;
             c.g = f;
@@ -46,21 +46,19 @@ public class Demon_Attack_Range : MonoBehaviour
             yield return null;
         }
 
-        for (float f = 0.1f; f >= 0; f -= Time.deltaTime)
-        {
-            // wait a little more
-            yield return null;
-        }
-
         // attack
         _playerHealth.applyDamage(1);
+
+        for (float f = 0.25f; f >= 0; f -= Time.deltaTime)
+        {
+            yield return null;
+        }
 
         // change color back to original
         c.r = 1.0f;
         c.g = 1.0f;
         c.b = 1.0f;
         _sr.color = c;
-
 
         _cooldown = true;
         // wait for some time before Demon can attack again

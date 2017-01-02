@@ -35,10 +35,10 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4635846218329198}
-  - component: {fileID: 95196420641672490}
   - component: {fileID: 212548593782110038}
-  - component: {fileID: 58862025836903800}
+  - component: {fileID: 95196420641672490}
   - component: {fileID: 50711383924608634}
+  - component: {fileID: 58862025836903800}
   - component: {fileID: 114947215321446378}
   - component: {fileID: 114778609252858616}
   - component: {fileID: 114276436911060720}
@@ -261,7 +261,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 994355489
   m_SortingOrder: 3
-  m_Sprite: {fileID: 21300030, guid: 495b9d26764c4ce46b975fbe4c9eb5c4, type: 3}
+  m_Sprite: {fileID: 21300024, guid: 495b9d26764c4ce46b975fbe4c9eb5c4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

@@ -20,16 +20,22 @@ public class Player_Mana : MonoBehaviour
         _manaGUI = GameObject.FindGameObjectWithTag("GUI_Mana").GetComponent<SpriteRenderer>();
 
         // initially player gets half of maximum amount of mana
-        _mana = _maxMana/2;
+        _mana = _maxMana / 2;
         updateGUI();
     }
 
     // add mana (ie. when player gets a combo)
-    public void addMana()
+    public void addMana(int amount)
     {
         if (_mana < _maxMana)
         {
-            _mana++;
+            _mana += amount;
+
+            if(_mana > _maxMana)
+            {
+                _mana = _maxMana;
+            }
+
             updateGUI();
         }
     }
@@ -44,10 +50,15 @@ public class Player_Mana : MonoBehaviour
         }
     }
 
-    // public method for other scripts to get current value of _mana
+    // public methods for other scripts
     public int getMana()
     {
         return _mana;
+    }
+
+    public int getMaxMana()
+    {
+        return _maxMana;
     }
 
     public void updateGUI()

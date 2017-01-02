@@ -18,6 +18,7 @@ TagManager:
   - Demon
   - Mag
   - Fireball
+  - Chest
   layers:
   - Default
   - TransparentFX
