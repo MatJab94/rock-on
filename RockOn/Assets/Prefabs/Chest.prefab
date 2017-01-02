@@ -324,9 +324,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 517985f5f2303174ea296c3d9d61c0c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  treasures:
+  goodTreasures:
   - {fileID: 1561614059241030, guid: f8f276e0506de114cbc22c68eed6faf3, type: 2}
   - {fileID: 1498533612468378, guid: 88a1b7875860ff440a400de8be043e07, type: 2}
+  badTreasures:
   - {fileID: 1439231446090428, guid: 84f17f53a71f5124c9e054d46a1f14eb, type: 2}
 --- !u!212 &212222941999884024
 SpriteRenderer:

@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class Chest_Open : MonoBehaviour
 {
-    // items that can be in the chest
-    public GameObject[] treasures;
+    // nice things that can be in the chest
+    public GameObject[] goodTreasures;
+
+    // not so nice things that can be in the chest
+    public GameObject[] badTreasures;
 
     // this object's animator
     private Animator _anim;
@@ -35,19 +38,28 @@ public class Chest_Open : MonoBehaviour
         _codeScript.hitChest();
     }
 
-    public void openChest()
+    public void openChest(bool goodGuess)
     {
-        StartCoroutine("openChestCoroutine");
+        StartCoroutine("openChestCoroutine", goodGuess);
     }
 
-    private void spawnTreasure()
+    private void spawnTreasure(bool goodGuess)
     {
-        int index = Random.Range(0, treasures.Length);
-        Instantiate(treasures[index], gameObject.transform.position, Quaternion.identity);
+        // if player guessed quickly, spawn a good treasure
+        if (goodGuess)
+        {
+            int index = Random.Range(0, goodTreasures.Length);
+            Instantiate(goodTreasures[index], gameObject.transform.position, Quaternion.identity);
+        }
+        else
+        {
+            int index = Random.Range(0, badTreasures.Length);
+            Instantiate(badTreasures[index], gameObject.transform.position, Quaternion.identity);
+        }
     }
 
     // opens the chest, spawn a treasure and dosposes of the chest object
-    IEnumerator openChestCoroutine()
+    IEnumerator openChestCoroutine(bool goodGuess)
     {
         // small delay before opening
         for (float f = 0.1f; f >= 0; f -= Time.deltaTime)
@@ -65,7 +77,7 @@ public class Chest_Open : MonoBehaviour
         }
 
         // spawn the treasure
-        spawnTreasure();
+        spawnTreasure(goodGuess);
 
         // fade the chest to make it disappear
         Color c = _sr.color;

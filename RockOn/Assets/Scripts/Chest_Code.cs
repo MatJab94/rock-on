@@ -40,6 +40,9 @@ public class Chest_Code : MonoBehaviour
     // number of tries
     private int _numOfTries;
 
+    // number of tries at which we open the chest with a bad treasure
+    private int _maxNumOfTries;
+
     void Start()
     {
         _playerColor = GameObject.FindGameObjectWithTag("Player").GetComponent<Player_Color_Change>();
@@ -61,6 +64,7 @@ public class Chest_Code : MonoBehaviour
         _currentIndex = 0;
         
         _numOfTries = 0;
+        _maxNumOfTries = 10;
 
         updateHighlighterPosition();
     }
@@ -92,6 +96,16 @@ public class Chest_Code : MonoBehaviour
 
             // play wrong guess "animation"
             StartCoroutine("wrongGuess");
+
+            // if player tried too many times, open the chest with a bad treasure
+            if (_numOfTries > _maxNumOfTries)
+            {
+                // change the flag to prevent infinite looping
+                _guessed = true;
+
+                // open the chest
+                _chestScript.openChest(false);
+            }
         }
 
         // change current index to point at the next key
@@ -104,14 +118,14 @@ public class Chest_Code : MonoBehaviour
         //Debug.Log("secret code was: [ " + _chestCode[0] + " " + _chestCode[1] + " " + _chestCode[2] + " ]");
         //Debug.Log("player's guess was: [ " + _playerGuess[0] + " " + _playerGuess[1] + " " + _playerGuess[2] + " ]");
 
-        // check if player guessed correctly
+        // check if player guessed correctly all the keys in sequence
         if (_playerGuess[0] && _playerGuess[1] && _playerGuess[2])
         {
             // player guessed, change the flag
             _guessed = true;
 
             // open the chest if correct
-            _chestScript.openChest();
+            _chestScript.openChest(true);
         }
     }
 
