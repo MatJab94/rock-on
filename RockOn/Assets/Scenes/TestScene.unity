@@ -3055,8 +3055,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -38}
-  m_SizeDelta: {x: 1280, y: 70}
+  m_AnchoredPosition: {x: -0.0083389, y: -36.5}
+  m_SizeDelta: {x: 1066.7, y: 73}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &979766236
 CanvasRenderer:
@@ -4630,11 +4630,11 @@ MonoBehaviour:
   m_Script: {fileID: 1980459831, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
-  m_ScreenMatchMode: 0
+  m_ScreenMatchMode: 1
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
@@ -4937,8 +4937,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1753408121}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -342.7, y: 0, z: 0}
-  m_LocalScale: {x: 180, y: 180, z: 1}
+  m_LocalPosition: {x: -329, y: -4, z: 0}
+  m_LocalScale: {x: 149.98897, y: 155.9784, z: 1}
   m_Children: []
   m_Father: {fileID: 979766234}
   m_RootOrder: 1
@@ -5143,8 +5143,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1837697368}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 407, y: 0, z: 0}
-  m_LocalScale: {x: 249, y: 249, z: 1}
+  m_LocalPosition: {x: 379, y: -4, z: 0}
+  m_LocalScale: {x: 203.66649, y: 216.05573, z: 1}
   m_Children: []
   m_Father: {fileID: 979766234}
   m_RootOrder: 0
@@ -5384,8 +5384,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 62.7, y: -42}
-  m_SizeDelta: {x: 500, y: 100}
+  m_AnchoredPosition: {x: 60, y: -49}
+  m_SizeDelta: {x: 478, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1869991251
 MonoBehaviour:
@@ -5408,7 +5408,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: 486f6a4a198049a4d86f7e981a46e15e, type: 3}
-    m_FontSize: 300
+    m_FontSize: 260
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
