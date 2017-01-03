@@ -4,11 +4,16 @@ public class Cursor_TargetDetection : MonoBehaviour
 {
     // target for the regular attack
     [HideInInspector]
-    public GameObject target;
+    public GameObject _target;
 
     void Start()
     {
-        target = null;
+        _target = null;
+    }
+
+    public GameObject getTarget()
+    {
+        return _target;
     }
 
     // event that is called if target enters this Object's collider (is in range)
@@ -16,7 +21,7 @@ public class Cursor_TargetDetection : MonoBehaviour
     {
         if (collision.gameObject.tag == "TargetForCursor")
         {
-            target = collision.gameObject;
+            _target = collision.gameObject;
             // Debug.Log("enter");
         }
     }
@@ -26,7 +31,7 @@ public class Cursor_TargetDetection : MonoBehaviour
     {
         if (collision.gameObject.tag == "TargetForCursor")
         {
-            target = null;
+            _target = null;
             // Debug.Log("exit");
         }
     }

@@ -44,7 +44,7 @@ public class Player_Regular_Attack : MonoBehaviour
         if (Input.GetButtonDown("Regular_Attack") && _timeoutScript.getTimeoutFlag() == false)
         {
             // select current target
-            _target = _targetDetection.target;
+            _target = _targetDetection.getTarget();
 
             // if there is a target
             if (_target != null)
@@ -76,11 +76,11 @@ public class Player_Regular_Attack : MonoBehaviour
                     }
                     if (_target.transform.parent.gameObject.tag == "Chest")
                     {
-                        // simple version
-                        //_target.GetComponentInParent<Chest_Open>().openChest();
-                        
-                        // final version [IN PROGRESS]
                         _target.GetComponentInParent<Chest_Open>().hitChest();
+                    }
+                    if (_target.transform.parent.gameObject.tag == "ClosedDoor")
+                    {
+                        _target.GetComponentInParent<ClosedDoor_Open>().hitDoor();
                     }
                 }
                 else

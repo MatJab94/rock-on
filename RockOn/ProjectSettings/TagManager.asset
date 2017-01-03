@@ -19,6 +19,7 @@ TagManager:
   - Mag
   - Fireball
   - Chest
+  - ClosedDoor
   layers:
   - Default
   - TransparentFX
