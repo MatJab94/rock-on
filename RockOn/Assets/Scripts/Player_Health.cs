@@ -64,10 +64,10 @@ public class Player_Health : MonoBehaviour
             _health -= damage;
 
             // make player invincible for a moment, so enemies can't kill him instantly
-            StartCoroutine("invincibleTime");
+            StartCoroutine(invincibleTime());
 
             // fades player after he's hit
-            StartCoroutine("fadePlayer");
+            StartCoroutine(fadePlayer());
 
             // if it's dead respawn it (just for testing, use Destroy(gameObject) to kill it)
             if (_health <= 0)
@@ -101,10 +101,7 @@ public class Player_Health : MonoBehaviour
     IEnumerator invincibleTime()
     {
         _invincibleFlag = true;
-        for (float time = _invincibleTime; time > 0; time -= Time.deltaTime)
-        {
-            yield return null;
-        }
+        yield return new WaitForSeconds(_invincibleTime);
         _invincibleFlag = false;
     }
 

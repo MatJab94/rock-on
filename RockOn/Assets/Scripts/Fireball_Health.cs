@@ -58,23 +58,16 @@ public class Fireball_Health : MonoBehaviour
             {
                 rythmBattle.addBonus();
             }
-            else
-            {
-                if (!collision)
-                {
-                    rythmBattle.resetBonus();
-                }
-            }
             // -1 HP
             _health -= damage;
 
             // fades enemy after he's hit
-            StartCoroutine("fadeFireball");
+            StartCoroutine(fadeFireball());
 
             // if it's dead destroy the object
             if (_health <= 0)
             {
-                StartCoroutine("killFireball");
+                StartCoroutine(killFireball());
             }
         }
         else
@@ -97,7 +90,7 @@ public class Fireball_Health : MonoBehaviour
         _anim.SetInteger("colorIndex", _currentColorIndex);
 
         // kills fireball after some time to prevent to many fireballs fired
-        StartCoroutine("timedKillFireball");
+        StartCoroutine(timedKillFireball());
     }
 
     // fades enemy after he's hit
@@ -124,21 +117,14 @@ public class Fireball_Health : MonoBehaviour
         // there's some bugs when destroying the object immediately,
         // so I'm moving it somewhere else and killing it after a second
         _tf.position = new Vector3(-10000, -10000, -10000);
-
-        for (float f = 1.0f; f >= 0; f -= Time.deltaTime)
-        {
-            yield return null;
-        }
-        Destroy(gameObject);
+        yield return new WaitForSeconds(0.5f);
+        Destroy(gameObject, 0.5f);
     }
 
     // kills fireball after some time to prevent to many fireballs fired
     IEnumerator timedKillFireball()
     {
-        for (float f = 10.0f; f >= 0; f -= Time.deltaTime)
-        {
-            yield return null;
-        }
+        yield return new WaitForSeconds(10.0f);
         StartCoroutine("killFireball");
     }
 }

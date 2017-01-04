@@ -61,21 +61,17 @@ public class Demon_Health : MonoBehaviour
             {
                 rythmBattle.addBonus();
             }
-            else
-            {
-                rythmBattle.resetBonus();
-            }
 
             // -1 HP
             _health -= damage;
 
             // fades enemy after he's hit
-            StartCoroutine("fadeEnemy");
+            StartCoroutine(fadeEnemy());
 
             // if it's dead destroy the object
             if (_health <= 0)
             {
-                StartCoroutine("killEnemy");
+                StartCoroutine(killEnemy());
             }
             // if not dead just update sprite
             else
@@ -139,21 +135,11 @@ public class Demon_Health : MonoBehaviour
     // kills enemy when HP<0
     IEnumerator killEnemy()
     {
-        // small delay before killing the object
-        for (float f = 0.2f; f >= 0; f -= Time.deltaTime)
-        {
-            yield return null;
-        }
-
         // there's some bugs when destroying the object immediately,
         // so I'm moving it somewhere else and killing it after a second
         _tf.position = new Vector3(-10000, -10000, -10000);
-
-        for (float f = 1.0f; f >= 0; f -= Time.deltaTime)
-        {
-            yield return null;
-        }
-        Destroy(gameObject);
+        yield return new WaitForSeconds(0.5f);
+        Destroy(gameObject, 0.5f);
     }
 
 }

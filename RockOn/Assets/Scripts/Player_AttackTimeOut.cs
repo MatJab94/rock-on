@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player_AttackTimeOut : MonoBehaviour {
-
+public class Player_AttackTimeOut : MonoBehaviour
+{
     private bool _timeoutFlag;
     private float _timeoutTime;
 
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
         _timeoutFlag = false;
         _timeoutTime = 0.5f;
     }
@@ -17,16 +18,13 @@ public class Player_AttackTimeOut : MonoBehaviour {
     IEnumerator timeout()
     {
         _timeoutFlag = true;
-        for (float time = _timeoutTime; time > 0; time -= Time.deltaTime)
-        {
-            yield return null;
-        }
+        yield return new WaitForSeconds(_timeoutTime);
         _timeoutFlag = false;
     }
 
     public void startTimeout()
     {
-        StartCoroutine("timeout");
+        StartCoroutine(timeout());
     }
 
     public bool getTimeoutFlag()

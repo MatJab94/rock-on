@@ -31,7 +31,7 @@ public class Mag_Attack_Range : MonoBehaviour
         if (_canAttack && !_attacking && !_cooldown)
         {
             _attacking = true;
-            StartCoroutine("shootFireball");
+            StartCoroutine(shootFireball());
         }
     }
 
@@ -39,11 +39,8 @@ public class Mag_Attack_Range : MonoBehaviour
     IEnumerator shootFireball()
     {
         // wait for some time before attacking
-        for (float f = 0.75f; f >= 0; f -= Time.deltaTime)
-        {
-            yield return null;
-        }
-        
+        yield return new WaitForSeconds(0.75f);
+
         // make enemy darker just before the attack
         Color c = _sr.color;
         for (float f = 1.0f; f >= 0.6f; f -= Time.deltaTime)
@@ -55,11 +52,8 @@ public class Mag_Attack_Range : MonoBehaviour
             yield return null;
         }
 
-        for (float f = 0.25f; f >= 0; f -= Time.deltaTime)
-        {
-            // wait a little more
-            yield return null;
-        }
+        // wait a little more
+        yield return new WaitForSeconds(0.25f);
 
         // attack
         Instantiate(fireballPrefab, gameObject.transform.position, Quaternion.identity);
@@ -75,10 +69,7 @@ public class Mag_Attack_Range : MonoBehaviour
         _cooldown = true;
 
         // wait for some time before Mage can attack again
-        for (float f = 1.5f; f >= 0; f -= Time.deltaTime)
-        {
-            yield return null;
-        }
+        yield return new WaitForSeconds(1.5f);
         _cooldown = false;
     }
 

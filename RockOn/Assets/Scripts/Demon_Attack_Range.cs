@@ -29,7 +29,7 @@ public class Demon_Attack_Range : MonoBehaviour
         if (_canAttack && !_attacking)
         {
             _attacking = true;
-            StartCoroutine("attackPlayer");
+            StartCoroutine(attackPlayer());
         }
     }
     
@@ -49,10 +49,8 @@ public class Demon_Attack_Range : MonoBehaviour
         // attack
         _playerHealth.applyDamage(1);
 
-        for (float f = 0.25f; f >= 0; f -= Time.deltaTime)
-        {
-            yield return null;
-        }
+        // small delay
+        yield return new WaitForSeconds(0.25f);
 
         // change color back to original
         c.r = 1.0f;
@@ -61,11 +59,7 @@ public class Demon_Attack_Range : MonoBehaviour
         _sr.color = c;
 
         _cooldown = true;
-        // wait for some time before Demon can attack again
-        for (float f = 1.0f; f >= 0; f -= Time.deltaTime)
-        {
-            yield return null;
-        }
+        yield return new WaitForSeconds(1.5f);
         _cooldown = false;
 
         // change flag so the next attack can start

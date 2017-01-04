@@ -2,15 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Cursor_ColorChange : MonoBehaviour {
-
+public class Cursor_ColorChange : MonoBehaviour
+{
     // stuff for changing cursor's color
     public Texture2D[] cursorTexture;
     private CursorMode _cursorMode;
     private Vector2 _hotSpot;
 
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
         _cursorMode = CursorMode.Auto;
         _hotSpot = Vector2.zero;
     }
@@ -19,5 +20,4 @@ public class Cursor_ColorChange : MonoBehaviour {
     {
         Cursor.SetCursor(cursorTexture[colorIndex], _hotSpot, _cursorMode);
     }
-
 }
