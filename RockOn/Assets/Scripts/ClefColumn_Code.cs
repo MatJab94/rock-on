@@ -46,7 +46,7 @@ public class ClefColumn_Code : MonoBehaviour
         // highlighterTF.gameObject.SetActive(true);
 
         // start showing the code
-        StartCoroutine("showSecretCode");
+        StartCoroutine(showSecretCode());
     }
 
     IEnumerator showSecretCode()

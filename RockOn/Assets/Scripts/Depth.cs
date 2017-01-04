@@ -14,16 +14,24 @@ public class Depth : MonoBehaviour
     // this GameObject's Transform component
     private Transform _transform;
 
+    // Vector storing the position
+    private Vector3 _depth;
+
     void Start()
     {
         // initializing the variable with this GameObject's Transform
         _transform = GetComponent<Transform>();
+
+        _depth = _transform.position;
     }
 
     // movement already happens in FixedUpdate, so changing the depth can also be in FixedUpdate
     void FixedUpdate()
     {
         // update the Z position to be equal the Y position
-        _transform.position = new Vector3(_transform.position.x, _transform.position.y, _transform.position.y);
+        _depth.x = _transform.position.x;
+        _depth.y = _transform.position.y;
+        _depth.z = _transform.position.y;
+        _transform.position = _depth;
     }
 }

@@ -44,26 +44,20 @@ public class ClosedDoor_Open : MonoBehaviour
     {
         _open = true;
 
-        StartCoroutine("openDoorCoroutine");
+        StartCoroutine(openDoorCoroutine());
     }
 
     // opens the door
     IEnumerator openDoorCoroutine()
     {
         // small delay before opening
-        for (float f = 0.1f; f >= 0; f -= Time.deltaTime)
-        {
-            yield return null;
-        }
+        yield return new WaitForSeconds(0.1f);
 
         // play opening animation
         _anim.SetTrigger("open");
 
         // delay for animation to end
-        for (float f = 1.5f; f >= 0; f -= Time.deltaTime)
-        {
-            yield return null;
-        }
+        yield return new WaitForSeconds(1.5f);
 
         // disable the collider so the player can pass
         _collider.enabled = false;

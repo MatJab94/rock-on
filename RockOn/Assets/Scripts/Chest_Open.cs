@@ -40,7 +40,7 @@ public class Chest_Open : MonoBehaviour
 
     public void openChest(bool goodGuess)
     {
-        StartCoroutine("openChestCoroutine", goodGuess);
+        StartCoroutine(openChestCoroutine(goodGuess));
     }
 
     private void spawnTreasure(bool goodGuess)
@@ -62,19 +62,13 @@ public class Chest_Open : MonoBehaviour
     IEnumerator openChestCoroutine(bool goodGuess)
     {
         // small delay before opening
-        for (float f = 0.1f; f >= 0; f -= Time.deltaTime)
-        {
-            yield return null;
-        }
+        yield return new WaitForSeconds(0.1f);
 
         // play opening animation
         _anim.SetTrigger("open");
 
         // delay for animation to end
-        for (float f = 1.0f; f >= 0; f -= Time.deltaTime)
-        {
-            yield return null;
-        }
+        yield return new WaitForSeconds(1.0f);
 
         // spawn the treasure
         spawnTreasure(goodGuess);
@@ -95,11 +89,7 @@ public class Chest_Open : MonoBehaviour
         // there's some bugs when destroying the object immediately,
         // so I'm moving it somewhere else and killing it after a second
         _tf.position = new Vector3(-10000, -10000, -10000);
-
-        for (float f = 1.0f; f >= 0; f -= Time.deltaTime)
-        {
-            yield return null;
-        }
-        Destroy(gameObject);
+        yield return new WaitForSeconds(0.5f);
+        Destroy(gameObject, 0.5f);
     }
 }

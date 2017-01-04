@@ -78,7 +78,7 @@ public class Player_AoE_Attack : MonoBehaviour
             _playerAudio.playChordSound();
 
             // animates the range while attacking and applies damage to targets
-            StartCoroutine("animateAndAttack");
+            StartCoroutine(animateAndAttack());
         }
     }
 

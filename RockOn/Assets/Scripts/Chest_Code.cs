@@ -84,7 +84,7 @@ public class Chest_Code : MonoBehaviour
             keysSR[_currentIndex].sprite = sprites[_playerColor.currentColorIndex];
 
             // play correct guess "animation"
-            StartCoroutine("correctGuess");
+            StartCoroutine(correctGuess());
         }
         else
         {
@@ -95,7 +95,7 @@ public class Chest_Code : MonoBehaviour
             keysSR[_currentIndex].sprite = defaultSprite;
 
             // play wrong guess "animation"
-            StartCoroutine("wrongGuess");
+            StartCoroutine(wrongGuess());
 
             // if player tried too many times, open the chest with a bad treasure
             if (_numOfTries > _maxNumOfTries)
