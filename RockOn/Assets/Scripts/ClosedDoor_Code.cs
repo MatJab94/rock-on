@@ -58,6 +58,18 @@ public class ClosedDoor_Code : MonoBehaviour
         _guessed = false;
 
         updateHighlighterPosition();
+
+        // disable the highlighter until player activates the clef
+        highlighterTF.gameObject.SetActive(false);
+
+        // the door is inactive at first, until player activates the clef
+        targetForCursor.SetActive(false);
+
+        // make sprites of the key objects darker until player activates the clef
+        foreach (SpriteRenderer keySR in keysSR)
+        {
+            keySR.color = Color.gray;
+        }
     }
 
     // called when player attacks the door with regular attack - he's trying to guess the code
@@ -68,18 +80,15 @@ public class ClosedDoor_Code : MonoBehaviour
         {
             // remember that player guessed this correctly
             _playerGuess[_currentIndex] = true;
-
-            // change current key object to match the color of player's attack
-            keysSR[_currentIndex].sprite = sprites[_playerColor.currentColorIndex];
         }
         else
         {
             // remember that player guessed this incorrectly
             _playerGuess[_currentIndex] = false;
-
-            // change current key object back to default
-            keysSR[_currentIndex].sprite = defaultSprite;
         }
+
+        // change current key object to match the color of player's attack
+        keysSR[_currentIndex].sprite = sprites[_playerColor.currentColorIndex];
 
         // change current index to point at the next key
         nextKey();
@@ -88,7 +97,7 @@ public class ClosedDoor_Code : MonoBehaviour
     // checks if player guessed the code correctly
     private void checkGuess()
     {
-        Debug.Log("secret code was: [ " + _closedDoorCode[0] + " " + _closedDoorCode[1] + " " + _closedDoorCode[2] + " " + _closedDoorCode[3] + " ]");
+        // Debug.Log("secret code was: [ " + _closedDoorCode[0] + " " + _closedDoorCode[1] + " " + _closedDoorCode[2] + " " + _closedDoorCode[3] + " ]");
         // Debug.Log("player's guess was: [ " + _playerGuess[0] + " " + _playerGuess[1] + " " + _playerGuess[2] + " " + _playerGuess[3] + " ]");
 
         // check if player guessed correctly all the keys in sequence
@@ -109,7 +118,7 @@ public class ClosedDoor_Code : MonoBehaviour
         else
         {
             // wrong guess, restart the door
-            restartDoor();
+            StartCoroutine(restartDoor());
         }
     }
 
@@ -132,8 +141,11 @@ public class ClosedDoor_Code : MonoBehaviour
     }
 
     // restarts the door if player guessed incorrectly
-    private void restartDoor()
+    IEnumerator restartDoor()
     {
+        // wait before resetting so all keys are visible
+        yield return new WaitForSeconds(0.5f);
+
         // restart sprites of the key objects to default
         foreach (SpriteRenderer keySR in keysSR)
         {
@@ -159,6 +171,26 @@ public class ClosedDoor_Code : MonoBehaviour
         else
         {
             highlighterTF.position = keysSR[_currentIndex].transform.position;
+        }
+    }
+
+    public int[] getSecretCode()
+    {
+        return _closedDoorCode;
+    }
+
+    public void activateTheDoor()
+    {
+        // enable the highlighter
+        highlighterTF.gameObject.SetActive(true);
+
+        // enable the target for cursor
+        targetForCursor.SetActive(true);
+
+        // make sprites of the key objects normal
+        foreach (SpriteRenderer keySR in keysSR)
+        {
+            keySR.color = Color.white;
         }
     }
 }

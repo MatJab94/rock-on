@@ -16,11 +16,22 @@ public class ClosedDoor_Open : MonoBehaviour
     // collider of this door
     private BoxCollider2D _collider;
 
+    // clef1 animator
+    public Animator _clef1Anim;
+
+    // clef2 animator
+    public Animator _clef2Anim;
+
+    // are the doors open?
+    private bool _open;
+
     void Start()
     {
         _anim = GetComponent<Animator>();
         _codeScript = GetComponentInChildren<ClosedDoor_Code>();
         _collider = GetComponent<BoxCollider2D>();
+
+        _open = false;
     }
 
     // public method for easier calling of the method in codeScript
@@ -31,6 +42,8 @@ public class ClosedDoor_Open : MonoBehaviour
 
     public void openDoor()
     {
+        _open = true;
+
         StartCoroutine("openDoorCoroutine");
     }
 
@@ -54,5 +67,25 @@ public class ClosedDoor_Open : MonoBehaviour
 
         // disable the collider so the player can pass
         _collider.enabled = false;
+    }
+
+    public void activateDoor()
+    {
+        // start animating clefs
+        _clef1Anim.SetBool("active", true);
+        _clef2Anim.SetBool("active", true);
+
+        // make the door interactable
+        _codeScript.activateTheDoor();
+    }
+
+    public int[] getSecretCode()
+    {
+        return _codeScript.getSecretCode();
+    }
+
+    public bool isOpen()
+    {
+        return _open;
     }
 }
