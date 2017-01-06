@@ -109,7 +109,7 @@ public class Mag_Health : MonoBehaviour
     // fades enemy after he's hit
     IEnumerator fadeEnemy()
     {
-        Color c = _sr.color;
+        Color c = Color.white;
         for (float f = 1.0f; f >= 0.25f; f -= 0.03f)
         {
             c.a = f;

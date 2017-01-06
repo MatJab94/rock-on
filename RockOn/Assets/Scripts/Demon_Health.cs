@@ -76,7 +76,8 @@ public class Demon_Health : MonoBehaviour
             // if not dead just update sprite
             else
             {
-                changeForm();
+                // update animation form
+                _anim.SetTrigger("applyDamage");
             }
         }
         else
@@ -84,13 +85,6 @@ public class Demon_Health : MonoBehaviour
             // if Player's and Demon's color don't match restart bonus
             rythmBattle.resetBonus();
         }
-    }
-
-
-    private void changeForm()
-    {
-        // update animation form based on health
-        _anim.SetInteger("form", _health);
     }
 
     // spawn an enemy
@@ -115,9 +109,6 @@ public class Demon_Health : MonoBehaviour
 
         // update animation color
         _anim.SetInteger("colorIndex", _currentColorIndex);
-
-        // update sprite
-        changeForm();
     }
 
     // fades enemy after he's hit

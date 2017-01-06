@@ -13,7 +13,7 @@ public class Player_Regular_Attack : MonoBehaviour
     private GameObject _target;
 
     // max range at which target can be interacted with
-    private float _maxRange;
+    public float maxRange;
 
     // player's audio script for making sounds when attacking
     private Player_Audio _playerAudio;
@@ -31,8 +31,6 @@ public class Player_Regular_Attack : MonoBehaviour
         _playerAudio = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<Player_Audio>();
         _lr = GetComponent<LineRenderer>();
         _timeoutScript = GameObject.FindGameObjectWithTag("Player").GetComponent<Player_AttackTimeOut>();
-
-        _maxRange = 2.5f;
 
         _target = null;
     }
@@ -89,10 +87,10 @@ public class Player_Regular_Attack : MonoBehaviour
                     // calculate the point in maxRange from player
                     Vector2 pointInRange;
                     pointInRange = _target.GetComponent<Transform>().position - _playerTransform.position;
-                    pointInRange = pointInRange.normalized * _maxRange;
+                    pointInRange = pointInRange.normalized * maxRange;
                     pointInRange = (Vector2)_playerTransform.position + pointInRange;
                     
-                    StartCoroutine("drawLine", pointInRange);
+                    StartCoroutine(drawLine(pointInRange));
                 }
             }
         }
@@ -103,7 +101,7 @@ public class Player_Regular_Attack : MonoBehaviour
         // calculate distance between player and target
         float _distance = Vector2.Distance(_playerTransform.position, target);
 
-        if (_distance > _maxRange)
+        if (_distance > maxRange)
         {
             return false;
         }

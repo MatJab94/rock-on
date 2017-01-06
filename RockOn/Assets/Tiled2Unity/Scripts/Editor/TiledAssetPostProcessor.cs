@@ -10,6 +10,8 @@
 #undef T2U_USE_LIGHT_PROBES_API
 #endif
 
+#pragma warning disable 0618
+
 using System.Collections;
 using System.IO;
 using System.Linq;

@@ -13,8 +13,11 @@ public class Mag_Attack_Range : MonoBehaviour
     // flag shows if enemy is in range to attack the player
     private bool _canAttack = false;
 
-    // flag shows if attacking coroutine can be started again
-    private bool _attacking = false;
+    // flag shows if attacking coroutine is in progress
+    private bool _attackInProgress = false;
+
+    // flag shows if enemy is firing a fireball right now
+    private bool _firingFireball = false;
 
     // shows if attack is finished and enemy waits for next attack
     private bool _cooldown = false;
@@ -28,9 +31,9 @@ public class Mag_Attack_Range : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (_canAttack && !_attacking && !_cooldown)
+        if (_canAttack && !_attackInProgress && !_cooldown)
         {
-            _attacking = true;
+            _attackInProgress = true;
             StartCoroutine(shootFireball());
         }
     }
@@ -40,6 +43,9 @@ public class Mag_Attack_Range : MonoBehaviour
     {
         // wait for some time before attacking
         yield return new WaitForSeconds(0.75f);
+
+        // change flag to stop moving during attack
+        _firingFireball = true;
 
         // make enemy darker just before the attack
         Color c = _sr.color;
@@ -65,12 +71,13 @@ public class Mag_Attack_Range : MonoBehaviour
         _sr.color = c;
 
         // attack is completed, cooldown starts
-        _attacking = false;
+        _firingFireball = false;
         _cooldown = true;
 
         // wait for some time before Mage can attack again
         yield return new WaitForSeconds(1.5f);
         _cooldown = false;
+        _attackInProgress = false;
     }
 
     // event that is called if player enters this Object's collider (is in range)
@@ -99,6 +106,6 @@ public class Mag_Attack_Range : MonoBehaviour
 
     public bool isAttacking()
     {
-        return _attacking;
+        return _firingFireball;
     }
 }
