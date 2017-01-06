@@ -32,6 +32,8 @@ public class Player_Regular_Attack : MonoBehaviour
         _lr = GetComponent<LineRenderer>();
         _timeoutScript = GameObject.FindGameObjectWithTag("Player").GetComponent<Player_AttackTimeOut>();
 
+        _lr.sortingLayerName = "UI";
+
         _target = null;
     }
 
@@ -89,7 +91,7 @@ public class Player_Regular_Attack : MonoBehaviour
                     pointInRange = _target.GetComponent<Transform>().position - _playerTransform.position;
                     pointInRange = pointInRange.normalized * maxRange;
                     pointInRange = (Vector2)_playerTransform.position + pointInRange;
-                    
+
                     StartCoroutine(drawLine(pointInRange));
                 }
             }
@@ -114,13 +116,14 @@ public class Player_Regular_Attack : MonoBehaviour
     // draws a line between player and target when attacking
     IEnumerator drawLine(Vector2 target)
     {
-        for (float f = 0.0f; f <= 0.15f; f += Time.deltaTime)
-        {
-            _lr.SetPosition(0, _playerTransform.position);
-            _lr.SetPosition(1, target);
-            yield return null;
-        }
+        // set positions of player and target to draw the line
+        _lr.SetPosition(0, _playerTransform.position);
+        _lr.SetPosition(1, target);
 
+        // how long the line is visible
+        yield return new WaitForSeconds(0.1f);
+
+        // set position so the line is not visible
         _lr.SetPosition(0, _playerTransform.position);
         _lr.SetPosition(1, _playerTransform.position);
     }

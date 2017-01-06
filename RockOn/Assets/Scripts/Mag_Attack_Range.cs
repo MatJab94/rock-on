@@ -65,10 +65,7 @@ public class Mag_Attack_Range : MonoBehaviour
         Instantiate(fireballPrefab, gameObject.transform.position, Quaternion.identity);
 
         // change color back to original
-        c.r = 1.0f;
-        c.g = 1.0f;
-        c.b = 1.0f;
-        _sr.color = c;
+        _sr.color = Color.white;
 
         // attack is completed, cooldown starts
         _firingFireball = false;

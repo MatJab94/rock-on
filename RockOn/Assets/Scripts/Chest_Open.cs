@@ -77,7 +77,7 @@ public class Chest_Open : MonoBehaviour
         _anim.SetTrigger("open");
 
         // delay for animation to end
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(0.67f);
 
         // spawn the treasure
         spawnTreasure(goodGuess);
@@ -85,7 +85,7 @@ public class Chest_Open : MonoBehaviour
         // fade the chest to make it disappear
         Color c = _sr.color;
         _keysSR = _codeScript.getKeysSR();
-        for (float f = 1.0f; f >= 0.0f; f -= Time.deltaTime)
+        for (float f = 1.0f; f >= 0.25f; f -= Time.deltaTime)
         {
             c.a = f;
             _sr.color = c;
