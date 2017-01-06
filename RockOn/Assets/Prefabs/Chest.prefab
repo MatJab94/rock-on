@@ -329,6 +329,8 @@ MonoBehaviour:
   - {fileID: 1498533612468378, guid: 88a1b7875860ff440a400de8be043e07, type: 2}
   badTreasures:
   - {fileID: 1439231446090428, guid: 84f17f53a71f5124c9e054d46a1f14eb, type: 2}
+  numOfTries: 10
+  secretCode: ffffffffffffffffffffffff
 --- !u!212 &212222941999884024
 SpriteRenderer:
   m_ObjectHideFlags: 1

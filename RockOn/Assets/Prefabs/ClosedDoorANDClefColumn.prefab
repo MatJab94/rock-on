@@ -773,6 +773,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _clef1Anim: {fileID: 95513599045848272}
   _clef2Anim: {fileID: 95615209875040538}
+  secretCode: ffffffffffffffffffffffffffffffff
 --- !u!114 &114846938722111744
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 212237933411105900}
   - component: {fileID: 61740969251905136}
   - component: {fileID: 114741526113255208}
+  - component: {fileID: 114479355350553790}
   m_Layer: 0
   m_Name: Beer
   m_TagString: Untagged
@@ -53,9 +54,20 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_Offset: {x: -0.05, y: -0}
+  m_Offset: {x: -0.05, y: -0.27}
   serializedVersion: 2
-  m_Size: {x: 0.5, y: 0.75}
+  m_Size: {x: 0.5, y: 0.2}
+--- !u!114 &114479355350553790
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1561614059241030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db41d8d832376f24395d430ad0e70db6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114741526113255208
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -96,8 +108,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -664372617
-  m_SortingOrder: 0
+  m_SortingLayerID: 994355489
+  m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: 8ed384a5e714f134ea0a2e8848af6a9c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

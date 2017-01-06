@@ -29,6 +29,10 @@ public class Mag_Health : MonoBehaviour
     // Rythm Battle flag for bonuses and stuff
     private RythmBattle rythmBattle;
 
+    // you can specify what color it spawns with in the Inspector
+    // 0 = red, 1 = green, 2 = blue, anything else = random
+    public int spawnColor;
+
     // Use this for initialization
     void Start()
     {
@@ -84,8 +88,19 @@ public class Mag_Health : MonoBehaviour
     {
         _health = _maxHealth;
 
-        // initial color is random
-        _currentColorIndex = Random.Range(0, 300) % 3; // 0 = red, 1 = green, 2 = blue
+        switch (spawnColor)
+        {
+            case 0:
+            case 1:
+            case 2:
+                //spawn enemy based on spawnColor
+                _currentColorIndex = spawnColor;
+                break;
+            default:
+                //spawn random enemy
+                _currentColorIndex = Random.Range(0, 3);
+                break;
+        }
 
         // update animation color
         _anim.SetInteger("colorIndex", _currentColorIndex);
