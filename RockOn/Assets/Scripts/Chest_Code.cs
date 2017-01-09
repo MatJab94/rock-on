@@ -50,7 +50,6 @@ public class Chest_Code : MonoBehaviour
         _chestSR = GetComponentInParent<SpriteRenderer>();
 
         // create arrays holding the secret code and player's guesses
-        _chestCode = new int[3] { -1, -1, -1 };
         _playerGuess = new bool[3] { false, false, false };
         _guessed = false;
 
@@ -227,20 +226,23 @@ public class Chest_Code : MonoBehaviour
 
     public void setChestCode(int[] code)
     {
-        // only set the code if it's valid length, otherwise make random code
+        // instantiate the chest code variable
+        _chestCode = new int[3] { -1, -1, -1};
+
+        // only set the code if it's valid length, otherwise make a random code
         if (code.Length == 3)
         {
             int index = 0;
             // look through entire array and set each value
-            foreach (int colorCode in code)
+            foreach (int color in code)
             {
-                switch (colorCode)
+                switch (color)
                 {
                     case 0:
                     case 1:
                     case 2:
                         // color based on code if value is 1, 2 or 3
-                        _chestCode[index] = colorCode;
+                        _chestCode[index] = color;
                         break;
                     default:
                         // random color if value is different
@@ -252,7 +254,7 @@ public class Chest_Code : MonoBehaviour
         }
         else
         {
-            // generate random code
+            // generate random code if code in inspector was invalid
             for (int i = 0; i < _chestCode.Length; i++)
             {
                 _chestCode[i] = Random.Range(0, 3);
