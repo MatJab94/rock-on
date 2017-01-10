@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4418585175287528}
   - component: {fileID: 82195050157687996}
   - component: {fileID: 114820969587795272}
+  - component: {fileID: 114631582489885760}
   m_Layer: 0
   m_Name: RythmBattle
   m_TagString: RythmBattle
@@ -37,6 +38,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4069917177286098}
   - component: {fileID: 82967971911700620}
+  - component: {fileID: 114632125552487958}
   m_Layer: 0
   m_Name: Metronome
   m_TagString: Untagged
@@ -82,7 +84,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 189eb6723166c9b44ba2bfd326a38f6a, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.1
+  m_Volume: 0.2
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -162,7 +164,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 6287c4e1cc9af414fbf1724e65423f8f, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.2
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -231,6 +233,32 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!114 &114631582489885760
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1423657312848510}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2cbef30bba1e2e54cb46860496b13108, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioSource: {fileID: 82195050157687996}
+  VolumeSlider: {fileID: 0}
+--- !u!114 &114632125552487958
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1672302189187864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2cbef30bba1e2e54cb46860496b13108, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioSource: {fileID: 82967971911700620}
+  VolumeSlider: {fileID: 0}
 --- !u!114 &114820969587795272
 MonoBehaviour:
   m_ObjectHideFlags: 1

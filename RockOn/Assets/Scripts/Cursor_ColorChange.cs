@@ -13,7 +13,7 @@ public class Cursor_ColorChange : MonoBehaviour
     void Start()
     {
         _cursorMode = CursorMode.Auto;
-        _hotSpot = Vector2.zero;
+        _hotSpot = new Vector2(7.0f, 7.0f);
 
         // change cursor to default at start
         colorChange(0);

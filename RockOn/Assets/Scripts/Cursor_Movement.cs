@@ -20,7 +20,7 @@ public class Cursor_Movement : MonoBehaviour {
     // Use this for initialization
     void Start () {
         tf = gameObject.GetComponent<Transform>();
-        mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+        mainCamera = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<Camera>();
 
         // calculate normalising value, for better performance (multiplying is better than division)
         xNormalise = 1.0f / Screen.width;
