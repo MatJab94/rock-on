@@ -25,11 +25,12 @@ public class Demon_Health : MonoBehaviour
     // current player's color, from it's Color_Change script
     private Player_Color_Change _playerColor;
 
-    // used to respawn enemies, just for testing
-    private Vector3 _respawnPosition;
-
     // Rythm Battle flag for bonuses and stuff
     private RythmBattle rythmBattle;
+
+    // you can specify what color it spawns with in the Inspector
+    // 0 = red, 1 = green, 2 = blue, anything else = random
+    public int spawnColor;
 
     void Start()
     {
@@ -38,7 +39,6 @@ public class Demon_Health : MonoBehaviour
         rythmBattle = GameObject.FindGameObjectWithTag("RythmBattle").GetComponent<RythmBattle>();
         _sr = GetComponent<SpriteRenderer>();
         _tf = GetComponent<Transform>();
-        _respawnPosition = new Vector3(_tf.position.x, _tf.position.y, _tf.position.z);
 
         _anim = GetComponent<Animator>();
 
@@ -76,7 +76,8 @@ public class Demon_Health : MonoBehaviour
             // if not dead just update sprite
             else
             {
-                changeForm();
+                // update animation form
+                _anim.SetTrigger("applyDamage");
             }
         }
         else
@@ -86,29 +87,28 @@ public class Demon_Health : MonoBehaviour
         }
     }
 
-    
-    private void changeForm()
-    {
-        // update animation form based on health
-        _anim.SetInteger("form", _health);
-    }
-
-    // spawn an enemy with random stats
+    // spawn an enemy
     private void spawnEnemy()
     {
-        _tf.position = _respawnPosition;
-        
         // initial health
         _health = _maxHealth;
 
-        // initial color is random
-        _currentColorIndex = Random.Range(0, 300) % 3; // 0 = red, 1 = green, 2 = blue
+        switch(spawnColor)
+        {
+            case 0:
+            case 1:
+            case 2:
+                //spawn enemy based on spawnColor
+                _currentColorIndex = spawnColor;
+                break;
+            default:
+                //spawn random enemy
+                _currentColorIndex = Random.Range(0, 3);
+                break;
+        }
 
         // update animation color
         _anim.SetInteger("colorIndex", _currentColorIndex);
-
-        // update sprite
-        changeForm();
     }
 
     // fades enemy after he's hit

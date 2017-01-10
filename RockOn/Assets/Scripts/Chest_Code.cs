@@ -50,21 +50,14 @@ public class Chest_Code : MonoBehaviour
         _chestSR = GetComponentInParent<SpriteRenderer>();
 
         // create arrays holding the secret code and player's guesses
-        _chestCode = new int[3] { -1, -1, -1 };
         _playerGuess = new bool[3] { false, false, false };
         _guessed = false;
 
-        // randomly choose a code sequence for the chest
-        for (int i = 0; i < _chestCode.Length; i++)
-        {
-            _chestCode[i] = Random.Range(0, 300) % 3; // 0 = red, 1 = green, 2 = blue
-        }
-
         // point to the first key of the code sequence
         _currentIndex = 0;
-        
+
         _numOfTries = 0;
-        _maxNumOfTries = 10;
+        _maxNumOfTries = _chestScript.getNumOfTries();
 
         updateHighlighterPosition();
     }
@@ -231,8 +224,42 @@ public class Chest_Code : MonoBehaviour
         highlighterTF.position = keysSR[_currentIndex].transform.position;
     }
 
-    public int getNumOfTries()
+    public void setChestCode(int[] code)
     {
-        return _numOfTries;
+        // instantiate the chest code variable
+        _chestCode = new int[3] { -1, -1, -1};
+
+        // only set the code if it's valid length, otherwise make a random code
+        if (code.Length == 3)
+        {
+            int index = 0;
+            // look through entire array and set each value
+            foreach (int color in code)
+            {
+                switch (color)
+                {
+                    case 0:
+                    case 1:
+                    case 2:
+                        // color based on code if value is 1, 2 or 3
+                        _chestCode[index] = color;
+                        break;
+                    default:
+                        // random color if value is different
+                        _chestCode[index] = Random.Range(0, 3);
+                        break;
+                }
+                index++;
+            }
+        }
+        else
+        {
+            // generate random code if code in inspector was invalid
+            for (int i = 0; i < _chestCode.Length; i++)
+            {
+                _chestCode[i] = Random.Range(0, 3);
+            }
+        }
+
     }
 }

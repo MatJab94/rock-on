@@ -20,6 +20,7 @@ TagManager:
   - Fireball
   - Chest
   - ClosedDoor
+  - GUI_Pause
   layers:
   - Default
   - TransparentFX

@@ -13,7 +13,7 @@ public class Player_Regular_Attack : MonoBehaviour
     private GameObject _target;
 
     // max range at which target can be interacted with
-    private float _maxRange;
+    public float maxRange;
 
     // player's audio script for making sounds when attacking
     private Player_Audio _playerAudio;
@@ -32,7 +32,7 @@ public class Player_Regular_Attack : MonoBehaviour
         _lr = GetComponent<LineRenderer>();
         _timeoutScript = GameObject.FindGameObjectWithTag("Player").GetComponent<Player_AttackTimeOut>();
 
-        _maxRange = 2.5f;
+        _lr.sortingLayerName = "UI";
 
         _target = null;
     }
@@ -89,10 +89,10 @@ public class Player_Regular_Attack : MonoBehaviour
                     // calculate the point in maxRange from player
                     Vector2 pointInRange;
                     pointInRange = _target.GetComponent<Transform>().position - _playerTransform.position;
-                    pointInRange = pointInRange.normalized * _maxRange;
+                    pointInRange = pointInRange.normalized * maxRange;
                     pointInRange = (Vector2)_playerTransform.position + pointInRange;
-                    
-                    StartCoroutine("drawLine", pointInRange);
+
+                    StartCoroutine(drawLine(pointInRange));
                 }
             }
         }
@@ -103,7 +103,7 @@ public class Player_Regular_Attack : MonoBehaviour
         // calculate distance between player and target
         float _distance = Vector2.Distance(_playerTransform.position, target);
 
-        if (_distance > _maxRange)
+        if (_distance > maxRange)
         {
             return false;
         }
@@ -116,13 +116,14 @@ public class Player_Regular_Attack : MonoBehaviour
     // draws a line between player and target when attacking
     IEnumerator drawLine(Vector2 target)
     {
-        for (float f = 0.0f; f <= 0.15f; f += Time.deltaTime)
-        {
-            _lr.SetPosition(0, _playerTransform.position);
-            _lr.SetPosition(1, target);
-            yield return null;
-        }
+        // set positions of player and target to draw the line
+        _lr.SetPosition(0, _playerTransform.position);
+        _lr.SetPosition(1, target);
 
+        // how long the line is visible
+        yield return new WaitForSeconds(0.1f);
+
+        // set position so the line is not visible
         _lr.SetPosition(0, _playerTransform.position);
         _lr.SetPosition(1, _playerTransform.position);
     }

@@ -26,7 +26,9 @@ public class Player_Movement : MonoBehaviour
         _rb = GetComponent<Rigidbody2D>();
         _anim = GetComponent<Animator>();
 
-        _speed = 2.65f;
+        _anim.SetBool("isMoving", false);
+
+        _speed = 2.75f;
     }
 
     // using FixedUpdate for constant movement speed, regardless of framerate

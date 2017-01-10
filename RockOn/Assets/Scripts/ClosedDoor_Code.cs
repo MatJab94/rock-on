@@ -43,14 +43,7 @@ public class ClosedDoor_Code : MonoBehaviour
         _closedDoorScript = GetComponentInParent<ClosedDoor_Open>();
 
         // create arrays holding the secret code and player's guesses
-        _closedDoorCode = new int[4] { -1, -1, -1, -1 };
         _playerGuess = new bool[4] { false, false, false, false };
-
-        // randomly choose a code sequence for the chest
-        for (int i = 0; i < _closedDoorCode.Length; i++)
-        {
-            _closedDoorCode[i] = Random.Range(0, 300) % 3; // 0 = red, 1 = green, 2 = blue
-        }
 
         // point to the first key of the code sequence
         _currentIndex = 0;
@@ -193,4 +186,44 @@ public class ClosedDoor_Code : MonoBehaviour
             keySR.color = Color.white;
         }
     }
+
+    public void setClosedDoorCode(int[] code)
+    {
+        // instantiate code variable
+        _closedDoorCode = new int[4] { -1, -1, -1, -1 };
+
+        // only set the code if it's valid length, otherwise make random code
+        if (code.Length == 4)
+        {
+            int index = 0;
+            // look through entire array and set each value
+            foreach (int color in code)
+            {
+                switch (color)
+                {
+                    case 0:
+                    case 1:
+                    case 2:
+                        // color based on code if value is 1, 2 or 3
+                        _closedDoorCode[index] = color;
+                        break;
+                    default:
+                        // random color if value is different
+                        _closedDoorCode[index] = Random.Range(0, 3);
+                        break;
+                }
+                index++;
+            }
+        }
+        else
+        {
+            // generate random code if code in inspector was invalid
+            for (int i = 0; i < _closedDoorCode.Length; i++)
+            {
+                _closedDoorCode[i] = Random.Range(0, 3);
+            }
+        }
+
+    }
+
 }

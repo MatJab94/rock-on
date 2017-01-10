@@ -5,20 +5,21 @@ using UnityEngine;
 public class Player_AttackTimeOut : MonoBehaviour
 {
     private bool _timeoutFlag;
-    private float _timeoutTime;
+
+    // set timeout in inspector, 0.3 seems fine
+    public float timeoutTime;
 
     // Use this for initialization
     void Start()
     {
         _timeoutFlag = false;
-        _timeoutTime = 0.5f;
     }
 
     // timer counts down after player's attack, during this time player can't attack
     IEnumerator timeout()
     {
         _timeoutFlag = true;
-        yield return new WaitForSeconds(_timeoutTime);
+        yield return new WaitForSeconds(timeoutTime);
         _timeoutFlag = false;
     }
 

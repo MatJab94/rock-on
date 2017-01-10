@@ -23,6 +23,13 @@ public class Chest_Open : MonoBehaviour
     // sprite renderers of the keys objects
     private SpriteRenderer[] _keysSR;
 
+    // you can specify in the Inspector a number of tries after which a bad treasure will spawn
+    public int numOfTries;
+
+    // you can specify what secret code it spawns with in the Inspector
+    // 0 = red, 1 = green, 2 = blue, anything else = random
+    public int[] secretCode;
+
     // Use this for initialization
     void Start()
     {
@@ -30,6 +37,8 @@ public class Chest_Open : MonoBehaviour
         _sr = GetComponent<SpriteRenderer>();
         _tf = GetComponent<Transform>();
         _codeScript = GetComponentInChildren<Chest_Code>();
+
+        _codeScript.setChestCode(secretCode);
     }
 
     // public method for easier calling of the method in codeScript
@@ -68,7 +77,7 @@ public class Chest_Open : MonoBehaviour
         _anim.SetTrigger("open");
 
         // delay for animation to end
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(0.67f);
 
         // spawn the treasure
         spawnTreasure(goodGuess);
@@ -76,7 +85,7 @@ public class Chest_Open : MonoBehaviour
         // fade the chest to make it disappear
         Color c = _sr.color;
         _keysSR = _codeScript.getKeysSR();
-        for (float f = 1.0f; f >= 0.0f; f -= Time.deltaTime)
+        for (float f = 1.0f; f >= 0.25f; f -= Time.deltaTime)
         {
             c.a = f;
             _sr.color = c;
@@ -91,5 +100,10 @@ public class Chest_Open : MonoBehaviour
         _tf.position = new Vector3(-10000, -10000, -10000);
         yield return new WaitForSeconds(0.5f);
         Destroy(gameObject, 0.5f);
+    }
+
+    public int getNumOfTries()
+    {
+        return numOfTries;
     }
 }

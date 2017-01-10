@@ -25,6 +25,10 @@ public class ClosedDoor_Open : MonoBehaviour
     // are the doors open?
     private bool _open;
 
+    // you can specify what secret code it spawns with in the Inspector
+    // 0 = red, 1 = green, 2 = blue, anything else = random
+    public int[] secretCode;
+
     void Start()
     {
         _anim = GetComponent<Animator>();
@@ -32,6 +36,8 @@ public class ClosedDoor_Open : MonoBehaviour
         _collider = GetComponent<BoxCollider2D>();
 
         _open = false;
+
+        _codeScript.setClosedDoorCode(secretCode);
     }
 
     // public method for easier calling of the method in codeScript

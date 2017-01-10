@@ -15,6 +15,9 @@ public class Player_Color_Change : MonoBehaviour
     // for changing the color of the cursor
     private Cursor_ColorChange _cursorColor;
 
+    // This object's Animator component, to animate when walking
+    private Animator _anim;
+
     // Use this for initialization
     void Start()
     {
@@ -28,6 +31,9 @@ public class Player_Color_Change : MonoBehaviour
 
         _lr = GetComponentInChildren<LineRenderer>();
 
+        _anim = GetComponent<Animator>();
+        _anim.SetInteger("color", 0);
+
         _cursorColor = GameObject.FindGameObjectWithTag("Cursor").GetComponent<Cursor_ColorChange>();
     }
 
@@ -39,6 +45,8 @@ public class Player_Color_Change : MonoBehaviour
         {
             currentColorIndex = 0;
 
+            _anim.SetInteger("color", 0);
+
             _lr.startColor = _red;
             _lr.endColor = _red2;
 
@@ -48,6 +56,8 @@ public class Player_Color_Change : MonoBehaviour
         {
             currentColorIndex = 1;
 
+            _anim.SetInteger("color", 1);
+
             _lr.startColor = _green;
             _lr.endColor = _green2;
 
@@ -56,6 +66,8 @@ public class Player_Color_Change : MonoBehaviour
         if (Input.GetAxisRaw("Color3") != 0)
         {
             currentColorIndex = 2;
+
+            _anim.SetInteger("color", 2);
 
             _lr.startColor = _blue;
             _lr.endColor = _blue2;
