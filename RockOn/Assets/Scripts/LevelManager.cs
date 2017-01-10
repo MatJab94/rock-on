@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;﻿
 
 public class LevelManager : MonoBehaviour {
 
-    public Transform MainMenu, OptionsMenu, AboutMenu;
+    public Transform MainMenu, OptionsMenu, LoadGameMenu, AboutMenu;
 
 
     public void NewGame(string newGameLevel)
@@ -26,6 +26,19 @@ public class LevelManager : MonoBehaviour {
         }else
         {
             OptionsMenu.gameObject.SetActive(clicked);
+            MainMenu.gameObject.SetActive(true);
+        }
+    }
+    public void LoadMenu(bool clicked)
+    {
+        if (clicked == true)
+        {
+            LoadGameMenu.gameObject.SetActive(clicked);
+            MainMenu.gameObject.SetActive(false);
+        }
+        else
+        {
+            LoadGameMenu.gameObject.SetActive(clicked);
             MainMenu.gameObject.SetActive(true);
         }
     }

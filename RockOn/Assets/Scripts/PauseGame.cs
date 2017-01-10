@@ -50,7 +50,7 @@ public class PauseGame : MonoBehaviour
         if (clicked == true)
         {
             OptionsMenu.gameObject.SetActive(clicked);
-          //  PauseUI.gameObject.SetActive(false);
+            //  PauseUI.gameObject.SetActive(false);
         }
         else
         {
