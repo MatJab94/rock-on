@@ -3,9 +3,9 @@
 public class Player_Audio : MonoBehaviour
 {
     // variables holding sound assets, set in Inspector
-    public AudioClip D_chord;
-    public AudioClip E_chord;
+    public AudioClip A_chord;
     public AudioClip G_chord;
+    public AudioClip F_chord;
 
     // this GameObject's AudioSource component
     private AudioSource _audioSource;
@@ -24,17 +24,17 @@ public class Player_Audio : MonoBehaviour
         if (playerColor.currentColorIndex == 0) // if color is red
         {
             _audioSource.Stop(); // stop playing any previous chord
-            _audioSource.PlayOneShot(D_chord); // and play this chord
+            _audioSource.PlayOneShot(A_chord); // and play this chord
         }
         if (playerColor.currentColorIndex == 1) // if color is green
         {
             _audioSource.Stop(); // stop playing any previous chord
-            _audioSource.PlayOneShot(E_chord); // and play this chord
+            _audioSource.PlayOneShot(G_chord); // and play this chord
         }
         if (playerColor.currentColorIndex == 2) // if color is blue
         {
             _audioSource.Stop(); // stop playing any previous chord
-            _audioSource.PlayOneShot(G_chord); // and play this chord
+            _audioSource.PlayOneShot(F_chord); // and play this chord
         }
     }
 }
