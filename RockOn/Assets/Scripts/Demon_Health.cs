@@ -26,7 +26,7 @@ public class Demon_Health : MonoBehaviour
     private Player_Color_Change _playerColor;
 
     // Rythm Battle flag for bonuses and stuff
-    private RythmBattle rythmBattle;
+    private RythmBattle _rythmBattle;
 
     // you can specify what color it spawns with in the Inspector
     // 0 = red, 1 = green, 2 = blue, anything else = random
@@ -36,7 +36,7 @@ public class Demon_Health : MonoBehaviour
     {
         // initialise variables
         _playerColor = GameObject.FindGameObjectWithTag("Player").GetComponent<Player_Color_Change>();
-        rythmBattle = GameObject.FindGameObjectWithTag("RythmBattle").GetComponent<RythmBattle>();
+        _rythmBattle = GameObject.FindGameObjectWithTag("RythmBattle").GetComponent<RythmBattle>();
         _sr = GetComponent<SpriteRenderer>();
         _tf = GetComponent<Transform>();
 
@@ -57,9 +57,9 @@ public class Demon_Health : MonoBehaviour
         if (_playerColor.currentColorIndex == _currentColorIndex)
         {
             // add bonus if enemy was hit in rythm
-            if (rythmBattle.rythmFlag == true)
+            if (_rythmBattle.rythmFlag == true)
             {
-                rythmBattle.addBonus();
+                _rythmBattle.addBonus();
             }
 
             // -1 HP
@@ -83,7 +83,7 @@ public class Demon_Health : MonoBehaviour
         else
         {
             // if Player's and Demon's color don't match restart bonus
-            rythmBattle.resetBonus();
+            _rythmBattle.resetBonus();
         }
     }
 

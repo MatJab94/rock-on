@@ -54,8 +54,7 @@ public class RythmBattle : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        // allign script with the clip every time all beats were played (track ended)
+        // reallign script with the clip every time all beats were played (track ended)
         if (rythmFlag == false && _numOfBeatsElapsed == numOfBeatsInClip)
         {
             _f = _audioSource.time;
@@ -108,4 +107,15 @@ public class RythmBattle : MonoBehaviour
         _textCombo.GetComponent<Text>().text = "Combo = " + _combo.ToString();
     }
 
+    public bool getRythmFlag()
+    {
+        return rythmFlag;
+    }
+
+    public int getNumOfBeatsElapsed()
+    {
+        return _numOfBeatsElapsed;
+    }
+
+    
 }

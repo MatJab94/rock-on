@@ -82,6 +82,10 @@ public class Player_Regular_Attack : MonoBehaviour
                     {
                         _target.GetComponentInParent<ClosedDoor_Open>().hitDoor();
                     }
+                    if (_target.transform.parent.gameObject.tag == "Bomb")
+                    {
+                        _target.GetComponentInParent<Bomb_BlowUp>().hitBomb();
+                    }
                 }
                 else
                 {
