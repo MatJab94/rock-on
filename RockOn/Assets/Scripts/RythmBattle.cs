@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class RythmBattle : MonoBehaviour
@@ -23,6 +24,10 @@ public class RythmBattle : MonoBehaviour
     private int _combo; // counts how well the player hits in rythm
     private Text _textCombo; // text in GUI, shows current combo
     private Player_Mana _playerMana; // player mana script for adding bonuses
+  
+    private Text _message; //combo message - when combo is achieved
+
+    private int _badrhythmcounter;
 
     // Use this for initialization
     void Start()
@@ -38,8 +43,12 @@ public class RythmBattle : MonoBehaviour
         _combo = 0;
         _playerMana = GameObject.FindGameObjectWithTag("Player").GetComponent<Player_Mana>();
         _textCombo = GameObject.FindGameObjectWithTag("GUI_Combo_Counter").GetComponent<Text>();
-
+        
         _textCombo.text = "Combo = 0";
+
+        _badrhythmcounter = 0;
+
+        _message = GameObject.FindWithTag("GUI_message").GetComponent<Text>();
 
         //Debug.Log("Audio length = " + _clipLength);
         //Debug.Log("Beat length = " + _beatLength);
@@ -98,6 +107,8 @@ public class RythmBattle : MonoBehaviour
         {
             resetBonus();
             _playerMana.addMana(1);
+            
+            StartCoroutine(ShowMessage("Combo!", 1)); //combo message
         }
     }
 
@@ -108,4 +119,23 @@ public class RythmBattle : MonoBehaviour
         _textCombo.GetComponent<Text>().text = "Combo = " + _combo.ToString();
     }
 
+    public void addReprimand() // if you fail in Rhythm battle too many times
+    {
+        _badrhythmcounter++;
+        if (_badrhythmcounter >= 5)
+        {
+            _badrhythmcounter = 0;
+            StartCoroutine(ShowMessage("You Suck!", 1)); //Reprimand message
+        }
+    }
+
+    IEnumerator ShowMessage(string message, float delay)
+    {
+        _message.text = message;
+        _message.enabled = true;
+        yield return new WaitForSeconds(delay);
+        _message.enabled = false;
+       
+    }
+    
 }

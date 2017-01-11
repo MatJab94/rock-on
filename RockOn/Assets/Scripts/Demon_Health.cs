@@ -61,6 +61,10 @@ public class Demon_Health : MonoBehaviour
             {
                 rythmBattle.addBonus();
             }
+            if (rythmBattle.rythmFlag == false)
+            {
+                rythmBattle.addReprimand();
+            }
 
             // -1 HP
             _health -= damage;
@@ -84,6 +88,7 @@ public class Demon_Health : MonoBehaviour
         {
             // if Player's and Demon's color don't match restart bonus
             rythmBattle.resetBonus();
+            rythmBattle.addReprimand();
         }
     }
 
