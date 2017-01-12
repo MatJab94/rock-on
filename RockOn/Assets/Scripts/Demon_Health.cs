@@ -32,6 +32,8 @@ public class Demon_Health : MonoBehaviour
     // 0 = red, 1 = green, 2 = blue, anything else = random
     public int spawnColor;
 
+    private AudioSource _audioSource; // this gameObject's audio source
+
     void Start()
     {
         // initialise variables
@@ -41,6 +43,8 @@ public class Demon_Health : MonoBehaviour
         _tf = GetComponent<Transform>();
 
         _anim = GetComponent<Animator>();
+
+        _audioSource = gameObject.GetComponent<AudioSource>();
 
         // max health for Demon is 3
         _maxHealth = 3;
@@ -75,6 +79,7 @@ public class Demon_Health : MonoBehaviour
             // if it's dead destroy the object
             if (_health <= 0)
             {
+                _audioSource.Play(); //play dying sound
                 StartCoroutine(killEnemy());
             }
             // if not dead just update sprite

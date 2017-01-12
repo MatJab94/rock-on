@@ -28,6 +28,7 @@ public class RythmBattle : MonoBehaviour
     private Text _message; //combo message - when combo is achieved
 
     private int _badrhythmcounter;
+    private bool _isBonusAdded;
 
     // Use this for initialization
     void Start()
@@ -47,6 +48,7 @@ public class RythmBattle : MonoBehaviour
         _textCombo.text = "Combo = 0";
 
         _badrhythmcounter = 0;
+        _isBonusAdded = false;
 
         _message = GameObject.FindWithTag("GUI_message").GetComponent<Text>();
 
@@ -101,13 +103,13 @@ public class RythmBattle : MonoBehaviour
     public void addBonus()
     {
         _combo++;
+        _isBonusAdded = true;
         //Debug.Log("C-c-c-combo!!! Combo = " + _combo);
         _textCombo.GetComponent<Text>().text = "Combo = " + _combo.ToString();
         if (_combo >= 3)
         {
             resetBonus();
             _playerMana.addMana(1);
-            
             StartCoroutine(ShowMessage("Combo!", 1)); //combo message
         }
     }
@@ -122,11 +124,16 @@ public class RythmBattle : MonoBehaviour
     public void addReprimand() // if you fail in Rhythm battle too many times
     {
         _badrhythmcounter++;
-        if (_badrhythmcounter >= 5)
+        if (_isBonusAdded == true)
+        {
+            _badrhythmcounter = 0;
+        }
+        if (_badrhythmcounter >= 3) 
         {
             _badrhythmcounter = 0;
             StartCoroutine(ShowMessage("You Suck!", 1)); //Reprimand message
         }
+        _isBonusAdded = false;
     }
 
     IEnumerator ShowMessage(string message, float delay)
