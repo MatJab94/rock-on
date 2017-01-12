@@ -26,6 +26,9 @@ public class Player_Health : MonoBehaviour
     // used to respawn enemies, just for testing
     private Vector3 _respawnPosition;
 
+    private AudioSource _audioSource; // this gameObject's audio source
+
+
     void Start()
     {
         _sr = GetComponent<SpriteRenderer>();
@@ -35,6 +38,8 @@ public class Player_Health : MonoBehaviour
         _healthGUI = GameObject.FindGameObjectWithTag("GUI_Health").GetComponent<SpriteRenderer>();
 
         _maxHealth = sprites.Length;
+
+        _audioSource = gameObject.GetComponent<AudioSource>();
 
         _invincibleTime = 1.0f;
         _invincibleFlag = false;
@@ -72,6 +77,7 @@ public class Player_Health : MonoBehaviour
             // if it's dead respawn it (just for testing, use Destroy(gameObject) to kill it)
             if (_health <= 0)
             {
+                _audioSource.Play(); //play dying sound
                 spawnPlayer();
             }
             // if not dead randomly change it's color and update sprite

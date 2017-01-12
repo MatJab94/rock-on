@@ -21,6 +21,7 @@ TagManager:
   - Chest
   - ClosedDoor
   - GUI_Pause
+  - GUI_message
   layers:
   - Default
   - TransparentFX

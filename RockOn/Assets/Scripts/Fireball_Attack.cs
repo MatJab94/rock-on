@@ -22,12 +22,12 @@ public class Fireball_Attack : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             _playerHealth.applyDamage(2);
-            _fireballHealth.applyDamage(1, true);
+            _fireballHealth.applyDamage(1, true, false);
         }
 
         if (collision.gameObject.tag == "Wall")
         {
-            _fireballHealth.applyDamage(1, true);
+            _fireballHealth.applyDamage(1, true, false);
         }
     }
 }

@@ -36,6 +36,9 @@ public class Player_AoE_Attack : MonoBehaviour
     // script that stops player from continuously attacking
     private Player_AttackTimeOut _timeoutScript;
 
+    // for disabling the attacking on first level
+    public bool aoeDisabled;
+
     public void Start()
     {
         _targets = new ArrayList();
@@ -48,12 +51,14 @@ public class Player_AoE_Attack : MonoBehaviour
         _playerAudio = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<Player_Audio>();
         _playerMana = GameObject.FindGameObjectWithTag("Player").GetComponent<Player_Mana>();
         _timeoutScript = GameObject.FindGameObjectWithTag("Player").GetComponent<Player_AttackTimeOut>();
+
+        aoeDisabled = false;
     }
 
     public void Update()
     {
         // if AoE Attack is pressed (Space)
-        if (Input.GetButtonDown("Attack_AoE") && _timeoutScript.getTimeoutFlag() == false)
+        if (Input.GetButtonDown("Attack_AoE") && _timeoutScript.getTimeoutFlag() == false && !aoeDisabled)
         {
             // do the AoE attack
             aoeAttack();
@@ -93,15 +98,15 @@ public class Player_AoE_Attack : MonoBehaviour
         {
             if(target.tag == "Demon")
             {
-                target.GetComponent<Demon_Health>().applyDamage(3);
+                target.GetComponent<Demon_Health>().applyDamage(3, false);
             }
             if (target.tag == "Mag")
             {
-                target.GetComponent<Mag_Health>().applyDamage(3);
+                target.GetComponent<Mag_Health>().applyDamage(3, false);
             }
             if (target.tag == "Fireball")
             {
-                target.GetComponent<Fireball_Health>().applyDamage(3, false);
+                target.GetComponent<Fireball_Health>().applyDamage(3, false, false);
             }
         }
     }

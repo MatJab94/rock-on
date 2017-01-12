@@ -32,6 +32,8 @@ public class Demon_Health : MonoBehaviour
     // 0 = red, 1 = green, 2 = blue, anything else = random
     public int spawnColor;
 
+    private AudioSource _audioSource; // this gameObject's audio source
+
     void Start()
     {
         // initialise variables
@@ -42,6 +44,8 @@ public class Demon_Health : MonoBehaviour
 
         _anim = GetComponent<Animator>();
 
+        _audioSource = gameObject.GetComponent<AudioSource>();
+
         // max health for Demon is 3
         _maxHealth = 3;
 
@@ -51,15 +55,19 @@ public class Demon_Health : MonoBehaviour
 
 
     // called when player attacks the Demon
-    public void applyDamage(int damage)
+    public void applyDamage(int damage, bool ignoreColor)
     {
         // if Player's and Demon's color match
-        if (_playerColor.currentColorIndex == _currentColorIndex)
+        if ((_playerColor.currentColorIndex == _currentColorIndex) || ignoreColor)
         {
             // add bonus if enemy was hit in rythm
             if (rythmBattle.rythmFlag == true)
             {
                 rythmBattle.addBonus();
+            }
+            if (rythmBattle.rythmFlag == false)
+            {
+                rythmBattle.addReprimand();
             }
 
             // -1 HP
@@ -71,6 +79,7 @@ public class Demon_Health : MonoBehaviour
             // if it's dead destroy the object
             if (_health <= 0)
             {
+                _audioSource.Play(); //play dying sound
                 StartCoroutine(killEnemy());
             }
             // if not dead just update sprite
@@ -84,6 +93,7 @@ public class Demon_Health : MonoBehaviour
         {
             // if Player's and Demon's color don't match restart bonus
             rythmBattle.resetBonus();
+            rythmBattle.addReprimand();
         }
     }
 

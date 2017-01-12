@@ -90,9 +90,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cursorTexture:
-  - {fileID: 2800000, guid: 98d46b5189f06394daca8b23fc676092, type: 3}
-  - {fileID: 2800000, guid: ce4187076dcc172489879d9960c4e9d7, type: 3}
-  - {fileID: 2800000, guid: a979d258945fb794b9757c879ea548f5, type: 3}
+  - {fileID: 2800000, guid: 45a0d4d85fa648b44b96ba25e39c8fad, type: 3}
+  - {fileID: 2800000, guid: 9ab3a9a6f9b36c142b3ab5e50769eeb2, type: 3}
+  - {fileID: 2800000, guid: 52cb436a40c38174b86d801aaf6adafd, type: 3}
 --- !u!114 &114094501113701398
 MonoBehaviour:
   m_ObjectHideFlags: 1

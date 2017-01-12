@@ -33,6 +33,8 @@ public class Mag_Health : MonoBehaviour
     // 0 = red, 1 = green, 2 = blue, anything else = random
     public int spawnColor;
 
+    private AudioSource _audioSource; // this gameObject's audio source
+
     // Use this for initialization
     void Start()
     {
@@ -46,21 +48,27 @@ public class Mag_Health : MonoBehaviour
         // max health for Mag is 2
         _maxHealth = 2;
 
+        _audioSource = gameObject.GetComponent<AudioSource>();
+
         // spawn the enemy with random health and color
         spawnEnemy();
     }
 
 
     // called when player attacks the enemy
-    public void applyDamage(int damage)
+    public void applyDamage(int damage, bool ignoreColor)
     {
         // if Player's and Mag's color match
-        if (_playerColor.currentColorIndex == _currentColorIndex)
+        if ((_playerColor.currentColorIndex == _currentColorIndex) || ignoreColor)
         {
             // add bonus if enemy was hit in rythm
             if (rythmBattle.rythmFlag == true)
             {
                 rythmBattle.addBonus();
+            }
+            if (rythmBattle.rythmFlag == false)
+            {
+                rythmBattle.addReprimand();
             }
 
             // -1 HP
@@ -72,6 +80,7 @@ public class Mag_Health : MonoBehaviour
             // if it's dead destroy the object
             if (_health <= 0)
             {
+                _audioSource.Play(); //play dying sound
                 StartCoroutine(killEnemy());
             }
         }
@@ -79,6 +88,7 @@ public class Mag_Health : MonoBehaviour
         {
             // if Player's and Demon's color don't match restart bonus
             rythmBattle.resetBonus();
+            rythmBattle.addReprimand();
         }
     }
 

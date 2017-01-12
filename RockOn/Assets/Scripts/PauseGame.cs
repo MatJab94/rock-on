@@ -4,11 +4,10 @@ using UnityEngine.SceneManagement;
 
 public class PauseGame : MonoBehaviour
 {
-
     public Transform OptionsMenu;
-
     public GameObject PauseUI;
     private bool _paused = false;
+    private bool _isOptionsOn = false;
 
     // Use this for initialization
     void Start()
@@ -18,7 +17,7 @@ public class PauseGame : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {       
+    {
         if (Input.GetButtonDown("Pause"))
         {
             _paused = !_paused;
@@ -31,9 +30,12 @@ public class PauseGame : MonoBehaviour
         }
         else if (!_paused)
         {
-            PauseUI.SetActive(false);
-            AudioListener.pause = false;
-            Time.timeScale = 1;
+            if (_isOptionsOn == false)
+            {
+                PauseUI.SetActive(false);
+                AudioListener.pause = false;
+                Time.timeScale = 1;
+            }
         }
     }
 
@@ -51,11 +53,13 @@ public class PauseGame : MonoBehaviour
         {
             OptionsMenu.gameObject.SetActive(clicked);
             //  PauseUI.gameObject.SetActive(false);
+            _isOptionsOn = true;
         }
         else
         {
             OptionsMenu.gameObject.SetActive(clicked);
-          //  PauseUI.gameObject.SetActive(true);
+            //  PauseUI.gameObject.SetActive(true);
+            _isOptionsOn = false;
         }
     }
 
