@@ -24,6 +24,9 @@ public class Player_Regular_Attack : MonoBehaviour
     // script that stops player from continuously attacking
     private Player_AttackTimeOut _timeoutScript;
 
+    // for disabling the attacking on first level
+    public bool attackDisabled;
+
     void Start()
     {
         _playerTransform = GetComponentInParent<Transform>();
@@ -35,13 +38,15 @@ public class Player_Regular_Attack : MonoBehaviour
         _lr.sortingLayerName = "UI";
 
         _target = null;
+
+        attackDisabled = false;
     }
 
     // Update is called once per frame
     void Update()
     {
         // if player clicks the attack button (mouse 0 by default)
-        if (Input.GetButtonDown("Regular_Attack") && _timeoutScript.getTimeoutFlag() == false)
+        if (Input.GetButtonDown("Regular_Attack") && _timeoutScript.getTimeoutFlag() == false && !attackDisabled)
         {
             // select current target
             _target = _targetDetection.getTarget();
