@@ -93,15 +93,15 @@ public class Player_AoE_Attack : MonoBehaviour
         {
             if(target.tag == "Demon")
             {
-                target.GetComponent<Demon_Health>().applyDamage(3);
+                target.GetComponent<Demon_Health>().applyDamage(3, false);
             }
             if (target.tag == "Mag")
             {
-                target.GetComponent<Mag_Health>().applyDamage(3);
+                target.GetComponent<Mag_Health>().applyDamage(3, false);
             }
             if (target.tag == "Fireball")
             {
-                target.GetComponent<Fireball_Health>().applyDamage(3, false);
+                target.GetComponent<Fireball_Health>().applyDamage(3, false, false);
             }
         }
     }

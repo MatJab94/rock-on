@@ -64,15 +64,15 @@ public class Player_Regular_Attack : MonoBehaviour
                     // hit or interact with the target object
                     if (_target.transform.parent.gameObject.tag == "Demon")
                     {
-                        _target.GetComponentInParent<Demon_Health>().applyDamage(1);
+                        _target.GetComponentInParent<Demon_Health>().applyDamage(1, false);
                     }
                     if (_target.transform.parent.gameObject.tag == "Mag")
                     {
-                        _target.GetComponentInParent<Mag_Health>().applyDamage(1);
+                        _target.GetComponentInParent<Mag_Health>().applyDamage(1, false);
                     }
                     if (_target.transform.parent.gameObject.tag == "Fireball")
                     {
-                        _target.GetComponentInParent<Fireball_Health>().applyDamage(1, false);
+                        _target.GetComponentInParent<Fireball_Health>().applyDamage(1, false, false);
                     }
                     if (_target.transform.parent.gameObject.tag == "Chest")
                     {

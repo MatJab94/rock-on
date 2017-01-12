@@ -60,10 +60,13 @@ public class Bomb_Code : MonoBehaviour
         _bombSR.color = Color.gray;
     }
 
+    // bomb's behaviour
     private void Update()
     {
+        // player can only blow up the bomb correctly on beat 0, get it from rythmBattle script
         beatCounter = _rythmBattle.getNumOfBeatsElapsed() % 4;
 
+        // bomb and key are greyed out when not in rythm
         if (!getRythm() && canDetonate && beatCounter != 0)
         {
             canDetonate = false;
@@ -71,6 +74,7 @@ public class Bomb_Code : MonoBehaviour
             keySR.sprite = defaultSprite;
         }
 
+        // bomb is normal and key shows correct color on the right beat, player can detonate the bomb
         if (getRythm() && !canDetonate && beatCounter == 0)
         {
             canDetonate = true;
@@ -84,16 +88,21 @@ public class Bomb_Code : MonoBehaviour
     {
         _numOfTries++;
 
-        // check if bomb was detonated correctly
-        if (canDetonate && _playerColor.currentColorIndex == _bombCode)
+        // bomb blows up and damages the player if too many tries
+        if (_numOfTries <= _maxNumOfTries)
         {
-            Debug.Log("BOOOOOOOOOOM");
+            // check if bomb was detonated correctly
+            if (canDetonate && _playerColor.currentColorIndex == _bombCode)
+            {
+                // blow up the bomb to damage the enemies
+                _bombScript.blowUpBomb(false);
+            }
         }
-    }
-
-    public SpriteRenderer getKeySR()
-    {
-        return keySR;
+        else
+        {
+            // blow up the bomb to damage the player
+            _bombScript.blowUpBomb(true);
+        }
     }
 
     // getter to easily get the flag

@@ -51,10 +51,10 @@ public class Demon_Health : MonoBehaviour
 
 
     // called when player attacks the Demon
-    public void applyDamage(int damage)
+    public void applyDamage(int damage, bool ignoreColor)
     {
         // if Player's and Demon's color match
-        if (_playerColor.currentColorIndex == _currentColorIndex)
+        if ((_playerColor.currentColorIndex == _currentColorIndex) || ignoreColor)
         {
             // add bonus if enemy was hit in rythm
             if (_rythmBattle.rythmFlag == true)
