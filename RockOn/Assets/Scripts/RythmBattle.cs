@@ -124,15 +124,49 @@ public class RythmBattle : MonoBehaviour
     public void addReprimand() // if you fail in Rhythm battle too many times
     {
         _badrhythmcounter++;
+            if (_isBonusAdded == true)
+            {
+                if (_badrhythmcounter <= 3)
+                {
+                     _badrhythmcounter = 0;
+                }
+                if (_badrhythmcounter > 3 && _badrhythmcounter <= 6)
+                {
+                    _badrhythmcounter = 3;
+                }
+                if (_badrhythmcounter > 6)
+                {
+                    _badrhythmcounter = 6;
+                }
+        }
+            if (_badrhythmcounter == 3) 
+            {
+               // _badrhythmcounter = 0;
+                StartCoroutine(ShowMessage("Feel the rhythm!", 1)); //Reprimand message
+            }
+            if (_badrhythmcounter == 6)
+            {
+               // _badrhythmcounter = 0;
+                StartCoroutine(ShowMessage("Not quite my tempo!", 1)); //Reprimand message
+            }
+            if (_badrhythmcounter == 9)
+            {
+                _badrhythmcounter = 0;
+                StartCoroutine(ShowMessage("YOU SUCK!", 1)); //Reprimand message
+            }
+            
+            /*
         if (_isBonusAdded == true)
         {
             _badrhythmcounter = 0;
         }
-        if (_badrhythmcounter >= 3) 
+        if (_badrhythmcounter >= 3)
         {
             _badrhythmcounter = 0;
             StartCoroutine(ShowMessage("You Suck!", 1)); //Reprimand message
         }
+        */
+
         _isBonusAdded = false;
     }
 

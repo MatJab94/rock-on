@@ -334,29 +334,12 @@ Transform:
   m_PrefabParentObject: {fileID: 4474747731356404, guid: 985567b4953458c40aabe0ce13e34dee,
     type: 2}
   m_PrefabInternal: {fileID: 18611494}
---- !u!1 &22787602 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1132330684707070, guid: b728fd60472e3a4438db263204f970ba,
-    type: 2}
-  m_PrefabInternal: {fileID: 34469739}
---- !u!82 &22787605 stripped
-AudioSource:
-  m_PrefabParentObject: {fileID: 82372867898526768, guid: b728fd60472e3a4438db263204f970ba,
-    type: 2}
-  m_PrefabInternal: {fileID: 34469739}
---- !u!114 &22787606
+--- !u!114 &22787606 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 22787602}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
+  m_PrefabParentObject: {fileID: 114515672205122766, guid: b728fd60472e3a4438db263204f970ba,
+    type: 2}
+  m_PrefabInternal: {fileID: 34469739}
   m_Script: {fileID: 11500000, guid: 2cbef30bba1e2e54cb46860496b13108, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  audioSource: {fileID: 22787605}
-  VolumeSlider: {fileID: 1007847541}
 --- !u!1001 &30281449
 Prefab:
   m_ObjectHideFlags: 0
@@ -549,6 +532,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 114515672205122766, guid: b728fd60472e3a4438db263204f970ba,
+        type: 2}
+      propertyPath: VolumeSlider
+      value: 
+      objectReference: {fileID: 1007847541}
     - target: {fileID: 114828259683461070, guid: b728fd60472e3a4438db263204f970ba,
         type: 2}
       propertyPath: OptionsMenu
@@ -559,26 +547,6 @@ Prefab:
       propertyPath: PauseUI
       value: 
       objectReference: {fileID: 1355747654}
-    - target: {fileID: 114866346443055762, guid: b728fd60472e3a4438db263204f970ba,
-        type: 2}
-      propertyPath: A_chord
-      value: 
-      objectReference: {fileID: 8300000, guid: 05c8aa57596042143b23affb5ae45075, type: 3}
-    - target: {fileID: 114866346443055762, guid: b728fd60472e3a4438db263204f970ba,
-        type: 2}
-      propertyPath: G_chord
-      value: 
-      objectReference: {fileID: 8300000, guid: 11ae628e8b2023b4293ae993295ef8f6, type: 3}
-    - target: {fileID: 114866346443055762, guid: b728fd60472e3a4438db263204f970ba,
-        type: 2}
-      propertyPath: F_chord
-      value: 
-      objectReference: {fileID: 8300000, guid: a2230624c3918f541bb326292aec8935, type: 3}
-    - target: {fileID: 81000012095292530, guid: b728fd60472e3a4438db263204f970ba,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b728fd60472e3a4438db263204f970ba, type: 2}
   m_IsPrefabParent: 0
@@ -2410,6 +2378,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 32
       objectReference: {fileID: 0}
+    - target: {fileID: 82155983848336568, guid: e0581b222b8d16f4eb6dee6368a6d238,
+        type: 2}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: d0367b8165c9c0742bea77264418b577, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e0581b222b8d16f4eb6dee6368a6d238, type: 2}
   m_IsPrefabParent: 0
@@ -5978,8 +5951,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.000038147, y: -260}
-  m_SizeDelta: {x: 768, y: 189}
+  m_AnchoredPosition: {x: 4, y: -259}
+  m_SizeDelta: {x: 867, y: 186}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1009688861
 MonoBehaviour:
@@ -5993,7 +5966,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.716}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.629}
   m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -6002,7 +5975,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: 486f6a4a198049a4d86f7e981a46e15e, type: 3}
-    m_FontSize: 110
+    m_FontSize: 100
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 1

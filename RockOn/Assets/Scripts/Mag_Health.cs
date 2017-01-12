@@ -33,6 +33,8 @@ public class Mag_Health : MonoBehaviour
     // 0 = red, 1 = green, 2 = blue, anything else = random
     public int spawnColor;
 
+    private AudioSource _audioSource; // this gameObject's audio source
+
     // Use this for initialization
     void Start()
     {
@@ -45,6 +47,8 @@ public class Mag_Health : MonoBehaviour
 
         // max health for Mag is 2
         _maxHealth = 2;
+
+        _audioSource = gameObject.GetComponent<AudioSource>();
 
         // spawn the enemy with random health and color
         spawnEnemy();
@@ -76,6 +80,7 @@ public class Mag_Health : MonoBehaviour
             // if it's dead destroy the object
             if (_health <= 0)
             {
+                _audioSource.Play(); //play dying sound
                 StartCoroutine(killEnemy());
             }
         }
