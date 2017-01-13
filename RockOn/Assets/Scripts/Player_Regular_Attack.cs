@@ -27,6 +27,9 @@ public class Player_Regular_Attack : MonoBehaviour
     // for disabling the attacking on first level
     public bool attackDisabled;
 
+    // is pick power-up active now?
+    private bool _isPickActive;
+
     void Start()
     {
         _playerTransform = GetComponentInParent<Transform>();
@@ -120,6 +123,16 @@ public class Player_Regular_Attack : MonoBehaviour
         {
             return true;
         }
+    }
+
+    public bool getIsPickActive()
+    {
+        return _isPickActive;
+    }
+
+    public void setIsPickActive(bool flag)
+    {
+        _isPickActive = flag;
     }
 
     // draws a line between player and target when attacking

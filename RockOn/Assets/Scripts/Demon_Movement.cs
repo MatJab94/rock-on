@@ -12,6 +12,7 @@ public class Demon_Movement : MonoBehaviour
     private Animator _anim; // this object's animator
     private Demon_Attack_Range _attackScript; // for changing speed when attacking
     private float _distance; // distance between enemy and target
+    private float _pushBackPower; // how strong is enemy pushed back when pick is active
 
     void Start()
     {
@@ -25,6 +26,15 @@ public class Demon_Movement : MonoBehaviour
         _speed = 1.25f;
         _maxRange = 3.0f;
         _minRange = 0.67f;
+        _pushBackPower = 30.0f;
+    }
+
+    // called when enemy is attacked and pick power-up is active
+    public void pushBack()
+    {
+        // calculate direction (and normalize it so it doesn't change the speed of movement)
+        Vector2 direction = new Vector2(_enemy.position.x - _target.position.x, _enemy.position.y - _target.position.y).normalized;
+        _rb.AddForce(direction * _speed * _pushBackPower, ForceMode2D.Impulse);
     }
 
     void FixedUpdate()
@@ -40,7 +50,7 @@ public class Demon_Movement : MonoBehaviour
 
             // calculate direction (and normalize it so it doesn't change the speed of movement)
             Vector2 direction = new Vector2(_target.position.x - _enemy.position.x, _target.position.y - _enemy.position.y).normalized;
-            
+
             // move enemy according to the direction vector
             if (_attackScript.isCooldown())
             {

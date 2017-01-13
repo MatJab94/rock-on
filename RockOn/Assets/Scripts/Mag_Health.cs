@@ -33,6 +33,12 @@ public class Mag_Health : MonoBehaviour
     // 0 = red, 1 = green, 2 = blue, anything else = random
     public int spawnColor;
 
+    // to get the flag _isPickActive
+    private Player_Regular_Attack _playerAttackScript;
+
+    // to push back enemy when pick is active
+    private Mag_Movement _magMoveScript;
+
     private AudioSource _audioSource; // this gameObject's audio source
 
     // Use this for initialization
@@ -40,10 +46,12 @@ public class Mag_Health : MonoBehaviour
     {
         // initialise variables
         _playerColor = GameObject.FindGameObjectWithTag("Player").GetComponent<Player_Color_Change>();
+        _playerAttackScript = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<Player_Regular_Attack>();
         rythmBattle = GameObject.FindGameObjectWithTag("RythmBattle").GetComponent<RythmBattle>();
         _sr = GetComponent<SpriteRenderer>();
         _tf = GetComponent<Transform>();
         _anim = GetComponent<Animator>();
+        _magMoveScript = GetComponent<Mag_Movement>();
 
         // max health for Mag is 2
         _maxHealth = 2;
@@ -73,6 +81,12 @@ public class Mag_Health : MonoBehaviour
 
             // -1 HP
             _health -= damage;
+
+            //if pick is active push back the enemy
+            if (_playerAttackScript.getIsPickActive())
+            {
+                _magMoveScript.pushBack();
+            }
 
             // fades enemy after he's hit
             StartCoroutine(fadeEnemy());

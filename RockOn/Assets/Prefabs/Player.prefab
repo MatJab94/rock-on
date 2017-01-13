@@ -117,7 +117,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012172352448}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.27, y: -11.89, z: -4.25}
+  m_LocalPosition: {x: 2.49, y: -11.69, z: -4.25}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4000013810563244}
@@ -522,6 +522,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 73ff62eb374ca9d418b66481ae870bbc, type: 3}
   - {fileID: 21300002, guid: 73ff62eb374ca9d418b66481ae870bbc, type: 3}
   - {fileID: 21300004, guid: 73ff62eb374ca9d418b66481ae870bbc, type: 3}
+  aoeDisabled: 0
 --- !u!114 &114221221527112312
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -534,6 +535,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxRange: 3
+  attackDisabled: 0
 --- !u!114 &114515672205122766
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -602,7 +604,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72f1c6e6916e76b41a65a039995ca772, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeoutTime: 0.3
+  defaultTimeout: 0.3
 --- !u!120 &120500209910444252
 LineRenderer:
   m_ObjectHideFlags: 1
