@@ -24,6 +24,12 @@ public class Player_Regular_Attack : MonoBehaviour
     // script that stops player from continuously attacking
     private Player_AttackTimeOut _timeoutScript;
 
+    // for disabling the attacking on first level
+    public bool attackDisabled;
+
+    // is pick power-up active now?
+    private bool _isPickActive;
+
     void Start()
     {
         _playerTransform = GetComponentInParent<Transform>();
@@ -35,13 +41,15 @@ public class Player_Regular_Attack : MonoBehaviour
         _lr.sortingLayerName = "UI";
 
         _target = null;
+
+        attackDisabled = false;
     }
 
     // Update is called once per frame
     void Update()
     {
         // if player clicks the attack button (mouse 0 by default)
-        if (Input.GetButtonDown("Regular_Attack") && _timeoutScript.getTimeoutFlag() == false)
+        if (Input.GetButtonDown("Regular_Attack") && _timeoutScript.getTimeoutFlag() == false && !attackDisabled)
         {
             // select current target
             _target = _targetDetection.getTarget();
@@ -64,15 +72,15 @@ public class Player_Regular_Attack : MonoBehaviour
                     // hit or interact with the target object
                     if (_target.transform.parent.gameObject.tag == "Demon")
                     {
-                        _target.GetComponentInParent<Demon_Health>().applyDamage(1);
+                        _target.GetComponentInParent<Demon_Health>().applyDamage(1, false);
                     }
                     if (_target.transform.parent.gameObject.tag == "Mag")
                     {
-                        _target.GetComponentInParent<Mag_Health>().applyDamage(1);
+                        _target.GetComponentInParent<Mag_Health>().applyDamage(1, false);
                     }
                     if (_target.transform.parent.gameObject.tag == "Fireball")
                     {
-                        _target.GetComponentInParent<Fireball_Health>().applyDamage(1, false);
+                        _target.GetComponentInParent<Fireball_Health>().applyDamage(1, false, false);
                     }
                     if (_target.transform.parent.gameObject.tag == "Chest")
                     {
@@ -81,6 +89,10 @@ public class Player_Regular_Attack : MonoBehaviour
                     if (_target.transform.parent.gameObject.tag == "ClosedDoor")
                     {
                         _target.GetComponentInParent<ClosedDoor_Open>().hitDoor();
+                    }
+                    if (_target.transform.parent.gameObject.tag == "Bomb")
+                    {
+                        _target.GetComponentInParent<Bomb_BlowUp>().hitBomb();
                     }
                 }
                 else
@@ -111,6 +123,16 @@ public class Player_Regular_Attack : MonoBehaviour
         {
             return true;
         }
+    }
+
+    public bool getIsPickActive()
+    {
+        return _isPickActive;
+    }
+
+    public void setIsPickActive(bool flag)
+    {
+        _isPickActive = flag;
     }
 
     // draws a line between player and target when attacking

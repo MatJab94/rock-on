@@ -21,6 +21,9 @@ TagManager:
   - Chest
   - ClosedDoor
   - GUI_Pause
+  - GUI_message
+  - Bomb
+  - GUI_GuitarPick
   layers:
   - Default
   - TransparentFX

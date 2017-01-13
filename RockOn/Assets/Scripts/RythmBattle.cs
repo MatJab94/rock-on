@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class RythmBattle : MonoBehaviour
@@ -23,6 +24,11 @@ public class RythmBattle : MonoBehaviour
     private int _combo; // counts how well the player hits in rythm
     private Text _textCombo; // text in GUI, shows current combo
     private Player_Mana _playerMana; // player mana script for adding bonuses
+  
+    private Text _message; //combo message - when combo is achieved
+
+    private int _badrhythmcounter;
+    private bool _isBonusAdded;
 
     // Use this for initialization
     void Start()
@@ -38,8 +44,13 @@ public class RythmBattle : MonoBehaviour
         _combo = 0;
         _playerMana = GameObject.FindGameObjectWithTag("Player").GetComponent<Player_Mana>();
         _textCombo = GameObject.FindGameObjectWithTag("GUI_Combo_Counter").GetComponent<Text>();
-
+        
         _textCombo.text = "Combo = 0";
+
+        _badrhythmcounter = 0;
+        _isBonusAdded = false;
+
+        _message = GameObject.FindWithTag("GUI_message").GetComponent<Text>();
 
         //Debug.Log("Audio length = " + _clipLength);
         //Debug.Log("Beat length = " + _beatLength);
@@ -92,12 +103,14 @@ public class RythmBattle : MonoBehaviour
     public void addBonus()
     {
         _combo++;
+        _isBonusAdded = true;
         //Debug.Log("C-c-c-combo!!! Combo = " + _combo);
         _textCombo.GetComponent<Text>().text = "Combo = " + _combo.ToString();
         if (_combo >= 3)
         {
             resetBonus();
             _playerMana.addMana(1);
+            StartCoroutine(ShowMessage("Combo!", 1)); //combo message
         }
     }
 
@@ -106,6 +119,74 @@ public class RythmBattle : MonoBehaviour
         _combo = 0;
         //Debug.Log("Bonus restarted! Combo = " + _combo);
         _textCombo.GetComponent<Text>().text = "Combo = " + _combo.ToString();
+    }
+
+    public void addReprimand() // if you fail in Rhythm battle too many times
+    {
+        _badrhythmcounter++;
+            if (_isBonusAdded == true)
+            {
+                if (_badrhythmcounter <= 3)
+                {
+                     _badrhythmcounter = 0;
+                }
+                if (_badrhythmcounter > 3 && _badrhythmcounter <= 6)
+                {
+                    _badrhythmcounter = 3;
+                }
+                if (_badrhythmcounter > 6)
+                {
+                    _badrhythmcounter = 6;
+                }
+        }
+            if (_badrhythmcounter == 3) 
+            {
+               // _badrhythmcounter = 0;
+                StartCoroutine(ShowMessage("Feel the rhythm!", 1)); //Reprimand message
+            }
+            if (_badrhythmcounter == 6)
+            {
+               // _badrhythmcounter = 0;
+                StartCoroutine(ShowMessage("Not quite my tempo!", 1)); //Reprimand message
+            }
+            if (_badrhythmcounter == 9)
+            {
+                _badrhythmcounter = 0;
+                StartCoroutine(ShowMessage("YOU SUCK!", 1)); //Reprimand message
+            }
+            
+            /*
+        if (_isBonusAdded == true)
+        {
+            _badrhythmcounter = 0;
+        }
+        if (_badrhythmcounter >= 3)
+        {
+            _badrhythmcounter = 0;
+            StartCoroutine(ShowMessage("You Suck!", 1)); //Reprimand message
+        }
+        */
+
+        _isBonusAdded = false;
+    }
+
+    IEnumerator ShowMessage(string message, float delay)
+    {
+        _message.text = message;
+        _message.enabled = true;
+        yield return new WaitForSeconds(delay);
+        _message.enabled = false;
+       
+    }
+
+    public bool getRythmFlag()
+    {
+        return rythmFlag;
+    }
+
+    public int getNumOfBeatsElapsed()
+    {
+        return _numOfBeatsElapsed;
     }
 
 }
