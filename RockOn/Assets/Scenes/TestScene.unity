@@ -13497,21 +13497,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 114047596798002802, guid: 31ff59857036c15458cb60ee60aa7245,
-        type: 2}
-      propertyPath: cursorTexture.Array.data[0]
-      value: 
-      objectReference: {fileID: 2800000, guid: 98d46b5189f06394daca8b23fc676092, type: 3}
-    - target: {fileID: 114047596798002802, guid: 31ff59857036c15458cb60ee60aa7245,
-        type: 2}
-      propertyPath: cursorTexture.Array.data[1]
-      value: 
-      objectReference: {fileID: 2800000, guid: ce4187076dcc172489879d9960c4e9d7, type: 3}
-    - target: {fileID: 114047596798002802, guid: 31ff59857036c15458cb60ee60aa7245,
-        type: 2}
-      propertyPath: cursorTexture.Array.data[2]
-      value: 
-      objectReference: {fileID: 2800000, guid: a979d258945fb794b9757c879ea548f5, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 31ff59857036c15458cb60ee60aa7245, type: 2}
   m_IsPrefabParent: 0
