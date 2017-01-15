@@ -105,11 +105,13 @@ public class RythmBattle : MonoBehaviour
         _combo++;
         _isBonusAdded = true;
         //Debug.Log("C-c-c-combo!!! Combo = " + _combo);
-        _textCombo.GetComponent<Text>().text = "Combo = " + _combo.ToString();
-        if (_combo >= 3)
+        _playerMana.addMana(1);
+
+        //Combo counter / display
+        //_textCombo.GetComponent<Text>().text = "Combo = " + _combo.ToString();
+        if (_combo >= 8)
         {
-            resetBonus();
-            _playerMana.addMana(1);
+            resetBonus();          
             StartCoroutine(ShowMessage("Combo!", 1)); //combo message
         }
     }
@@ -118,7 +120,9 @@ public class RythmBattle : MonoBehaviour
     {
         _combo = 0;
         //Debug.Log("Bonus restarted! Combo = " + _combo);
-        _textCombo.GetComponent<Text>().text = "Combo = " + _combo.ToString();
+
+        //Combo counter / display
+      //  _textCombo.GetComponent<Text>().text = "Combo = " + _combo.ToString();
     }
 
     public void addReprimand() // if you fail in Rhythm battle too many times

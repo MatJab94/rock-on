@@ -71,7 +71,7 @@ public class Player_AoE_Attack : MonoBehaviour
     private void aoeAttack()
     {
         // attack only if player has enough mana
-        if (_playerMana.getMana() > 0)
+        if (_playerMana.getMana() >= 8)
         {
             // change sprite of the range to match chosen color
             updateSprite();
