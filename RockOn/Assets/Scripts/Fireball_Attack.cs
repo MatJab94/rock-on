@@ -29,5 +29,10 @@ public class Fireball_Attack : MonoBehaviour
         {
             _fireballHealth.applyDamage(1, true, false);
         }
+
+        if (collision.gameObject.tag == "ClosedDoor")
+        {
+            _fireballHealth.applyDamage(1, true, false);
+        }
     }
 }

@@ -31,6 +31,7 @@ public class GUI_Countdown : MonoBehaviour
         time++;
         while (time+1 >= 0)
         {
+            Debug.Log("current time: " + time);
             _counter.text = "Time = " + (int)time;
             yield return new WaitForSeconds(Time.fixedDeltaTime);
             time -= Time.fixedDeltaTime;

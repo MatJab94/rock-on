@@ -70,7 +70,6 @@ GameObject:
   - component: {fileID: 4105882387166850}
   - component: {fileID: 212951342008986180}
   - component: {fileID: 58592627116706128}
-  - component: {fileID: 50985082863589826}
   - component: {fileID: 114787080904756900}
   m_Layer: 0
   m_Name: Bomb
@@ -196,26 +195,6 @@ Transform:
   m_Father: {fileID: 4105882387166850}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!50 &50985082863589826
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1757240028504684}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 5
-  m_LinearDrag: 10
-  m_AngularDrag: 5
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!58 &58592627116706128
 CircleCollider2D:
   m_ObjectHideFlags: 1

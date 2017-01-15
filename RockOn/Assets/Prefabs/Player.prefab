@@ -534,7 +534,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c0c1a390fe2b2047ab90f79c0aeba3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxRange: 3
+  maxRange: 2
   attackDisabled: 0
 --- !u!114 &114515672205122766
 MonoBehaviour:
