@@ -2947,6 +2947,16 @@ Prefab:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 634766833}
+    - target: {fileID: 224267444118110434, guid: 83a668553da6e5244a56378993869f87,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.0000038147
+      objectReference: {fileID: 0}
+    - target: {fileID: 224267444118110434, guid: 83a668553da6e5244a56378993869f87,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: -445
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 83a668553da6e5244a56378993869f87, type: 2}
   m_IsPrefabParent: 0
@@ -4261,11 +4271,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4861353852869976, guid: 2478ca8a2e1aca545947b60dc17c37a2, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 31.42
+      value: 33.31
       objectReference: {fileID: 0}
     - target: {fileID: 4861353852869976, guid: 2478ca8a2e1aca545947b60dc17c37a2, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -8.46
+      value: -10.14
       objectReference: {fileID: 0}
     - target: {fileID: 4861353852869976, guid: 2478ca8a2e1aca545947b60dc17c37a2, type: 2}
       propertyPath: m_LocalPosition.z
@@ -4291,28 +4301,7 @@ Prefab:
       propertyPath: m_RootOrder
       value: 6
       objectReference: {fileID: 0}
-    - target: {fileID: 50367081387741536, guid: 2478ca8a2e1aca545947b60dc17c37a2,
-        type: 2}
-      propertyPath: m_GravityScale
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 50367081387741536, guid: 2478ca8a2e1aca545947b60dc17c37a2,
-        type: 2}
-      propertyPath: m_BodyType
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 60605640021933988, guid: 2478ca8a2e1aca545947b60dc17c37a2,
-        type: 2}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114747536906539594, guid: 2478ca8a2e1aca545947b60dc17c37a2,
-        type: 2}
-      propertyPath: nextLevelstring
-      value: level2
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 50367081387741536, guid: 2478ca8a2e1aca545947b60dc17c37a2, type: 2}
+    m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2478ca8a2e1aca545947b60dc17c37a2, type: 2}
   m_IsPrefabParent: 0
 --- !u!1001 &816010657
