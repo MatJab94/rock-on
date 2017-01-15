@@ -12,7 +12,7 @@
 public class Player_Movement : MonoBehaviour
 {
     // Speed of the movement
-    private float _speed;
+    public float _speed;
 
     // This object's RigidBody2D component, for physics (like colliding with objects)
     private Rigidbody2D _rb;
@@ -28,7 +28,7 @@ public class Player_Movement : MonoBehaviour
 
         _anim.SetBool("isMoving", false);
 
-        _speed = 2.75f;
+       // _speed = 3.50f;
     }
 
     // using FixedUpdate for constant movement speed, regardless of framerate

@@ -22,7 +22,7 @@ public class RythmBattle : MonoBehaviour
     private float _badRythmEnd; // the end of range in which rythmFlag is false
 
     private int _combo; // counts how well the player hits in rythm
-    private Text _textCombo; // text in GUI, shows current combo
+   // private Text _textCombo; // text in GUI, shows current combo
     private Player_Mana _playerMana; // player mana script for adding bonuses
   
     private Text _message; //combo message - when combo is achieved
@@ -43,9 +43,9 @@ public class RythmBattle : MonoBehaviour
 
         _combo = 0;
         _playerMana = GameObject.FindGameObjectWithTag("Player").GetComponent<Player_Mana>();
-        _textCombo = GameObject.FindGameObjectWithTag("GUI_Combo_Counter").GetComponent<Text>();
+       // _textCombo = GameObject.FindGameObjectWithTag("GUI_Combo_Counter").GetComponent<Text>();
         
-        _textCombo.text = "Combo = 0";
+       // _textCombo.text = "Combo = 0";
 
         _badrhythmcounter = 0;
         _isBonusAdded = false;
@@ -111,8 +111,8 @@ public class RythmBattle : MonoBehaviour
         //_textCombo.GetComponent<Text>().text = "Combo = " + _combo.ToString();
         if (_combo >= 8)
         {
-            resetBonus();          
             StartCoroutine(ShowMessage("Combo!", 1)); //combo message
+            resetBonus();                   
         }
     }
 
