@@ -9,7 +9,7 @@ public class Camera_FollowCursor : MonoBehaviour
     private Transform _cameraTF;
     private Vector2 _move;
     private Vector2 _velocity = Vector3.zero;
-    private float _range;
+    //private float _range;
 
     void Start()
     {
@@ -17,7 +17,7 @@ public class Camera_FollowCursor : MonoBehaviour
         _playerTF = GetComponentInParent<Transform>();
         _cameraTF = GetComponent<Transform>();
         _move = Vector2.zero;
-        _range = 1.0f;
+        //_range = 1.0f;
     }
 
     void FixedUpdate()

@@ -14,6 +14,9 @@ public class Player_Movement : MonoBehaviour
     // Speed of the movement
     public float _speed;
 
+    // Speed of the diagonal movement
+    private float _speedDiagonal;
+
     // This object's RigidBody2D component, for physics (like colliding with objects)
     private Rigidbody2D _rb;
 
@@ -28,7 +31,9 @@ public class Player_Movement : MonoBehaviour
 
         _anim.SetBool("isMoving", false);
 
-       // _speed = 3.50f;
+        // diagonal speed should be regular speed divided by square root of two
+        // but it seems to be to slow, so I chose a different value
+        _speedDiagonal = _speed / 1.2f;
     }
 
     // using FixedUpdate for constant movement speed, regardless of framerate
@@ -44,8 +49,17 @@ public class Player_Movement : MonoBehaviour
             // tell the Animator we are moving, start movement animation
             _anim.SetBool("isMoving", true);
 
-            // move character based on movement vector and speed
-            _rb.AddForce(movement * _speed, ForceMode2D.Impulse);
+            // if one of the inputs is 0 the player moves at regular speed
+            if(movement.x == 0 || movement.y == 0)
+            {
+                // move character based on movement vector and speed
+                _rb.AddForce(movement * _speed, ForceMode2D.Impulse);
+            }
+            else // moving diagonally, speed is reduced
+            {
+                // move character based on movement vector and speed
+                _rb.AddForce(movement * _speedDiagonal, ForceMode2D.Impulse);
+            }
         }
         else
         {
