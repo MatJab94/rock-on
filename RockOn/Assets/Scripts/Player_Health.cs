@@ -93,7 +93,7 @@ public class Player_Health : MonoBehaviour
     private void spawnPlayer()
     {
         _tf.position = _respawnPosition;
-        _health = _maxHealth - 2;
+        _health = _maxHealth;
         updateGUI();
 
     }
@@ -120,7 +120,7 @@ public class Player_Health : MonoBehaviour
         do
         {
             // fade in
-            for (float f = 1.0f; f >= 0.25f; f -= 0.05f)
+            for (float f = 1.0f; f >= 0.25f; f -= Time.deltaTime * 7)
             {
                 c.a = f;
                 _sr.color = c;
@@ -128,7 +128,7 @@ public class Player_Health : MonoBehaviour
             }
 
             // fade out
-            for (float f = 0.25f; f <= 1; f += 0.05f)
+            for (float f = 0.25f; f <= 1; f += Time.deltaTime * 7)
             {
                 c.a = f;
                 _sr.color = c;
@@ -149,5 +149,10 @@ public class Player_Health : MonoBehaviour
     public int getMaxHealth()
     {
         return _maxHealth;
+    }
+
+    public void setRespawnPosition(Vector3 position)
+    {
+        _respawnPosition = position;
     }
 }

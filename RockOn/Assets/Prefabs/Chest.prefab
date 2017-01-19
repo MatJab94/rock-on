@@ -329,11 +329,11 @@ MonoBehaviour:
   - {fileID: 1498533612468378, guid: 88a1b7875860ff440a400de8be043e07, type: 2}
   - {fileID: 1927440674092008, guid: 005e24a0cf3b567469e4dfd5f5b4ee4e, type: 2}
   - {fileID: 1561614059241030, guid: f8f276e0506de114cbc22c68eed6faf3, type: 2}
-  - {fileID: 1561614059241030, guid: f8f276e0506de114cbc22c68eed6faf3, type: 2}
   badTreasures:
   - {fileID: 1439231446090428, guid: 84f17f53a71f5124c9e054d46a1f14eb, type: 2}
   numOfTries: 10
   secretCode: ffffffffffffffffffffffff
+  targetForCursor: {fileID: 1256423931952636}
 --- !u!212 &212222941999884024
 SpriteRenderer:
   m_ObjectHideFlags: 1

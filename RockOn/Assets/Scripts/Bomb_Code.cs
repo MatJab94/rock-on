@@ -43,6 +43,8 @@ public class Bomb_Code : MonoBehaviour
     // beat counter, bomb can only be blown up when == 0
     int beatCounter;
 
+    bool _detonating;
+
     void Start()
     {
         _playerColor = GameObject.FindGameObjectWithTag("Player").GetComponent<Player_Color_Change>();
@@ -53,34 +55,39 @@ public class Bomb_Code : MonoBehaviour
         _bombCode = Random.Range(0, 3);
 
         _numOfTries = 0;
-        _maxNumOfTries = 3;
+        _maxNumOfTries = 5;
 
         beatCounter = 0;
         canDetonate = false;
         _bombSR.color = Color.gray;
+
+        _detonating = false;
     }
 
     // bomb's behaviour
     private void Update()
     {
         // player can only blow up the bomb correctly on beat 0, get it from rythmBattle script
-        beatCounter = _rythmBattle.getNumOfBeatsElapsed() % 4;
-
-        // bomb and key are greyed out when not in rythm
-        if (!getRythm() && canDetonate && beatCounter != 0)
+        beatCounter = _rythmBattle.getNumOfBeatsElapsed();
+        if (!_detonating)
         {
-            canDetonate = false;
-            _bombSR.color = Color.gray;
-            keySR.sprite = defaultSprite;
-        }
+            // bomb and key are greyed out when not in rythm and on odd beats
+            if (!getRythm() && canDetonate && beatCounter % 2 == 1)
+            {
+                canDetonate = false;
+                _bombSR.color = Color.gray;
+                keySR.sprite = defaultSprite;
+            }
 
-        // bomb is normal and key shows correct color on the right beat, player can detonate the bomb
-        if (getRythm() && !canDetonate && beatCounter == 0)
-        {
-            canDetonate = true;
-            _bombSR.color = Color.white;
-            keySR.sprite = sprites[_bombCode];
+            // bomb is normal and key shows correct color on the even beats, player can detonate the bomb
+            if (getRythm() && !canDetonate && beatCounter % 2 == 0)
+            {
+                canDetonate = true;
+                _bombSR.color = Color.white;
+                keySR.sprite = sprites[_bombCode];
+            }
         }
+        
     }
 
     // called when player attacks the chest with regular attack - he's trying to guess the code
@@ -94,12 +101,22 @@ public class Bomb_Code : MonoBehaviour
             // check if bomb was detonated correctly
             if (canDetonate && _playerColor.currentColorIndex == _bombCode)
             {
+                _detonating = true;
+
+                keySR.sprite = null;
+                highlighterTF.GetComponent<SpriteRenderer>().sprite = null;
+
                 // blow up the bomb to damage the enemies
                 _bombScript.blowUpBomb(false);
             }
         }
         else
         {
+            _detonating = true;
+
+            keySR.sprite = null;
+            highlighterTF.GetComponent<SpriteRenderer>().sprite = null;
+
             // blow up the bomb to damage the player
             _bombScript.blowUpBomb(true);
         }

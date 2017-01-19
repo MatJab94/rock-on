@@ -30,6 +30,8 @@ public class Chest_Open : MonoBehaviour
     // 0 = red, 1 = green, 2 = blue, anything else = random
     public int[] secretCode;
 
+    public GameObject targetForCursor;
+
     // Use this for initialization
     void Start()
     {
@@ -49,6 +51,10 @@ public class Chest_Open : MonoBehaviour
 
     public void openChest(bool goodGuess)
     {
+        // disable the target for cursor so player cant interact with the chest anymore
+        targetForCursor.transform.position = new Vector3(-10000, -10000, -10000);
+
+        // open the chest
         StartCoroutine(openChestCoroutine(goodGuess));
     }
 
@@ -70,14 +76,11 @@ public class Chest_Open : MonoBehaviour
     // opens the chest, spawn a treasure and dosposes of the chest object
     IEnumerator openChestCoroutine(bool goodGuess)
     {
-        // small delay before opening
-        yield return new WaitForSeconds(0.1f);
-
         // play opening animation
         _anim.SetTrigger("open");
 
         // delay for animation to end
-        yield return new WaitForSeconds(0.67f);
+        yield return new WaitForSeconds(0.5f);
 
         // spawn the treasure
         spawnTreasure(goodGuess);
@@ -85,7 +88,7 @@ public class Chest_Open : MonoBehaviour
         // fade the chest to make it disappear
         Color c = _sr.color;
         _keysSR = _codeScript.getKeysSR();
-        for (float f = 1.0f; f >= 0.25f; f -= Time.deltaTime)
+        for (float f = 1.0f; f >= 0.25f; f -= Time.deltaTime * 3)
         {
             c.a = f;
             _sr.color = c;

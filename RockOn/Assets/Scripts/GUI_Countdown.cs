@@ -19,25 +19,14 @@ public class GUI_Countdown : MonoBehaviour
 
     }
 
-    public void startCountdown(float time)
+    public void updateCountdown(int time)
     {
-        _counter.text = "Time = " + (int)time;
+        _counter.text = "Time = " + time;
         _sr.sprite = defaultSprite;
-        StartCoroutine(countdown(time));
     }
 
-    IEnumerator countdown(float time)
+    public void turnOffCountdown()
     {
-        time++;
-        while (time+1 >= 0)
-        {
-            Debug.Log("current time: " + time);
-            _counter.text = "Time = " + (int)time;
-            yield return new WaitForSeconds(Time.fixedDeltaTime);
-            time -= Time.fixedDeltaTime;
-        }
-
-        // hide the icon and counter
         _counter.text = "";
         _sr.sprite = null;
     }

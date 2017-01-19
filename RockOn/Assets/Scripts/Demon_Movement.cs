@@ -23,7 +23,7 @@ public class Demon_Movement : MonoBehaviour
         _anim = GetComponent<Animator>();
         _attackScript = GetComponentInChildren<Demon_Attack_Range>();
 
-        _speed = 1.25f;
+        _speed = 1.5f;
         _maxRange = 3.0f;
         _minRange = 0.67f;
         _pushBackPower = 30.0f;

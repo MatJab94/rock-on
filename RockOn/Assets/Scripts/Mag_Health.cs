@@ -14,8 +14,9 @@ public class Mag_Health : MonoBehaviour
     // the sprite of the enemy, based on it's color
     private Sprite _currentSprite;
 
-    // randomized on spawn, determines enemy's color
-    private int _currentColorIndex;
+    // randomized on spawn, determines enemy's colors
+    private int _primaryColorIndex;
+    private int _secondaryColorIndex;
 
     // current health of the enemy
     private int _health;
@@ -67,7 +68,7 @@ public class Mag_Health : MonoBehaviour
     public void applyDamage(int damage, bool ignoreColor)
     {
         // if Player's and Mag's color match
-        if ((_playerColor.currentColorIndex == _currentColorIndex) || ignoreColor)
+        if ((_playerColor.currentColorIndex == _primaryColorIndex) || (_playerColor.currentColorIndex == _secondaryColorIndex) || ignoreColor)
         {
             // add bonus if enemy was hit in rythm
             if (rythmBattle.rythmFlag == true)
@@ -118,29 +119,32 @@ public class Mag_Health : MonoBehaviour
             case 1:
             case 2:
                 //spawn enemy based on spawnColor
-                _currentColorIndex = spawnColor;
+                _primaryColorIndex = spawnColor;
                 break;
             default:
                 //spawn random enemy
-                _currentColorIndex = Random.Range(0, 3);
+                _primaryColorIndex = Random.Range(0, 3);
                 break;
         }
 
+        // secondary color of the Mage, it's just the next one in array
+        _secondaryColorIndex = (_primaryColorIndex + 1) % 3;
+
         // update animation color
-        _anim.SetInteger("colorIndex", _currentColorIndex);
+        _anim.SetInteger("colorIndex", _primaryColorIndex);
     }
 
     // fades enemy after he's hit
     IEnumerator fadeEnemy()
     {
         Color c = Color.white;
-        for (float f = 1.0f; f >= 0.25f; f -= 0.03f)
+        for (float f = 1.0f; f >= 0.25f; f -= Time.deltaTime * 7)
         {
             c.a = f;
             _sr.color = c;
             yield return null;
         }
-        for (float f = 0.25f; f <= 1.0f; f += 0.03f)
+        for (float f = 0.25f; f <= 1.0f; f += Time.deltaTime * 7)
         {
             c.a = f;
             _sr.color = c;

@@ -139,13 +139,13 @@ public class Demon_Health : MonoBehaviour
     IEnumerator fadeEnemy()
     {
         Color c = _sr.color;
-        for (float f = 1.0f; f >= 0.25f; f -= 0.05f)
+        for (float f = 1.0f; f >= 0.25f; f -= Time.deltaTime * 7)
         {
             c.a = f;
             _sr.color = c;
             yield return null;
         }
-        for (float f = 0.25f; f <= 1.0f; f += 0.05f)
+        for (float f = 0.25f; f <= 1.0f; f += Time.deltaTime * 7)
         {
             c.a = f;
             _sr.color = c;

@@ -18,8 +18,8 @@ public class Fireball_Movement : MonoBehaviour
         _fireball = GetComponent<Transform>();
         _rb = GetComponent<Rigidbody2D>();
 
-        _moveSpeed = 0.9f;
-        _rotateSpeed = 1.1f;
+        _moveSpeed = 1.2f;
+        _rotateSpeed = 1.5f;
 
         // rotate fireball towards target on spawn
         _fireball.rotation = getRotation();

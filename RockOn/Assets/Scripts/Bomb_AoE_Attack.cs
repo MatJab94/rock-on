@@ -31,7 +31,7 @@ public class Bomb_AoE_Attack : MonoBehaviour
     // called when bomb explodes
     public void aoeAttack(bool damagePlayer)
     {
-        // change sprite of the range to match chosen color
+        // change sprite of the range depending on if bomb hits enemies or player
         updateSprite(damagePlayer);
 
         // play attack's sound !!!TO-DO!!!
@@ -87,7 +87,7 @@ public class Bomb_AoE_Attack : MonoBehaviour
         _tf.localScale = scale;
 
         // scales the range UP
-        for (float f = 0.0f; f <= 2.0f; f += 0.05f)
+        for (float f = 0.0f; f <= 2.0f; f += Time.deltaTime * 7)
         {
             scale.x = f;
             scale.y = f;
@@ -99,7 +99,7 @@ public class Bomb_AoE_Attack : MonoBehaviour
         attackTargets(damagePlayer);
 
         // fades range to transparent
-        for (float f = 1.0f; f >= 0.0f; f -= 0.03f)
+        for (float f = 1.0f; f >= 0.0f; f -= Time.deltaTime * 3)
         {
             c.a = f;
             _sr.color = c;

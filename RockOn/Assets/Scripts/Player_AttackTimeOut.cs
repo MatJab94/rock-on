@@ -25,16 +25,13 @@ public class Player_AttackTimeOut : MonoBehaviour
         _pickTimeout = defaultTimeout * 0.55f;
     }
 
-    public void pickPowerUp(float pickActiveTime)
+    public void pickPowerUpOn()
     {
         _currentTimeout = _pickTimeout;
-        // change timeout to default after _pickActiveTime [seconds]
-        StartCoroutine(pickEnd(pickActiveTime));
     }
 
-    IEnumerator pickEnd(float pickActiveTime)
+    public void pickPowerUpOff()
     {
-        yield return new WaitForSeconds(pickActiveTime);
         _currentTimeout = defaultTimeout;
     }
 

@@ -39,6 +39,9 @@ public class Player_AoE_Attack : MonoBehaviour
     // for disabling the attacking on first level
     public bool aoeDisabled;
 
+    // scale of the AoE attack
+    public float aoeScale;
+
     public void Start()
     {
         _targets = new ArrayList();
@@ -71,7 +74,7 @@ public class Player_AoE_Attack : MonoBehaviour
     private void aoeAttack()
     {
         // attack only if player has enough mana
-        if (_playerMana.getMana() >= 8)
+        if (_playerMana.getMana() >= 0) // CHANGE IT BACK TO 8 AFTER TESTING
         {
             // change sprite of the range to match chosen color
             updateSprite();
@@ -96,7 +99,7 @@ public class Player_AoE_Attack : MonoBehaviour
     {
         foreach (GameObject target in _targets)
         {
-            if(target.tag == "Demon")
+            if (target.tag == "Demon")
             {
                 target.GetComponent<Demon_Health>().applyDamage(3, false);
             }
@@ -121,7 +124,7 @@ public class Player_AoE_Attack : MonoBehaviour
         _tf.localScale = scale;
 
         // scales the range UP
-        for (float f = 0.0f; f <= 1.0f; f += 0.05f)
+        for (float f = 0.0f; f <= aoeScale; f += Time.deltaTime * 8)
         {
             scale.x = f;
             scale.y = f;
@@ -133,7 +136,7 @@ public class Player_AoE_Attack : MonoBehaviour
         attackTargets();
 
         // fades range to transparent
-        for (float f = 1.0f; f >= 0.0f; f -= 0.03f)
+        for (float f = 1.0f; f >= 0.0f; f -= Time.deltaTime * 7)
         {
             c.a = f;
             _sr.color = c;

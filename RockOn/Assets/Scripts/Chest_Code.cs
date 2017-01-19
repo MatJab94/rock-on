@@ -75,6 +75,9 @@ public class Chest_Code : MonoBehaviour
 
             // change current key object to match the color of player's attack
             keysSR[_currentIndex].sprite = sprites[_playerColor.currentColorIndex];
+            
+            // change current index to point at the next key
+            nextKey();
 
             // play correct guess "animation"
             StartCoroutine(correctGuess());
@@ -100,9 +103,6 @@ public class Chest_Code : MonoBehaviour
                 _chestScript.openChest(false);
             }
         }
-
-        // change current index to point at the next key
-        nextKey();
     }
 
     // checks if player guessed the code correctly
@@ -151,7 +151,7 @@ public class Chest_Code : MonoBehaviour
     {
         // make the chest tranparent
         Color c = _chestSR.color;
-        for (float f = 1.0f; f >= 0.5f; f -= 0.02f)
+        for (float f = 1.0f; f >= 0.5f; f -= Time.deltaTime * 3)
         {
             c.a = f;
             keysSR[0].color = c;
@@ -161,7 +161,7 @@ public class Chest_Code : MonoBehaviour
             yield return null;
         }
         // make the chest color normal again
-        for (float f = 0.5f; f <= 1.0f; f += 0.02f)
+        for (float f = 0.5f; f <= 1.0f; f += Time.deltaTime * 3)
         {
             c.a = f;
             keysSR[0].color = c;
@@ -183,7 +183,7 @@ public class Chest_Code : MonoBehaviour
     {
         // make the chest color dark
         Color c = _chestSR.color;
-        for (float f = 1.0f; f >= 0.5f; f -= 0.02f)
+        for (float f = 1.0f; f >= 0.5f; f -= Time.deltaTime * 3)
         {
             c.r = f;
             c.g = f;
@@ -195,7 +195,7 @@ public class Chest_Code : MonoBehaviour
             yield return null;
         }
         // make the chest color normal again
-        for (float f = 0.5f; f <= 1.0f; f += 0.02f)
+        for (float f = 0.5f; f <= 1.0f; f += Time.deltaTime * 3)
         {
             c.r = f;
             c.g = f;
@@ -227,7 +227,7 @@ public class Chest_Code : MonoBehaviour
     public void setChestCode(int[] code)
     {
         // instantiate the chest code variable
-        _chestCode = new int[3] { -1, -1, -1};
+        _chestCode = new int[3] { -1, -1, -1 };
 
         // only set the code if it's valid length, otherwise make a random code
         if (code.Length == 3)

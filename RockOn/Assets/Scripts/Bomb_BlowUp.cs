@@ -9,10 +9,13 @@ public class Bomb_BlowUp : MonoBehaviour
 
     private Bomb_AoE_Attack _attackScript;
 
+    private Animator _anim;
+
     void Start()
     {
         _codeScript = GetComponentInChildren<Bomb_Code>();
         _attackScript = GetComponentInChildren<Bomb_AoE_Attack>();
+        _anim = GetComponent<Animator>();
     }
 
     // public method for easier calling of the method in codeScript
@@ -23,6 +26,20 @@ public class Bomb_BlowUp : MonoBehaviour
 
     public void blowUpBomb(bool damagePlayer)
     {
+        // animate the bomb
+        _anim.SetTrigger("detonate");
+
+        StartCoroutine(blowUpBombCoroutine(damagePlayer));
+    }
+
+    IEnumerator blowUpBombCoroutine(bool damagePlayer)
+    {
+        yield return new WaitForSeconds(0.25f);
+
+        _anim.enabled = false;
+
+        GetComponent<SpriteRenderer>().sprite = null;
+
         // start the attack and pass the flag (should player get damaged or enemies?)
         _attackScript.aoeAttack(damagePlayer);
     }

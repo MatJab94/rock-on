@@ -68,7 +68,6 @@ GameObject:
   - component: {fileID: 124000013859274408}
   - component: {fileID: 81000012095292530}
   - component: {fileID: 114828259683461070}
-  - component: {fileID: 114823355553634628}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -138,7 +137,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012172352448}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.62, y: -11.79, z: -4.25}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4000013810563244}
@@ -156,7 +155,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012320160382}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.25, z: 0}
+  m_LocalPosition: {x: 0, y: 0.05, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4000012821799044}
@@ -556,7 +555,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 4
-  _speedDiagonal: 12.72
 --- !u!114 &114069619547874684
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -594,6 +592,7 @@ MonoBehaviour:
   - {fileID: 21300002, guid: 73ff62eb374ca9d418b66481ae870bbc, type: 3}
   - {fileID: 21300004, guid: 73ff62eb374ca9d418b66481ae870bbc, type: 3}
   aoeDisabled: 0
+  aoeScale: 2.19
 --- !u!114 &114151108947108208
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -620,7 +619,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c0c1a390fe2b2047ab90f79c0aeba3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxRange: 2
+  maxRange: 3
   attackDisabled: 0
 --- !u!114 &114386515894173110
 MonoBehaviour:
@@ -658,17 +657,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _target: {fileID: 0}
---- !u!114 &114823355553634628
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000014224552040}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2f268e08cfe6eb40b3191751b158e86, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114828259683461070
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -680,8 +668,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4aa06722dfe2634fb482a0eca9a1e5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OptionsMenu: {fileID: 0}
-  PauseUI: {fileID: 0}
+  OptionsMenu: {fileID: 224460862117951162, guid: 75b2e99361115474bb290d785e2a8d2a,
+    type: 2}
+  PauseUI: {fileID: 1704753071598200, guid: 75b2e99361115474bb290d785e2a8d2a, type: 2}
 --- !u!114 &114855498194747320
 MonoBehaviour:
   m_ObjectHideFlags: 1

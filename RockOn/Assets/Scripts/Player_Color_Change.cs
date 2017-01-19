@@ -8,6 +8,8 @@ public class Player_Color_Change : MonoBehaviour
 
     // the 3 colors we use
     private Color _red, _green, _blue, _red2, _green2, _blue2;
+    private Color[] _primary;
+    private Color[] _secondary;
 
     // for changing the color of the line when attacking
     private LineRenderer _lr;
@@ -28,6 +30,10 @@ public class Player_Color_Change : MonoBehaviour
         _green2 = new Color(0.67f, 0.78f, 0.38f);
         _blue = new Color(0.27f, 0.46f, 0.66f);
         _blue2 = new Color(0.34f, 0.70f, 0.80f);
+
+        // for scroll wheel color changing
+        _primary = new Color[] { _red, _green, _blue };
+        _secondary = new Color[] { _red2, _green2, _blue2 };
 
         _lr = GetComponentInChildren<LineRenderer>();
 
@@ -71,6 +77,28 @@ public class Player_Color_Change : MonoBehaviour
 
             _lr.startColor = _blue;
             _lr.endColor = _blue2;
+
+            _cursorColor.colorChange(currentColorIndex);
+        }
+        if (Input.GetAxis("MouseWheel") > 0.0f || Input.GetButtonDown("ChangeColorNext"))
+        {
+            currentColorIndex = (currentColorIndex + 1) % 3;
+
+            _anim.SetInteger("color", currentColorIndex);
+
+            _lr.startColor = _primary[currentColorIndex];
+            _lr.endColor = _secondary[currentColorIndex];
+
+            _cursorColor.colorChange(currentColorIndex);
+        }
+        if (Input.GetAxis("MouseWheel") < 0.0f || Input.GetButtonDown("ChangeColorPrevious"))
+        {
+            currentColorIndex = (currentColorIndex + 2) % 3;
+
+            _anim.SetInteger("color", currentColorIndex);
+
+            _lr.startColor = _primary[currentColorIndex];
+            _lr.endColor = _secondary[currentColorIndex];
 
             _cursorColor.colorChange(currentColorIndex);
         }
