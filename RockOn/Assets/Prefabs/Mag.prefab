@@ -306,6 +306,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnColor: -1
+  corpsePrefab: {fileID: 1167251910697890, guid: e4fd44df800bea049b66f39d64f53592,
+    type: 2}
+  corpseSprites:
+  - {fileID: 21300006, guid: d05dde34879ea9b48870836d783707a1, type: 3}
+  - {fileID: 21300008, guid: d05dde34879ea9b48870836d783707a1, type: 3}
+  - {fileID: 21300010, guid: d05dde34879ea9b48870836d783707a1, type: 3}
 --- !u!114 &114285351703797106
 MonoBehaviour:
   m_ObjectHideFlags: 1

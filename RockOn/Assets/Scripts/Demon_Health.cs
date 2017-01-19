@@ -8,7 +8,6 @@ public class Demon_Health : MonoBehaviour
 
     // this Object's SpriteRenderer and Transform
     private SpriteRenderer _sr;
-    private Transform _tf;
 
     // the sprite of the enemy, based on it's color and health
     private Sprite _currentSprite;
@@ -40,6 +39,10 @@ public class Demon_Health : MonoBehaviour
 
     private AudioSource _audioSource; // this gameObject's audio source
 
+    // stuff for making corpses
+    public GameObject corpsePrefab;
+    public Sprite[] corpseSprites;
+
     void Start()
     {
         // initialise variables
@@ -47,7 +50,6 @@ public class Demon_Health : MonoBehaviour
         _playerAttackScript = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<Player_Regular_Attack>();
         rythmBattle = GameObject.FindGameObjectWithTag("RythmBattle").GetComponent<RythmBattle>();
         _sr = GetComponent<SpriteRenderer>();
-        _tf = GetComponent<Transform>();
         _demonMoveScript = GetComponent<Demon_Movement>();
 
         _anim = GetComponent<Animator>();
@@ -159,11 +161,10 @@ public class Demon_Health : MonoBehaviour
     // kills enemy when HP<0
     IEnumerator killEnemy()
     {
-        // there's some bugs when destroying the object immediately,
-        // so I'm moving it somewhere else and killing it after a second
-        _tf.position = new Vector3(-10000, -10000, -10000);
-        yield return new WaitForSeconds(0.5f);
-        Destroy(gameObject, 0.5f);
+        GameObject corpse = Instantiate(corpsePrefab, gameObject.transform.position, Quaternion.identity);
+        corpse.GetComponent<SpriteRenderer>().sprite = corpseSprites[_currentColorIndex];
+        yield return new WaitForEndOfFrame();
+        Destroy(gameObject);
     }
 
 }

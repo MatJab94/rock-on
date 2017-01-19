@@ -9,7 +9,6 @@ public class Mag_Health : MonoBehaviour
 
     // this Object's SpriteRenderer and Transform
     private SpriteRenderer _sr;
-    private Transform _tf;
 
     // the sprite of the enemy, based on it's color
     private Sprite _currentSprite;
@@ -42,6 +41,10 @@ public class Mag_Health : MonoBehaviour
 
     private AudioSource _audioSource; // this gameObject's audio source
 
+    // stuff for making corpses
+    public GameObject corpsePrefab;
+    public Sprite[] corpseSprites;
+
     // Use this for initialization
     void Start()
     {
@@ -50,7 +53,6 @@ public class Mag_Health : MonoBehaviour
         _playerAttackScript = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<Player_Regular_Attack>();
         rythmBattle = GameObject.FindGameObjectWithTag("RythmBattle").GetComponent<RythmBattle>();
         _sr = GetComponent<SpriteRenderer>();
-        _tf = GetComponent<Transform>();
         _anim = GetComponent<Animator>();
         _magMoveScript = GetComponent<Mag_Movement>();
 
@@ -158,11 +160,10 @@ public class Mag_Health : MonoBehaviour
     // kills enemy when health <= 0
     IEnumerator killEnemy()
     {
-        // there's some bugs when destroying the object immediately,
-        // so I'm moving it somewhere else and killing it after a second
-        _tf.position = new Vector3(-10000, -10000, -10000);
-        yield return new WaitForSeconds(0.5f);
-        Destroy(gameObject, 0.5f);
+        GameObject corpse = Instantiate(corpsePrefab, gameObject.transform.position, Quaternion.identity);
+        corpse.GetComponent<SpriteRenderer>().sprite = corpseSprites[_primaryColorIndex];
+        yield return new WaitForEndOfFrame();
+        Destroy(gameObject);
     }
 
 }
