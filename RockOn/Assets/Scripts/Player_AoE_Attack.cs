@@ -40,7 +40,10 @@ public class Player_AoE_Attack : MonoBehaviour
     public bool aoeDisabled;
 
     // scale of the AoE attack
-    public float aoeScale;
+    private float _aoeScale;
+
+    // damage of the AoE attack
+    private int _damageAoE;
 
     public void Start()
     {
@@ -54,6 +57,9 @@ public class Player_AoE_Attack : MonoBehaviour
         _playerAudio = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<Player_Audio>();
         _playerMana = GameObject.FindGameObjectWithTag("Player").GetComponent<Player_Mana>();
         _timeoutScript = GameObject.FindGameObjectWithTag("Player").GetComponent<Player_AttackTimeOut>();
+
+        _aoeScale = 2.5f;
+        _damageAoE = 2;
 
         aoeDisabled = false;
     }
@@ -74,7 +80,7 @@ public class Player_AoE_Attack : MonoBehaviour
     private void aoeAttack()
     {
         // attack only if player has enough mana
-        if (_playerMana.getMana() >= 0) // CHANGE IT BACK TO 8 AFTER TESTING
+        if (_playerMana.getMana() >= 8)
         {
             // change sprite of the range to match chosen color
             updateSprite();
@@ -101,15 +107,15 @@ public class Player_AoE_Attack : MonoBehaviour
         {
             if (target.tag == "Demon")
             {
-                target.GetComponent<Demon_Health>().applyDamage(3, false);
+                target.GetComponent<Demon_Health>().applyDamage(_damageAoE, false);
             }
             if (target.tag == "Mag")
             {
-                target.GetComponent<Mag_Health>().applyDamage(3, false);
+                target.GetComponent<Mag_Health>().applyDamage(_damageAoE, false);
             }
             if (target.tag == "Fireball")
             {
-                target.GetComponent<Fireball_Health>().applyDamage(3, false, false);
+                target.GetComponent<Fireball_Health>().applyDamage(_damageAoE, false, false);
             }
         }
     }
@@ -124,7 +130,7 @@ public class Player_AoE_Attack : MonoBehaviour
         _tf.localScale = scale;
 
         // scales the range UP
-        for (float f = 0.0f; f <= aoeScale; f += Time.deltaTime * 8)
+        for (float f = 0.0f; f <= _aoeScale; f += Time.deltaTime * 8)
         {
             scale.x = f;
             scale.y = f;
