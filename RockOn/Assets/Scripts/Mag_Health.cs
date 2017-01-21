@@ -163,7 +163,8 @@ public class Mag_Health : MonoBehaviour
         GameObject corpse = Instantiate(corpsePrefab, gameObject.transform.position, Quaternion.identity);
         corpse.GetComponent<SpriteRenderer>().sprite = corpseSprites[_primaryColorIndex];
         yield return new WaitForEndOfFrame();
-        Destroy(gameObject);
+        gameObject.transform.position = new Vector3(-10000, -10000, -10000);
+        Destroy(gameObject, 0.5f);
     }
 
 }

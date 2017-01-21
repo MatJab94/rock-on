@@ -26,6 +26,16 @@ public class Cursor_TargetDetection : MonoBehaviour
         }
     }
 
+    // event that is called if target stays in this Object's collider (is in range)
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "TargetForCursor")
+        {
+            _target = collision.gameObject;
+            // Debug.Log("enter");
+        }
+    }
+
     // event that is called if target exits this Object's collider (is out of range)
     private void OnTriggerExit2D(Collider2D collision)
     {
