@@ -28,6 +28,8 @@ public class Player_Health : MonoBehaviour
 
     private AudioSource _audioSource; // this gameObject's audio source
 
+    // camera shake script
+    private Camera_Shake _camShake;
 
     void Start()
     {
@@ -36,6 +38,8 @@ public class Player_Health : MonoBehaviour
 
         _respawnPosition = new Vector3(_tf.position.x, _tf.position.y, _tf.position.z);
         _healthGUI = GameObject.FindGameObjectWithTag("GUI_Health").GetComponent<SpriteRenderer>();
+
+        _camShake = GetComponentInChildren<Camera_Shake>();
 
         _maxHealth = sprites.Length;
 
@@ -73,6 +77,9 @@ public class Player_Health : MonoBehaviour
 
             // fades player after he's hit
             StartCoroutine(fadePlayer());
+
+            // shake camera
+            _camShake.shakeCamera();
 
             // if it's dead respawn it (just for testing, use Destroy(gameObject) to kill it)
             if (_health <= 0)
