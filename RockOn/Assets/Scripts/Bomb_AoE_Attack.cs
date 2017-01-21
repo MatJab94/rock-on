@@ -19,6 +19,9 @@ public class Bomb_AoE_Attack : MonoBehaviour
     // Bomb_BlowUp script for killing the bomb object after it blows up
     private Bomb_BlowUp _bombScript;
 
+    // script for shaking the camera when bomb blows up
+    private Camera_Shake _camShake;
+
     public void Start()
     {
         _targets = new ArrayList();
@@ -26,6 +29,7 @@ public class Bomb_AoE_Attack : MonoBehaviour
         _tf = GetComponent<Transform>();
         _tf.localScale = Vector3.zero;
         _bombScript = GetComponentInParent<Bomb_BlowUp>();
+        _camShake = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<Camera_Shake>();
     }
 
     // called when bomb explodes
@@ -82,6 +86,8 @@ public class Bomb_AoE_Attack : MonoBehaviour
     {
         Color c = Color.white;
         Vector3 scale = Vector3.zero;
+
+        _camShake.shakeCamera();
 
         _sr.color = c;
         _tf.localScale = scale;
