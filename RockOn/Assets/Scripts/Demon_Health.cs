@@ -70,6 +70,10 @@ public class Demon_Health : MonoBehaviour
         // if Player's and Demon's color match
         if ((_playerColor.currentColorIndex == _currentColorIndex) || ignoreColor)
         {
+
+            // -1 HP
+            _health -= damage;
+
             // add bonus if enemy was hit in rythm
             if (rythmBattle.rythmFlag == true)
             {
@@ -77,11 +81,17 @@ public class Demon_Health : MonoBehaviour
             }
             if (rythmBattle.rythmFlag == false)
             {
-                rythmBattle.addReprimand();
+                if (_health != 0)
+                {
+                    rythmBattle.addReprimand();
+                }
+            }
+            if(_health == 0)
+            {
+                rythmBattle.addPraise();
             }
 
-            // -1 HP
-            _health -= damage;
+            
 
             //if pick is active push back the enemy
             if (_playerAttackScript.getIsPickActive())
@@ -108,8 +118,8 @@ public class Demon_Health : MonoBehaviour
         else
         {
             // if Player's and Demon's color don't match restart bonus
-            rythmBattle.resetBonus();
-            rythmBattle.addReprimand();
+           // rythmBattle.resetBonus();  // not needed anymore
+            rythmBattle.addSpecialReprimand();
         }
     }
 

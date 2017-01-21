@@ -10,7 +10,9 @@ public class nextLevel : MonoBehaviour {
     
     public void LoadLevel(string level)
     {
+        PlayerPrefs.GetFloat("CurVol");
         SceneManager.LoadScene(level);
+        
     }
     
     private void OnTriggerEnter2D(Collider2D collision)

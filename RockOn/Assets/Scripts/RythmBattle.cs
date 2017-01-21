@@ -30,6 +30,9 @@ public class RythmBattle : MonoBehaviour
     private int _badrhythmcounter;
     private bool _isBonusAdded;
 
+    private string[] _reprimandStrings;
+    private string _reprimand;
+
     // Use this for initialization
     void Start()
     {
@@ -49,6 +52,10 @@ public class RythmBattle : MonoBehaviour
 
         _badrhythmcounter = 0;
         _isBonusAdded = false;
+
+        _reprimandStrings = new string[4] { "Ain't got no rhythm!", "Not quite my tempo! ", "such a bad timing!", "Play it in RHYTHM!" };
+
+        
 
         _message = GameObject.FindWithTag("GUI_message").GetComponent<Text>();
 
@@ -125,53 +132,32 @@ public class RythmBattle : MonoBehaviour
       //  _textCombo.GetComponent<Text>().text = "Combo = " + _combo.ToString();
     }
 
-    public void addReprimand() // if you fail in Rhythm battle too many times
+    public void addReprimand() // if you fail in Rhythm battle
     {
         _badrhythmcounter++;
-            if (_isBonusAdded == true)
-            {
-                if (_badrhythmcounter <= 3)
-                {
-                     _badrhythmcounter = 0;
-                }
-                if (_badrhythmcounter > 3 && _badrhythmcounter <= 6)
-                {
-                    _badrhythmcounter = 3;
-                }
-                if (_badrhythmcounter > 6)
-                {
-                    _badrhythmcounter = 6;
-                }
-        }
-            if (_badrhythmcounter == 3) 
-            {
-               // _badrhythmcounter = 0;
-                StartCoroutine(ShowMessage("Feel the rhythm!", 1)); //Reprimand message
-            }
-            if (_badrhythmcounter == 6)
-            {
-               // _badrhythmcounter = 0;
-                StartCoroutine(ShowMessage("Not quite my tempo!", 1)); //Reprimand message
-            }
-            if (_badrhythmcounter == 9)
-            {
-                _badrhythmcounter = 0;
-                StartCoroutine(ShowMessage("YOU SUCK!", 1)); //Reprimand message
-            }
-            
-            /*
+        _reprimand = _reprimandStrings[Random.Range(0, 4)];
         if (_isBonusAdded == true)
         {
             _badrhythmcounter = 0;
         }
-        if (_badrhythmcounter >= 3)
+        if (_badrhythmcounter >= 4)
         {
+            addSpecialReprimand();
             _badrhythmcounter = 0;
-            StartCoroutine(ShowMessage("You Suck!", 1)); //Reprimand message
         }
-        */
-
+        else
+        {    
+            StartCoroutine(ShowMessage(_reprimand, 1)); //Reprimand message
+        }
         _isBonusAdded = false;
+    }
+    public void addPraise() // praise message - if enemy is just killed
+    {
+        StartCoroutine(ShowMessage("YEAH!", 1));
+    }
+    public void addSpecialReprimand()
+    {
+        StartCoroutine(ShowMessage("YOU SUCK!", 1));
     }
 
     IEnumerator ShowMessage(string message, float delay)

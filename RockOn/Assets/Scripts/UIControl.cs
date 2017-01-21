@@ -13,12 +13,12 @@ public class UIControl : MonoBehaviour {
     {
         //  audioSource = GetComponent<AudioSource>();
         VolumeSlider.value = audioSource.volume;
-       // audioSource.volume = PlayerPrefs.GetFloat("CurVol");
+        audioSource.volume = PlayerPrefs.GetFloat("CurVol");
     }
     public void changeVolume()
     {
         audioSource.volume = VolumeSlider.value;
-        PlayerPrefs.SetFloat("CurVol", audioSource.volume);
+        PlayerPrefs.SetFloat("CurVol", VolumeSlider.value);
     }
 
 }
