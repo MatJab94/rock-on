@@ -105,6 +105,7 @@ public class Demon_Health : MonoBehaviour
             // if it's dead destroy the object
             if (_health <= 0)
             {
+                _audioSource.pitch = 1;
                 _audioSource.Play(); //play dying sound
                 StartCoroutine(killEnemy());
             }
@@ -113,6 +114,8 @@ public class Demon_Health : MonoBehaviour
             {
                 // update animation form
                 _anim.SetTrigger("applyDamage");
+                _audioSource.pitch = 1.20f;
+                _audioSource.Play(); // play damage sound
             }
         }
         else
