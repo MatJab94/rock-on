@@ -15,6 +15,8 @@ public class Mag_Movement : MonoBehaviour
     private float _distance; // distance between enemy and target
     private float _pushBackPower; // how strong is enemy pushed back when pick is active
 
+    private Enemy_Audio _ea; // C'mon! sounds
+
     // Use this for initialization
     void Start()
     {
@@ -24,6 +26,7 @@ public class Mag_Movement : MonoBehaviour
         _rb = GetComponent<Rigidbody2D>();
         _anim = GetComponent<Animator>();
         _attackScript = GetComponentInChildren<Mag_Attack_Range>();
+        _ea = GetComponent<Enemy_Audio>();
 
         _speed = 0.75f;
         _maxRange = 2.5f;
@@ -48,6 +51,8 @@ public class Mag_Movement : MonoBehaviour
         {
             // moving the object, animate
             _anim.SetBool("isMoving", true);
+
+            _ea.PlayComeOn(); //play C'mon! sound
 
             // calculate direction (and normalize it so it doesn't change the speed of movement)
             Vector2 direction = new Vector2(_enemy.position.x - _target.position.x, _enemy.position.y - _target.position.y).normalized;

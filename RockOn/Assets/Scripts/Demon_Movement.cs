@@ -14,6 +14,8 @@ public class Demon_Movement : MonoBehaviour
     private float _distance; // distance between enemy and target
     private float _pushBackPower; // how strong is enemy pushed back when pick is active
 
+    private Enemy_Audio _ea;  // C'mon! sounds
+
     void Start()
     {
         // initializing variables
@@ -22,11 +24,13 @@ public class Demon_Movement : MonoBehaviour
         _rb = GetComponent<Rigidbody2D>();
         _anim = GetComponent<Animator>();
         _attackScript = GetComponentInChildren<Demon_Attack_Range>();
+        _ea = GetComponent<Enemy_Audio>();
 
         _speed = 1.5f;
         _maxRange = 3.0f;
         _minRange = 0.67f;
         _pushBackPower = 30.0f;
+
     }
 
     // called when enemy is attacked and pick power-up is active
@@ -47,6 +51,8 @@ public class Demon_Movement : MonoBehaviour
         {
             // moving the object, animate
             _anim.SetBool("isMoving", true);
+
+            _ea.PlayComeOn(); //play C'mon! sound
 
             // calculate direction (and normalize it so it doesn't change the speed of movement)
             Vector2 direction = new Vector2(_target.position.x - _enemy.position.x, _target.position.y - _enemy.position.y).normalized;
