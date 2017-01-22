@@ -73,6 +73,8 @@ public class Player_Health : MonoBehaviour
         {
             // -1 HP
             _health -= damage;
+            _audioSource.pitch = 1;
+            _audioSource.Play(); //play damage sound
 
             // make player invincible for a moment, so enemies can't kill him instantly
             StartCoroutine(invincibleTime());
@@ -86,6 +88,7 @@ public class Player_Health : MonoBehaviour
             // if it's dead respawn it (just for testing, use Destroy(gameObject) to kill it)
             if (_health <= 0)
             {
+                _audioSource.pitch = 0.90f;
                 _audioSource.Play(); //play dying sound
                 spawnPlayer();
             }
