@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+
 public class nextLevel : MonoBehaviour {
 
 
@@ -10,9 +11,9 @@ public class nextLevel : MonoBehaviour {
     
     public void LoadLevel(string level)
     {
-        PlayerPrefs.GetFloat("CurVol");
+        PlayerPrefs.SetString(level, level);
         SceneManager.LoadScene(level);
-        
+         
     }
     
     private void OnTriggerEnter2D(Collider2D collision)

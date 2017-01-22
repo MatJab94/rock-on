@@ -1,23 +1,38 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;﻿
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class LevelManager : MonoBehaviour {
 
     public Transform MainMenu, OptionsMenu, LoadGameMenu, AboutMenu, HelpMenu;
 
+    public Button level2Bttn;
+    public Button level3Bttn;
+
+    void Start()
+    {
+        if (PlayerPrefs.HasKey("level2") == true)
+        {
+            level2Bttn.interactable = true;
+        }
+        if (PlayerPrefs.HasKey("level3") == true)
+        {
+            level3Bttn.interactable = true;
+        }
+    }
 
     public void NewGame(string newGameLevel)
     {
         SceneManager.LoadScene(newGameLevel);
     }
     public void LoadGame(string loadLevel)
-    {
+    {    
         SceneManager.LoadScene(loadLevel);
     }
 
-    public void Options(bool clicked)
+public void Options(bool clicked)
     {
         if (clicked == true)
         {

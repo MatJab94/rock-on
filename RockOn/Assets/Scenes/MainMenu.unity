@@ -962,6 +962,8 @@ MonoBehaviour:
   LoadGameMenu: {fileID: 917524596}
   AboutMenu: {fileID: 1238586415}
   HelpMenu: {fileID: 28253622}
+  level2Bttn: {fileID: 1971728753}
+  level3Bttn: {fileID: 967511884}
 --- !u!1 &741297560
 GameObject:
   m_ObjectHideFlags: 0
