@@ -271,5 +271,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   range: 0.08
-  numOfBeatsInClip: 64
+  numOfBeatsInClip: 32
   rythmFlag: 0

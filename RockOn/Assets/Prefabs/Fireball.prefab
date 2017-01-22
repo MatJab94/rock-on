@@ -42,6 +42,7 @@ GameObject:
   - component: {fileID: 114947215321446378}
   - component: {fileID: 114778609252858616}
   - component: {fileID: 114276436911060720}
+  - component: {fileID: 114785607197192112}
   m_Layer: 0
   m_Name: Fireball
   m_TagString: Fireball
@@ -138,7 +139,7 @@ CircleCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_Offset: {x: -0.36, y: 0}
+  m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.25
 --- !u!58 &58862025836903800
@@ -152,7 +153,7 @@ CircleCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_Offset: {x: -0.36, y: 0}
+  m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.1
 --- !u!60 &60722473083419656
@@ -166,7 +167,7 @@ PolygonCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.25, y: 0}
   m_Points:
     m_Paths:
     - - {x: -0.49269104, y: 0.32083893}
@@ -226,6 +227,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d436cd6d70d86634d855b6da40b28a8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114785607197192112
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1439231446090428}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdc0d85dec1fe5b4ea62c2f18e3c6aa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &114947215321446378

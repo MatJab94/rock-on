@@ -27,6 +27,7 @@ GameObject:
   - component: {fileID: 114000012922598350}
   - component: {fileID: 114000010378730386}
   - component: {fileID: 82155983848336568}
+  - component: {fileID: 114978903720066546}
   m_Layer: 0
   m_Name: Demon
   m_TagString: Demon
@@ -325,6 +326,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 362efd6051575994995e23b289d48e9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114978903720066546
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013601848012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdc0d85dec1fe5b4ea62c2f18e3c6aa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!212 &212000014291470944

@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 114628314075010036}
   - component: {fileID: 114203853264358338}
   - component: {fileID: 82235726694114494}
+  - component: {fileID: 114342876481825398}
   m_Layer: 0
   m_Name: Mag
   m_TagString: Mag
@@ -321,6 +322,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0a6a82e90b3a317419b93571fbac92ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114342876481825398
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1418506097318994}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdc0d85dec1fe5b4ea62c2f18e3c6aa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &114360627183583862

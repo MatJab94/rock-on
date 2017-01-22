@@ -72,6 +72,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4183879719581984}
   - component: {fileID: 212088753106972158}
+  - component: {fileID: 114179106335303554}
   m_Layer: 5
   m_Name: GUI_Health_Bar
   m_TagString: GUI_Health
@@ -173,6 +174,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4706612606237344}
   - component: {fileID: 212385693622547836}
+  - component: {fileID: 114636707317599534}
   m_Layer: 5
   m_Name: GUI_Mana_Bar
   m_TagString: GUI_Mana
@@ -254,6 +256,17 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
+--- !u!114 &114179106335303554
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1314048674415710}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdc0d85dec1fe5b4ea62c2f18e3c6aa4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114203894342228674
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -320,6 +333,17 @@ MonoBehaviour:
     m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: 'Time: 0'
+--- !u!114 &114636707317599534
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1793016851377206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdc0d85dec1fe5b4ea62c2f18e3c6aa4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114732287779739214
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -589,7 +613,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.000091076, y: -452}
+  m_AnchoredPosition: {x: 0.0000038147, y: -445}
   m_SizeDelta: {x: 867, y: 186}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224507987602639316

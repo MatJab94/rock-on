@@ -31,6 +31,8 @@ public class Player_Health : MonoBehaviour
     // camera shake script
     private Camera_Shake _camShake;
 
+    public int healthOnSpawn;
+
     void Start()
     {
         _sr = GetComponent<SpriteRenderer>();
@@ -100,7 +102,16 @@ public class Player_Health : MonoBehaviour
     private void spawnPlayer()
     {
         _tf.position = _respawnPosition;
-        _health = _maxHealth;
+
+        if(healthOnSpawn == -1)
+        {
+            _health = _maxHealth;
+        }
+        else
+        {
+            _health = healthOnSpawn;
+        }
+        
         updateGUI();
 
     }

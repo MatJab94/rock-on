@@ -699,6 +699,7 @@ MonoBehaviour:
   - {fileID: 21300004, guid: 2311bc20eb8b87d4ba3ef702cdec5943, type: 3}
   - {fileID: 21300006, guid: 2311bc20eb8b87d4ba3ef702cdec5943, type: 3}
   - {fileID: 21300008, guid: 2311bc20eb8b87d4ba3ef702cdec5943, type: 3}
+  healthOnSpawn: -1
 --- !u!114 &114866346443055762
 MonoBehaviour:
   m_ObjectHideFlags: 1

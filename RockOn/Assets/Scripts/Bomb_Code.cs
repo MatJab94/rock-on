@@ -72,18 +72,18 @@ public class Bomb_Code : MonoBehaviour
         if (!_detonating)
         {
             // bomb and key are greyed out when not in rythm and on odd beats
-            if (!getRythm() && canDetonate && beatCounter % 2 == 1)
+            if (!getRythm() && canDetonate) //&& beatCounter % 2 == 1
             {
                 canDetonate = false;
-                _bombSR.color = Color.gray;
+                //_bombSR.color = Color.gray;
                 keySR.sprite = defaultSprite;
             }
 
             // bomb is normal and key shows correct color on the even beats, player can detonate the bomb
-            if (getRythm() && !canDetonate && beatCounter % 2 == 0)
+            if (getRythm() && !canDetonate) // && beatCounter % 2 == 0
             {
                 canDetonate = true;
-                _bombSR.color = Color.white;
+                //_bombSR.color = Color.white;
                 keySR.sprite = sprites[_bombCode];
             }
         }
