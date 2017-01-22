@@ -31,7 +31,7 @@ public class Pick_PowerUp : MonoBehaviour
         countdown.turnOffCountdown();
         _playerTimeout.pickPowerUpOff();
         _playerAttack.setIsPickActive(false);
-        _pickGUI.SetActive(false);
+        //_pickGUI.SetActive(false);
         Destroy(gameObject, 0.025f);
     }
 
@@ -54,7 +54,7 @@ public class Pick_PowerUp : MonoBehaviour
                 _playerAttack.setIsPickActive(true);
 
                 // activate the icon and timer in gui
-                _pickGUI.SetActive(true);
+                //_pickGUI.SetActive(true);
 
                 // change timeout of players attack
                 _playerTimeout.pickPowerUpOn();
