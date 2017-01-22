@@ -13,15 +13,14 @@ public class Player_Mana : MonoBehaviour
     private int _mana;
 
     // maximum allowed mana
-    private const int _maxMana = 8;
+    private int _maxMana;
 
     void Start()
     {
         _manaGUI = GameObject.FindGameObjectWithTag("GUI_Mana").GetComponent<SpriteRenderer>();
 
-        // initially player gets half of maximum amount of mana
-        //  _mana = _maxMana / 2;
         _mana = 0;
+        _maxMana = sprites.Length - 1;
         updateGUI();
     }
 
@@ -32,7 +31,7 @@ public class Player_Mana : MonoBehaviour
         {
             _mana += amount;
 
-            if(_mana > _maxMana)
+            if (_mana > _maxMana)
             {
                 _mana = _maxMana;
             }
@@ -46,7 +45,7 @@ public class Player_Mana : MonoBehaviour
     {
         if (_mana > 0)
         {
-            _mana=0;
+            _mana = 0;
             updateGUI();
         }
     }

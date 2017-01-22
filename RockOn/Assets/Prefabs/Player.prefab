@@ -568,15 +568,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprites:
-  - {fileID: 21300000, guid: 44f1cb2d630b8e848a019c32f104f6cf, type: 3}
-  - {fileID: 21300002, guid: 44f1cb2d630b8e848a019c32f104f6cf, type: 3}
-  - {fileID: 21300004, guid: 44f1cb2d630b8e848a019c32f104f6cf, type: 3}
-  - {fileID: 21300006, guid: 44f1cb2d630b8e848a019c32f104f6cf, type: 3}
-  - {fileID: 21300008, guid: 44f1cb2d630b8e848a019c32f104f6cf, type: 3}
-  - {fileID: 21300010, guid: 44f1cb2d630b8e848a019c32f104f6cf, type: 3}
-  - {fileID: 21300012, guid: 44f1cb2d630b8e848a019c32f104f6cf, type: 3}
-  - {fileID: 21300014, guid: 44f1cb2d630b8e848a019c32f104f6cf, type: 3}
-  - {fileID: 21300016, guid: 44f1cb2d630b8e848a019c32f104f6cf, type: 3}
+  - {fileID: 21300018, guid: 44f1cb2d630b8e848a019c32f104f6cf, type: 3}
+  - {fileID: 21300020, guid: 44f1cb2d630b8e848a019c32f104f6cf, type: 3}
+  - {fileID: 21300022, guid: 44f1cb2d630b8e848a019c32f104f6cf, type: 3}
+  - {fileID: 21300024, guid: 44f1cb2d630b8e848a019c32f104f6cf, type: 3}
+  - {fileID: 21300026, guid: 44f1cb2d630b8e848a019c32f104f6cf, type: 3}
+  - {fileID: 21300028, guid: 44f1cb2d630b8e848a019c32f104f6cf, type: 3}
 --- !u!114 &114099255033945064
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -592,6 +589,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 73ff62eb374ca9d418b66481ae870bbc, type: 3}
   - {fileID: 21300002, guid: 73ff62eb374ca9d418b66481ae870bbc, type: 3}
   - {fileID: 21300004, guid: 73ff62eb374ca9d418b66481ae870bbc, type: 3}
+  - {fileID: 21300000, guid: efc86799378371148a738bb636c20ac8, type: 3}
   aoeDisabled: 0
 --- !u!114 &114151108947108208
 MonoBehaviour:

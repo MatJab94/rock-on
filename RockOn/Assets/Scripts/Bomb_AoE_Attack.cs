@@ -64,11 +64,11 @@ public class Bomb_AoE_Attack : MonoBehaviour
         {
             if (target.tag == "Demon" && !damagePlayer)
             {
-                target.GetComponent<Demon_Health>().applyDamage(2, true);
+                target.GetComponent<Demon_Health>().applyDamage(2, true, false);
             }
             if (target.tag == "Mag" && !damagePlayer)
             {
-                target.GetComponent<Mag_Health>().applyDamage(2, true);
+                target.GetComponent<Mag_Health>().applyDamage(2, true, false);
             }
             if (target.tag == "Fireball" && !damagePlayer)
             {

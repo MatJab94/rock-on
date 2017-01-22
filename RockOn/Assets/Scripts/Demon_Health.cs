@@ -65,14 +65,24 @@ public class Demon_Health : MonoBehaviour
 
 
     // called when player attacks the Demon
-    public void applyDamage(int damage, bool ignoreColor)
+    public void applyDamage(int damage, bool ignoreColor, bool damageOtherColors)
     {
         // if Player's and Demon's color match
-        if ((_playerColor.currentColorIndex == _currentColorIndex) || ignoreColor)
+        if (_playerColor.currentColorIndex == _currentColorIndex || ignoreColor || damageOtherColors)
         {
-
-            // -1 HP
-            _health -= damage;
+            if (_playerColor.currentColorIndex == _currentColorIndex || ignoreColor)
+            {
+                // subtract damage
+                _health -= damage;
+            }
+            else
+            {
+                if (damageOtherColors)
+                {
+                    // subtract damage
+                    _health--;
+                }
+            }
 
             // add bonus if enemy was hit in rythm
             if (rythmBattle.rythmFlag == true)
@@ -86,13 +96,11 @@ public class Demon_Health : MonoBehaviour
                     rythmBattle.addReprimand();
                 }
             }
-            if(_health == 0)
+            if (_health == 0)
             {
                 rythmBattle.addPraise();
             }
-
             
-
             //if pick is active push back the enemy
             if (_playerAttackScript.getIsPickActive())
             {
@@ -118,7 +126,7 @@ public class Demon_Health : MonoBehaviour
         else
         {
             // if Player's and Demon's color don't match restart bonus
-           // rythmBattle.resetBonus();  // not needed anymore
+            // rythmBattle.resetBonus();  // not needed anymore
             rythmBattle.addSpecialReprimand();
         }
     }
@@ -129,7 +137,7 @@ public class Demon_Health : MonoBehaviour
         // initial health
         _health = _maxHealth;
 
-        switch(spawnColor)
+        switch (spawnColor)
         {
             case 0:
             case 1:

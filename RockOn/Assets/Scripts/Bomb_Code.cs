@@ -40,9 +40,6 @@ public class Bomb_Code : MonoBehaviour
     // can bomb be detonated?
     private bool canDetonate;
 
-    // beat counter, bomb can only be blown up when == 0
-    int beatCounter;
-
     bool _detonating;
 
     void Start()
@@ -56,8 +53,7 @@ public class Bomb_Code : MonoBehaviour
 
         _numOfTries = 0;
         _maxNumOfTries = 5;
-
-        beatCounter = 0;
+        
         canDetonate = false;
         _bombSR.color = Color.gray;
 
@@ -67,8 +63,6 @@ public class Bomb_Code : MonoBehaviour
     // bomb's behaviour
     private void Update()
     {
-        // player can only blow up the bomb correctly on beat 0, get it from rythmBattle script
-        beatCounter = _rythmBattle.getNumOfBeatsElapsed();
         if (!_detonating)
         {
             // bomb and key are greyed out when not in rythm and on odd beats

@@ -119,11 +119,11 @@ public class Player_Regular_Attack : MonoBehaviour
     {
         if (_target.transform.parent.gameObject.tag == "Demon")
         {
-            _target.GetComponentInParent<Demon_Health>().applyDamage(1, false);
+            _target.GetComponentInParent<Demon_Health>().applyDamage(1, false, false);
         }
         if (_target.transform.parent.gameObject.tag == "Mag")
         {
-            _target.GetComponentInParent<Mag_Health>().applyDamage(1, false);
+            _target.GetComponentInParent<Mag_Health>().applyDamage(1, false, false);
         }
         if (_target.transform.parent.gameObject.tag == "Fireball")
         {

@@ -40,10 +40,18 @@ public class Player_AoE_Attack : MonoBehaviour
     public bool aoeDisabled;
 
     // scale of the AoE attack
-    private float _aoeScale;
+    private float _scaleAoE;
 
     // damage of the AoE attack
     private int _damageAoE;
+
+    // flags
+    private bool _shakeCamera;
+    private bool _damageOtherColors;
+    private bool _pushBack;
+
+    // camera shake script
+    private Camera_Shake _camShake;
 
     public void Start()
     {
@@ -57,9 +65,13 @@ public class Player_AoE_Attack : MonoBehaviour
         _playerAudio = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<Player_Audio>();
         _playerMana = GameObject.FindGameObjectWithTag("Player").GetComponent<Player_Mana>();
         _timeoutScript = GameObject.FindGameObjectWithTag("Player").GetComponent<Player_AttackTimeOut>();
+        _camShake = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<Camera_Shake>();
 
-        _aoeScale = 2.5f;
-        _damageAoE = 2;
+        _scaleAoE = 1;
+        _damageAoE = 1;
+        _shakeCamera = false;
+        _damageOtherColors = false;
+        _pushBack = false;
 
         aoeDisabled = false;
     }
@@ -79,8 +91,56 @@ public class Player_AoE_Attack : MonoBehaviour
 
     private void aoeAttack()
     {
-        // attack only if player has enough mana
-        if (_playerMana.getMana() >= 8)
+        // awesomness of AoE attack depends on amount of mana player has
+        switch (_playerMana.getMana())
+        {
+            case 1:
+                _scaleAoE = 1.5f;
+                _damageAoE = 1;
+                _shakeCamera = false;
+                _damageOtherColors = false;
+                _pushBack = false;
+                break;
+            case 2:
+                _scaleAoE = 2;
+                _damageAoE = 1;
+                _shakeCamera = false;
+                _damageOtherColors = false;
+                _pushBack = false;
+                break;
+            case 3:
+                _scaleAoE = 2.5f;
+                _damageAoE = 2;
+                _shakeCamera = true;
+                _damageOtherColors = false;
+                _pushBack = false;
+                break;
+            case 4:
+                _scaleAoE = 3;
+                _damageAoE = 2;
+                _shakeCamera = true;
+                _damageOtherColors = false;
+                _pushBack = true;
+                break;
+            case 5:
+                _scaleAoE = 3;
+                _damageAoE = 3;
+                _shakeCamera = true;
+                _damageOtherColors = true;
+                _pushBack = true;
+                break;
+            default:
+                _scaleAoE = 0;
+                _damageAoE = 0;
+                _shakeCamera = false;
+                _damageOtherColors = false;
+                _pushBack = false;
+                break;
+        }
+
+
+        // attack only if player has mana
+        if (_playerMana.getMana() > 0)
         {
             // change sprite of the range to match chosen color
             updateSprite();
@@ -98,7 +158,14 @@ public class Player_AoE_Attack : MonoBehaviour
 
     private void updateSprite()
     {
-        _sr.sprite = _sprites[_playerColor.currentColorIndex];
+        if (_damageOtherColors)
+        {
+            _sr.sprite = _sprites[3]; // awesome range when ignoring color
+        }
+        else
+        {
+            _sr.sprite = _sprites[_playerColor.currentColorIndex];
+        }
     }
 
     private void attackTargets()
@@ -107,15 +174,23 @@ public class Player_AoE_Attack : MonoBehaviour
         {
             if (target.tag == "Demon")
             {
-                target.GetComponent<Demon_Health>().applyDamage(_damageAoE, false);
+                if (_pushBack)
+                {
+                    target.GetComponent<Demon_Movement>().pushBack();
+                }
+                target.GetComponent<Demon_Health>().applyDamage(_damageAoE, false, _damageOtherColors);
             }
             if (target.tag == "Mag")
             {
-                target.GetComponent<Mag_Health>().applyDamage(_damageAoE, false);
+                if (_pushBack)
+                {
+                    target.GetComponent<Mag_Movement>().pushBack();
+                }
+                target.GetComponent<Mag_Health>().applyDamage(_damageAoE, false, _damageOtherColors);
             }
             if (target.tag == "Fireball")
             {
-                target.GetComponent<Fireball_Health>().applyDamage(_damageAoE, false, false);
+                target.GetComponent<Fireball_Health>().applyDamage(_damageAoE, false, _damageOtherColors);
             }
         }
     }
@@ -125,12 +200,16 @@ public class Player_AoE_Attack : MonoBehaviour
     {
         Color c = Color.white;
         Vector3 scale = Vector3.zero;
-
         _sr.color = c;
         _tf.localScale = scale;
 
+        if (_shakeCamera)
+        {
+            _camShake.shakeCamera();
+        }
+
         // scales the range UP
-        for (float f = 0.0f; f <= _aoeScale; f += Time.deltaTime * 8)
+        for (float f = 0.0f; f <= _scaleAoE; f += Time.deltaTime * 8)
         {
             scale.x = f;
             scale.y = f;

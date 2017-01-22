@@ -67,14 +67,24 @@ public class Mag_Health : MonoBehaviour
 
 
     // called when player attacks the enemy
-    public void applyDamage(int damage, bool ignoreColor)
+    public void applyDamage(int damage, bool ignoreColor, bool damageOtherColors)
     {
         // if Player's and Mag's color match
-        if ((_playerColor.currentColorIndex == _primaryColorIndex) || (_playerColor.currentColorIndex == _secondaryColorIndex) || ignoreColor)
+        if (_playerColor.currentColorIndex == _primaryColorIndex || _playerColor.currentColorIndex == _secondaryColorIndex || ignoreColor || damageOtherColors)
         {
-
-            // -1 HP
-            _health -= damage;
+            if (_playerColor.currentColorIndex == _primaryColorIndex || _playerColor.currentColorIndex == _secondaryColorIndex || ignoreColor)
+            {
+                // subtract damage
+                _health -= damage;
+            }
+            else
+            {
+                if (damageOtherColors)
+                {
+                    // subtract damage
+                    _health--;
+                }
+            }
 
             // add bonus if enemy was hit in rythm
             if (rythmBattle.rythmFlag == true)
@@ -92,8 +102,6 @@ public class Mag_Health : MonoBehaviour
             {
                 rythmBattle.addPraise();
             }
-
-
 
             //if pick is active push back the enemy
             if (_playerAttackScript.getIsPickActive())
