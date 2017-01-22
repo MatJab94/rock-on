@@ -553,11 +553,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4000012821799044, guid: b728fd60472e3a4438db263204f970ba, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 2.5
+      value: 2.61
       objectReference: {fileID: 0}
     - target: {fileID: 4000012821799044, guid: b728fd60472e3a4438db263204f970ba, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -11.71
+      value: -11.63
       objectReference: {fileID: 0}
     - target: {fileID: 4000012821799044, guid: b728fd60472e3a4438db263204f970ba, type: 2}
       propertyPath: m_LocalPosition.z
@@ -587,7 +587,7 @@ Prefab:
         type: 2}
       propertyPath: VolumeSlider
       value: 
-      objectReference: {fileID: 877826817}
+      objectReference: {fileID: 682144658}
     - target: {fileID: 114828259683461070, guid: b728fd60472e3a4438db263204f970ba,
         type: 2}
       propertyPath: OptionsMenu
@@ -598,11 +598,6 @@ Prefab:
       propertyPath: PauseUI
       value: 
       objectReference: {fileID: 1355747654}
-    - target: {fileID: 114855498194747320, guid: b728fd60472e3a4438db263204f970ba,
-        type: 2}
-      propertyPath: healthOnSpawn
-      value: 4
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b728fd60472e3a4438db263204f970ba, type: 2}
   m_IsPrefabParent: 0
@@ -3851,9 +3846,19 @@ Prefab:
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 72669262}
+    - target: {fileID: 1682038562510684, guid: 75b2e99361115474bb290d785e2a8d2a, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 75b2e99361115474bb290d785e2a8d2a, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &682144658 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114275583910270844, guid: 75b2e99361115474bb290d785e2a8d2a,
+    type: 2}
+  m_PrefabInternal: {fileID: 682144657}
+  m_Script: {fileID: -113659843, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1001 &693260422
 Prefab:
   m_ObjectHideFlags: 0

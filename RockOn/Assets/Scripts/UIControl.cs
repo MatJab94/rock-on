@@ -8,17 +8,18 @@ public class UIControl : MonoBehaviour {
 
     public AudioSource audioSource;
     public Slider VolumeSlider;
+    public string volumeSliderValue;
 
     public void Start()
     {
-        //  audioSource = GetComponent<AudioSource>();
-        VolumeSlider.value = audioSource.volume;
-        audioSource.volume = PlayerPrefs.GetFloat("CurVol");
+        // VolumeSlider.value = audioSource.volume;
+      //  audioSource.volume = PlayerPrefs.GetFloat(volumeSliderValue);
+        VolumeSlider.value = PlayerPrefs.GetFloat(volumeSliderValue);
     }
     public void changeVolume()
     {
         audioSource.volume = VolumeSlider.value;
-        PlayerPrefs.SetFloat("CurVol", VolumeSlider.value);
+        PlayerPrefs.SetFloat(volumeSliderValue, VolumeSlider.value);
     }
 
 }

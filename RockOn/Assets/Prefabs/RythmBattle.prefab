@@ -246,6 +246,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioSource: {fileID: 82195050157687996}
   VolumeSlider: {fileID: 0}
+  volumeSliderValue: bgMusic
 --- !u!114 &114632125552487958
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -259,6 +260,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioSource: {fileID: 82967971911700620}
   VolumeSlider: {fileID: 0}
+  volumeSliderValue: metronome
 --- !u!114 &114820969587795272
 MonoBehaviour:
   m_ObjectHideFlags: 1

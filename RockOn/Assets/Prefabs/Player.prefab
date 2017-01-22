@@ -138,7 +138,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012172352448}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11.386, y: -27.511, z: -4.25}
+  m_LocalPosition: {x: 2.5, y: -11.71, z: -4.25}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4000013810563244}
@@ -643,6 +643,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioSource: {fileID: 82372867898526768}
   VolumeSlider: {fileID: 0}
+  volumeSliderValue: attack
 --- !u!114 &114527455900859674
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -677,9 +678,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4aa06722dfe2634fb482a0eca9a1e5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OptionsMenu: {fileID: 224460862117951162, guid: 75b2e99361115474bb290d785e2a8d2a,
-    type: 2}
-  PauseUI: {fileID: 1704753071598200, guid: 75b2e99361115474bb290d785e2a8d2a, type: 2}
+  OptionsMenu: {fileID: 0}
+  PauseUI: {fileID: 0}
 --- !u!114 &114855498194747320
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -697,7 +697,7 @@ MonoBehaviour:
   - {fileID: 21300004, guid: 2311bc20eb8b87d4ba3ef702cdec5943, type: 3}
   - {fileID: 21300006, guid: 2311bc20eb8b87d4ba3ef702cdec5943, type: 3}
   - {fileID: 21300008, guid: 2311bc20eb8b87d4ba3ef702cdec5943, type: 3}
-  healthOnSpawn: -1
+  healthOnSpawn: 4
 --- !u!114 &114866346443055762
 MonoBehaviour:
   m_ObjectHideFlags: 1
