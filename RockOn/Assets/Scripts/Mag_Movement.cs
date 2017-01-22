@@ -52,7 +52,7 @@ public class Mag_Movement : MonoBehaviour
             // moving the object, animate
             _anim.SetBool("isMoving", true);
 
-            _ea.PlayComeOn(); //play C'mon! sound
+            StartCoroutine(Wait(_ea, 2)); //play C'mon! sound
 
             // calculate direction (and normalize it so it doesn't change the speed of movement)
             Vector2 direction = new Vector2(_enemy.position.x - _target.position.x, _enemy.position.y - _target.position.y).normalized;
@@ -66,5 +66,12 @@ public class Mag_Movement : MonoBehaviour
             // object not moving, stop animation
             _anim.SetBool("isMoving", false);
         }
+    }
+    IEnumerator Wait(Enemy_Audio _ea, float delay)  // for playing "Come On!"
+    {
+        _ea.PlayComeOn();
+        _ea.enabled = true;
+        yield return new WaitForSeconds(delay);
+        _ea.enabled = false;
     }
 }

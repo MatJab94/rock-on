@@ -116,7 +116,7 @@ public class RythmBattle : MonoBehaviour
 
         //Combo counter / display
         //_textCombo.GetComponent<Text>().text = "Combo = " + _combo.ToString();
-        if (_combo >= 8)
+        if (_combo >= 5)
         {
             StartCoroutine(ShowMessage("Combo!", 1)); //combo message
             resetBonus();                   
@@ -147,7 +147,7 @@ public class RythmBattle : MonoBehaviour
         }
         else
         {    
-            StartCoroutine(ShowMessage(_reprimand, 1)); //Reprimand message
+            StartCoroutine(ShowMessage(_reprimand, 1.5f)); //Reprimand message
         }
         _isBonusAdded = false;
     }

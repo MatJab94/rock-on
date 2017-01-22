@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections;
 
 public class Demon_Movement : MonoBehaviour
 {
@@ -26,6 +27,7 @@ public class Demon_Movement : MonoBehaviour
         _attackScript = GetComponentInChildren<Demon_Attack_Range>();
         _ea = GetComponent<Enemy_Audio>();
 
+        
         _speed = 1.5f;
         _maxRange = 3.0f;
         _minRange = 0.67f;
@@ -52,7 +54,7 @@ public class Demon_Movement : MonoBehaviour
             // moving the object, animate
             _anim.SetBool("isMoving", true);
 
-            _ea.PlayComeOn(); //play C'mon! sound
+            StartCoroutine(Wait(_ea,2)); //play C'mon! sound
 
             // calculate direction (and normalize it so it doesn't change the speed of movement)
             Vector2 direction = new Vector2(_target.position.x - _enemy.position.x, _target.position.y - _enemy.position.y).normalized;
@@ -73,5 +75,13 @@ public class Demon_Movement : MonoBehaviour
             // object not moving, stop animation
             _anim.SetBool("isMoving", false);
         }
+    }
+
+    IEnumerator Wait(Enemy_Audio _ea, float delay)  // for playing "Come On!"
+    {
+        _ea.PlayComeOn();
+        _ea.enabled = true;
+        yield return new WaitForSeconds(delay);
+        _ea.enabled = false;
     }
 }

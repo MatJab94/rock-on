@@ -55,6 +55,7 @@ public class Demon_Health : MonoBehaviour
         _anim = GetComponent<Animator>();
 
         _audioSource = gameObject.GetComponent<AudioSource>();
+        
 
         // max health for Demon is 3
         _maxHealth = 3;
@@ -113,7 +114,7 @@ public class Demon_Health : MonoBehaviour
             // if it's dead destroy the object
             if (_health <= 0)
             {
-                _audioSource.pitch = 1;
+                _audioSource.pitch = 0.90f;
                 _audioSource.Play(); //play dying sound
                 StartCoroutine(killEnemy());
             }
@@ -122,7 +123,7 @@ public class Demon_Health : MonoBehaviour
             {
                 // update animation form
                 _anim.SetTrigger("applyDamage");
-                _audioSource.pitch = 1.20f;
+                _audioSource.pitch = 1;
                 _audioSource.Play(); // play damage sound
             }
         }

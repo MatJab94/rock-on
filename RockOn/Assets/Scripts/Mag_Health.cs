@@ -76,6 +76,8 @@ public class Mag_Health : MonoBehaviour
             {
                 // subtract damage
                 _health -= damage;
+                _audioSource.pitch = 1;
+                _audioSource.Play(); //play damage sound
             }
             else
             {
@@ -83,6 +85,8 @@ public class Mag_Health : MonoBehaviour
                 {
                     // subtract damage
                     _health--;
+                    _audioSource.pitch = 1;
+                    _audioSource.Play(); //play damage sound
                 }
             }
 
@@ -115,6 +119,7 @@ public class Mag_Health : MonoBehaviour
             // if it's dead destroy the object
             if (_health <= 0)
             {
+                _audioSource.pitch = 0.90f;
                 _audioSource.Play(); //play dying sound
                 StartCoroutine(killEnemy());
             }
