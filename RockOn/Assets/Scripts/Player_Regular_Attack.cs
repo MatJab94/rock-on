@@ -17,7 +17,9 @@ public class Player_Regular_Attack : MonoBehaviour
     private GameObject _target;
 
     // max range at which target can be interacted with
-    public float maxRange;
+    public float defaultMaxRange;
+    private float _maxRange;
+    private float maxRangeWithMicrophone;
 
     // player's audio script for making sounds when attacking
     private Player_Audio _playerAudio;
@@ -32,7 +34,15 @@ public class Player_Regular_Attack : MonoBehaviour
     public bool attackDisabled;
 
     // is pick power-up active now?
-    private bool _isPickActive;
+    private bool _pickActive;
+
+    // is microphpne power-up active?
+    private bool _micActive;
+
+    // damage of the regular attack
+    private int _currentDamage;
+    private int _regularDamage;
+    private int _damageWithMicrophone;
 
     void Start()
     {
@@ -42,17 +52,33 @@ public class Player_Regular_Attack : MonoBehaviour
         _playerAudio = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<Player_Audio>();
         _lr = GetComponent<LineRenderer>();
         _timeoutScript = GameObject.FindGameObjectWithTag("Player").GetComponent<Player_AttackTimeOut>();
-
         _lr.sortingLayerName = "UI";
 
-        _target = null;
+        _regularDamage = 1;
+        _damageWithMicrophone = 2;
+        _currentDamage = _regularDamage;
 
+        _target = null;
+        _micActive = false;
         attackDisabled = false;
+        _maxRange = defaultMaxRange;
+        maxRangeWithMicrophone = defaultMaxRange * 1.5f;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (_micActive)
+        {
+            _maxRange = maxRangeWithMicrophone;
+            _currentDamage = _damageWithMicrophone;
+        }
+        else
+        {
+            _maxRange = defaultMaxRange;
+            _currentDamage = _regularDamage;
+        }
+
         // if player clicks the attack button (mouse 0 by default)
         if (Input.GetButtonDown("Regular_Attack") && _timeoutScript.getTimeoutFlag() == false && !attackDisabled)
         {
@@ -109,7 +135,7 @@ public class Player_Regular_Attack : MonoBehaviour
         else
         {
             pointInRange = _cursorTF.GetComponent<Transform>().position - _playerAttackTransform.position; // direction
-            pointInRange = pointInRange.normalized * maxRange * 0.9f; // distance
+            pointInRange = pointInRange.normalized * _maxRange * 0.9f; // distance
             pointInRange = (Vector2)_playerAttackTransform.position + pointInRange; // final position
         }
         StartCoroutine(drawLine(pointInRange)); // draw the line from player to target point
@@ -119,15 +145,15 @@ public class Player_Regular_Attack : MonoBehaviour
     {
         if (_target.transform.parent.gameObject.tag == "Demon")
         {
-            _target.GetComponentInParent<Demon_Health>().applyDamage(1, false, false);
+            _target.GetComponentInParent<Demon_Health>().applyDamage(_currentDamage, false, false);
         }
         if (_target.transform.parent.gameObject.tag == "Mag")
         {
-            _target.GetComponentInParent<Mag_Health>().applyDamage(1, false, false);
+            _target.GetComponentInParent<Mag_Health>().applyDamage(_currentDamage, false, false);
         }
         if (_target.transform.parent.gameObject.tag == "Fireball")
         {
-            _target.GetComponentInParent<Fireball_Health>().applyDamage(1, false, false);
+            _target.GetComponentInParent<Fireball_Health>().applyDamage(_currentDamage, false, false);
         }
         if (_target.transform.parent.gameObject.tag == "Chest")
         {
@@ -148,7 +174,7 @@ public class Player_Regular_Attack : MonoBehaviour
         // calculate distance between player and target
         float _distance = Vector2.Distance(_playerAttackTransform.position, target);
 
-        if (_distance > maxRange)
+        if (_distance > _maxRange)
         {
             return false;
         }
@@ -158,14 +184,24 @@ public class Player_Regular_Attack : MonoBehaviour
         }
     }
 
-    public bool getIsPickActive()
+    public bool getPickActive()
     {
-        return _isPickActive;
+        return _pickActive;
     }
 
-    public void setIsPickActive(bool flag)
+    public void setPickActive(bool pickActive)
     {
-        _isPickActive = flag;
+        _pickActive = pickActive;
+    }
+
+    public bool getMicActive()
+    {
+        return _micActive;
+    }
+
+    public void setMicActive(bool micActive)
+    {
+        _micActive = micActive;
     }
 
     // draws a line between player and target when attacking

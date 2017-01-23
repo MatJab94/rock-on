@@ -36,7 +36,7 @@ public class Player_AoE_Attack : MonoBehaviour
     // script that stops player from continuously attacking
     private Player_AttackTimeOut _timeoutScript;
 
-    // for disabling the attacking on first level
+    // for disabling the attacking on first level [no longer used, but can stay]
     public bool aoeDisabled;
 
     // scale of the AoE attack
@@ -45,13 +45,16 @@ public class Player_AoE_Attack : MonoBehaviour
     // damage of the AoE attack
     private int _damageAoE;
 
-    // flags
+    // flags based on amount of mana
     private bool _shakeCamera;
     private bool _damageOtherColors;
     private bool _pushBack;
 
     // camera shake script
     private Camera_Shake _camShake;
+
+    // is microphpne power-up active?
+    private bool _micActive;
 
     public void Start()
     {
@@ -72,7 +75,10 @@ public class Player_AoE_Attack : MonoBehaviour
         _shakeCamera = false;
         _damageOtherColors = false;
         _pushBack = false;
+        
+        _micActive = false;
 
+        // no longer used, but can stay
         aoeDisabled = false;
     }
 
@@ -138,6 +144,15 @@ public class Player_AoE_Attack : MonoBehaviour
                 break;
         }
 
+        // better AoE when Microphone power-up is active
+        if (_micActive)
+        {
+            _damageAoE++;
+            _scaleAoE++;
+            _pushBack = true;
+            _damageOtherColors = true;
+            _shakeCamera = true;
+        }
 
         // attack only if player has mana
         if (_playerMana.getMana() > 0)
@@ -232,6 +247,11 @@ public class Player_AoE_Attack : MonoBehaviour
         _sr.color = c;
 
         _tf.localScale = Vector3.zero;
+    }
+
+    public void setMicActive(bool micActive)
+    {
+        _micActive = micActive;
     }
 
     // event that is called if enemy enters this Object's collider (is in range)

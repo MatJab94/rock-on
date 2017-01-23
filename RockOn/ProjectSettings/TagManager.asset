@@ -24,6 +24,7 @@ TagManager:
   - GUI_message
   - Bomb
   - GUI_GuitarPick
+  - GUI_Microphone
   layers:
   - Default
   - TransparentFX

@@ -2,36 +2,35 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Pick_PowerUp : MonoBehaviour
+public class Mic_PowerUp : MonoBehaviour
 {
-    private Player_AttackTimeOut _playerTimeout;
     private Player_Regular_Attack _playerAttack;
-    private GameObject _pickGUI;
-    private int _pickActiveTime;
+    private Player_AoE_Attack _playerAoE;
+    private GameObject _micGUI;
+    private int _micActiveTime;
 
     private void Start()
     {
-        _playerTimeout = GameObject.FindGameObjectWithTag("Player").GetComponent<Player_AttackTimeOut>();
         _playerAttack = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<Player_Regular_Attack>();
-        _pickGUI = GameObject.FindGameObjectWithTag("GUI_GuitarPick");
-        _pickActiveTime = 15;
+        _playerAoE = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<Player_AoE_Attack>();
+        _micGUI = GameObject.FindGameObjectWithTag("GUI_Microphone");
+        _micActiveTime = 15;
     }
 
     IEnumerator pickPowerup()
     {
-        GUI_Countdown countdown = _pickGUI.GetComponentInChildren<GUI_Countdown>();
+        GUI_Countdown countdown = _micGUI.GetComponentInChildren<GUI_Countdown>();
         // wait until powerup runs out and update timer in GUI
-        for (int i = 0; i <= _pickActiveTime; i++)
+        for (int i = 0; i <= _micActiveTime; i++)
         {
-            countdown.updateCountdown(_pickActiveTime - i);
+            countdown.updateCountdown(_micActiveTime - i);
             yield return new WaitForSecondsRealtime(1);
         }
 
         // deactivate powerup things
         countdown.turnOffCountdown();
-        _playerTimeout.pickPowerUpOff();
-        _playerAttack.setPickActive(false);
-        //_pickGUI.SetActive(false);
+        _playerAttack.setMicActive(false);
+        _playerAoE.setMicActive(false);
         Destroy(gameObject, 0.025f);
     }
 
@@ -40,7 +39,7 @@ public class Pick_PowerUp : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            if (_playerAttack.getPickActive())
+            if (_playerAttack.getMicActive())
             {
                 // if pick is already active do nothing
             }
@@ -50,15 +49,10 @@ public class Pick_PowerUp : MonoBehaviour
                 gameObject.GetComponent<Collider2D>().enabled = false;
                 gameObject.GetComponent<SpriteRenderer>().sprite = null;
 
-                // change flag in attack script to push enemies back when attacking
-                _playerAttack.setPickActive(true);
-
-                // activate the icon and timer in gui
-                //_pickGUI.SetActive(true);
-
-                // change timeout of players attack
-                _playerTimeout.pickPowerUpOn();
-
+                // change flags in attack scripts
+                _playerAttack.setMicActive(true);
+                _playerAoE.setMicActive(true);
+                
                 // start coroutine that deactivates the powerup and kills the object
                 StartCoroutine(pickPowerup());
             }

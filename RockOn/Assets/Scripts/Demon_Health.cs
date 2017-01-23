@@ -103,7 +103,7 @@ public class Demon_Health : MonoBehaviour
             }
             
             //if pick is active push back the enemy
-            if (_playerAttackScript.getIsPickActive())
+            if (_playerAttackScript.getPickActive())
             {
                 _demonMoveScript.pushBack();
             }

@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 212039455567816734}
   - component: {fileID: 61471859811917058}
   - component: {fileID: 114875080119184386}
-  - component: {fileID: 114421004426460702}
+  - component: {fileID: 114937532602278370}
   m_Layer: 0
   m_Name: Microphone
   m_TagString: Untagged
@@ -57,17 +57,6 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0.234375}
   serializedVersion: 2
   m_Size: {x: 0.83, y: 0.5}
---- !u!114 &114421004426460702
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1002904407436320}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a31da239624c81b4ebada4c6fa929d6c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114875080119184386
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -77,6 +66,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 294fe37e5884d594c90bba8a18e3f0aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114937532602278370
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1002904407436320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7ce70ef1dab5974c9d07eeff3ce615b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!212 &212039455567816734
