@@ -7,7 +7,8 @@ public class Demon_Movement : MonoBehaviour
     //private float _maxRange; // max range at which it stops chasing the target (it's too far) // no longer used
     private float _minRange; // min range at which it stops chasing the target (it's too close)
 
-    private Transform _target; // target's position
+    private Transform _target; // current target's position
+    private Transform _player; // player's position
     private Transform _enemy; // this object's position
     private Rigidbody2D _rb; // this objects's rigidbody2d
     private Animator _anim; // this object's animator
@@ -17,10 +18,14 @@ public class Demon_Movement : MonoBehaviour
     private bool _isInRange; // is enemy in range of the player's view?
     private Enemy_Audio _ea;  // C'mon! sounds
 
+    // stuff for detecting guide points to go through narrow corridors
+    private bool _guideDetected; // when guide was detected
+    private int _guideCount; // counts visited guides
+
     void Start()
     {
-        // initializing variables
-        _target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        _player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        _target = _player;
         _enemy = GetComponent<Transform>();
         _rb = GetComponent<Rigidbody2D>();
         _anim = GetComponent<Animator>();
@@ -32,6 +37,9 @@ public class Demon_Movement : MonoBehaviour
         _minRange = 0.67f;
         _pushBackPower = 30.0f;
         _isInRange = false;
+
+        _guideDetected = false;
+        _guideCount = 0;
     }
 
     // called when enemy is attacked and pick power-up is active
@@ -47,8 +55,8 @@ public class Demon_Movement : MonoBehaviour
         // calculate distance between enemy and target (player)
         _distance = Vector2.Distance(_enemy.position, _target.position);
 
-        // chase target only within set range
-        if (_isInRange && _distance >= _minRange) // && _distance <= _maxRange
+        // chase player (only in certain range) OR go to guide point
+        if ((_isInRange && _distance >= _minRange) || _guideDetected)
         {
             // moving the object, animate
             _anim.SetBool("isMoving", true);
@@ -87,5 +95,25 @@ public class Demon_Movement : MonoBehaviour
     public void setIsInRange(bool isInRange)
     {
         _isInRange = isInRange;
+    }
+
+    public void setGuideDetected(Transform guideTF)
+    {
+        // increment counter (to stop following guides after going through corridor)
+        _guideCount++;
+
+        // if it's the second guide, go back to chasing player
+        if (_guideCount>=4)
+        {
+            _guideCount = 0;
+            _guideDetected = false;
+            _target = _player;
+        }
+        else // else go to the second guide
+        {
+            _guideDetected = true;
+            _target = guideTF;
+        }
+        
     }
 }

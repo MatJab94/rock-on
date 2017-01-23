@@ -26,6 +26,7 @@ TagManager:
   - GUI_GuitarPick
   - GUI_Microphone
   - ViewRange
+  - Guide
   layers:
   - Default
   - TransparentFX
