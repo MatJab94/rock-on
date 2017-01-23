@@ -362,7 +362,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1637170301107902}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11.317394, y: -10.455908, z: 0}
+  m_LocalPosition: {x: 13.078919, y: -25.717754, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4051003892759602}
@@ -786,6 +786,17 @@ MonoBehaviour:
   _clef1Anim: {fileID: 95513599045848272}
   _clef2Anim: {fileID: 95615209875040538}
   secretCode: ffffffffffffffffffffffffffffffff
+  colorIndex: 1
+  doorTopSR: {fileID: 212784427593111732}
+  doorSR: {fileID: 212911626497445302}
+  doorTopSprites:
+  - {fileID: 21300000, guid: 1d23e10ad9b7d9c4399e258d8d4ee7e2, type: 3}
+  - {fileID: 21300000, guid: 21ac970aa77380940bd803bc332541d3, type: 3}
+  - {fileID: 21300000, guid: eea3c2843d64968409bb12fc87dc5a3f, type: 3}
+  doorSprites:
+  - {fileID: 21300000, guid: 7f7f9d6e9b2a7b944a09b2c10644fe0b, type: 3}
+  - {fileID: 21300000, guid: a1062e9de4713cb46a0026922417fb24, type: 3}
+  - {fileID: 21300000, guid: 803116c013ed64e4d955f7af034d3d05, type: 3}
 --- !u!114 &114846938722111744
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1119,7 +1130,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 994355489
   m_SortingOrder: 4
-  m_Sprite: {fileID: 21300000, guid: 49206b68e9c262748a5059e77fd71957, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1d23e10ad9b7d9c4399e258d8d4ee7e2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1189,7 +1200,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1476786607
   m_SortingOrder: 3
-  m_Sprite: {fileID: 21300000, guid: 6f8d408925546154da42cb0bba6a0f9f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7f7f9d6e9b2a7b944a09b2c10644fe0b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

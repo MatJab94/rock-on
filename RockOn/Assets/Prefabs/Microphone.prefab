@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 114875080119184386}
   - component: {fileID: 114421004426460702}
   m_Layer: 0
-  m_Name: AoEUnlocker
+  m_Name: Microphone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

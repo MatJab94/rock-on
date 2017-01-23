@@ -29,6 +29,13 @@ public class ClosedDoor_Open : MonoBehaviour
     // 0 = red, 1 = green, 2 = blue, anything else = random
     public int[] secretCode;
 
+    // color of the door depending on the level (0 = purple, 1 = brown, 2 = gray)
+    public int colorIndex;
+
+    // stuff for changing sprite based on level
+    public SpriteRenderer doorTopSR;
+    public Sprite[] doorTopSprites;
+
     void Start()
     {
         _anim = GetComponent<Animator>();
@@ -38,6 +45,9 @@ public class ClosedDoor_Open : MonoBehaviour
         _open = false;
 
         _codeScript.setClosedDoorCode(secretCode);
+
+        _anim.SetInteger("color", colorIndex % 3);
+        doorTopSR.sprite = doorTopSprites[colorIndex];
     }
 
     // public method for easier calling of the method in codeScript
@@ -60,6 +70,7 @@ public class ClosedDoor_Open : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
 
         // play opening animation
+        _anim.SetInteger("color", colorIndex % 3);
         _anim.SetTrigger("open");
 
         // delay for animation to end
