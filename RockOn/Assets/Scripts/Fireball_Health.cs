@@ -29,6 +29,9 @@ public class Fireball_Health : MonoBehaviour
     // Rythm Battle flag for bonuses and stuff
     private RythmBattle rythmBattle;
 
+    // collider of the fireball
+    public CircleCollider2D attackCollider;
+
     // Use this for initialization
     void Start()
     {
@@ -67,6 +70,7 @@ public class Fireball_Health : MonoBehaviour
             // if it's dead destroy the object
             if (_health <= 0)
             {
+                attackCollider.enabled = false;
                 StartCoroutine(killFireball());
             }
         }
@@ -116,7 +120,7 @@ public class Fireball_Health : MonoBehaviour
     {
         // there's some bugs when destroying the object immediately,
         // so I'm moving it somewhere else and killing it after a second
-        _tf.position = new Vector3(-10000, -10000, -10000);
+        _tf.position = new Vector3(-100000, -100000, -100000);
         yield return new WaitForSeconds(0.5f);
         Destroy(gameObject, 0.5f);
     }
@@ -125,6 +129,6 @@ public class Fireball_Health : MonoBehaviour
     IEnumerator timedKillFireball()
     {
         yield return new WaitForSeconds(10.0f);
-        StartCoroutine("killFireball");
+        StartCoroutine(killFireball());
     }
 }
