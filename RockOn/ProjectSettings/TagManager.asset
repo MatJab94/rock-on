@@ -25,6 +25,7 @@ TagManager:
   - Bomb
   - GUI_GuitarPick
   - GUI_Microphone
+  - ViewRange
   layers:
   - Default
   - TransparentFX
