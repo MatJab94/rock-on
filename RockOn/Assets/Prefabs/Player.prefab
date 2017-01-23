@@ -123,7 +123,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4474113574565580}
   - component: {fileID: 61563083274545084}
-  - component: {fileID: 114153899621288826}
+  - component: {fileID: 114817139024341518}
   m_Layer: 0
   m_Name: ViewRange
   m_TagString: ViewRange
@@ -393,7 +393,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.5
+  m_Volume: 0.661
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -651,17 +651,6 @@ MonoBehaviour:
   - {fileID: 2800000, guid: 45a0d4d85fa648b44b96ba25e39c8fad, type: 3}
   - {fileID: 2800000, guid: 9ab3a9a6f9b36c142b3ab5e50769eeb2, type: 3}
   - {fileID: 2800000, guid: 52cb436a40c38174b86d801aaf6adafd, type: 3}
---- !u!114 &114153899621288826
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1559830423879652}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2c76232f1f58b5442b791adffb2397f5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114221221527112312
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -723,6 +712,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffa587a36adaec64c80452e227a8e399, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114817139024341518
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1559830423879652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c76232f1f58b5442b791adffb2397f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114828259683461070
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -765,9 +765,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77aae2e87c32d8f45824e935c974d491, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  A_chord: {fileID: 8300000, guid: 05c8aa57596042143b23affb5ae45075, type: 3}
-  G_chord: {fileID: 8300000, guid: 11ae628e8b2023b4293ae993295ef8f6, type: 3}
-  F_chord: {fileID: 8300000, guid: a2230624c3918f541bb326292aec8935, type: 3}
+  A_chord: {fileID: 8300000, guid: 687fca6d4a4afa948989e9868b5af487, type: 3}
+  G_chord: {fileID: 8300000, guid: 04012d01fb853334280f0afab5a44945, type: 3}
+  F_chord: {fileID: 8300000, guid: a3bc377b693700b4f8256cc5b5918a7f, type: 3}
 --- !u!114 &114869794962346974
 MonoBehaviour:
   m_ObjectHideFlags: 1

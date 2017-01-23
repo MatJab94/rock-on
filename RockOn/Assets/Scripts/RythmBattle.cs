@@ -21,7 +21,7 @@ public class RythmBattle : MonoBehaviour
     private float _badRythmStart; // the beginning of range in which rythmFlag is false
     private float _badRythmEnd; // the end of range in which rythmFlag is false
 
-    private int _combo; // counts how well the player hits in rythm
+  //  private int _combo; // counts how well the player hits in rythm
    // private Text _textCombo; // text in GUI, shows current combo
     private Player_Mana _playerMana; // player mana script for adding bonuses
   
@@ -44,7 +44,7 @@ public class RythmBattle : MonoBehaviour
         _badRythmStart = range;
         _badRythmEnd = _beatLength - range;
 
-        _combo = 0;
+      //  _combo = 0;
         _playerMana = GameObject.FindGameObjectWithTag("Player").GetComponent<Player_Mana>();
        // _textCombo = GameObject.FindGameObjectWithTag("GUI_Combo_Counter").GetComponent<Text>();
         
@@ -109,23 +109,23 @@ public class RythmBattle : MonoBehaviour
 
     public void addBonus()
     {
-        _combo++;
+      //  _combo++;
         _isBonusAdded = true;
         //Debug.Log("C-c-c-combo!!! Combo = " + _combo);
         _playerMana.addMana(1);
 
         //Combo counter / display
         //_textCombo.GetComponent<Text>().text = "Combo = " + _combo.ToString();
-        if (_combo >= 5)
+        if (_playerMana.getMana() >= 5)  //_combo >= 5)
         {
             StartCoroutine(ShowMessage("Combo!", 1)); //combo message
-            resetBonus();                   
+          //  resetBonus();                   
         }
     }
 
     public void resetBonus()
     {
-        _combo = 0;
+       // _combo = 0;
         //Debug.Log("Bonus restarted! Combo = " + _combo);
 
         //Combo counter / display
