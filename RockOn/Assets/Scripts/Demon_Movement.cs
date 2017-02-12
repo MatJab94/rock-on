@@ -4,12 +4,9 @@ using System.Collections;
 public class Demon_Movement : MonoBehaviour
 {
     private float _speed; // movement speed
-    //private float _maxRange; // max range at which it stops chasing the target (it's too far) // no longer used
+    float speedModifier; // for slowing down etc
     private float _minRange; // min range at which it stops chasing the target (it's too close)
-
     private Transform _target; // current target's position
-    private Transform _player; // player's position
-    private Transform _enemy; // this object's position
     private Rigidbody2D _rb; // this objects's rigidbody2d
     private Animator _anim; // this object's animator
     private Demon_Attack_Range _attackScript; // for changing speed when attacking
@@ -17,71 +14,130 @@ public class Demon_Movement : MonoBehaviour
     private float _pushBackPower; // how strong is enemy pushed back when pick is active
     private bool _isInRange; // is enemy in range of the player's view?
     private Enemy_Audio _ea;  // C'mon! sounds
-
-    // stuff for detecting guide points to go through narrow corridors
-    private bool _guideDetected; // when guide was detected
-    private int _guideCount; // counts visited guides
+    private Vector3[] path; // path to the target
+    int targetIndex; // index of Node in path
+    float epsilon; // to check if close enough to a Node in path
+    private bool lookingForPath; // is path finding algorithm running
+    private bool canMove; // when path was found and target is in range
+    private Vector3 currentWaypoint; // waypoint to move to
 
     void Start()
     {
-        _player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
-        _target = _player;
-        _enemy = GetComponent<Transform>();
+        _target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         _rb = GetComponent<Rigidbody2D>();
         _anim = GetComponent<Animator>();
         _attackScript = GetComponentInChildren<Demon_Attack_Range>();
         _ea = GetComponent<Enemy_Audio>();
 
-        _speed = 1.5f;
-        //_maxRange = 3.0f; // no longer used
+        _speed = 2.0f;
         _minRange = 0.67f;
-        _pushBackPower = 30.0f;
+        _pushBackPower = 15.0f;
         _isInRange = false;
-
-        _guideDetected = false;
-        _guideCount = 0;
+        epsilon = 0.3f;
+        lookingForPath = false;
+        path = null;
+        canMove = false;
+        currentWaypoint = transform.position;
     }
 
-    // called when enemy is attacked and pick power-up is active
-    public void pushBack()
+    public void onPathFound(Vector3[] newPath, bool pathSuccess)
     {
-        // calculate direction (and normalize it so it doesn't change the speed of movement)
-        Vector2 direction = new Vector2(_enemy.position.x - _target.position.x, _enemy.position.y - _target.position.y).normalized;
-        _rb.AddForce(direction * _speed * _pushBackPower, ForceMode2D.Impulse);
-    }
-
-    void FixedUpdate()
-    {
-        // calculate distance between enemy and target (player)
-        _distance = Vector2.Distance(_enemy.position, _target.position);
-
-        // chase player (only in certain range) OR go to guide point
-        if ((_isInRange && _distance >= _minRange) || _guideDetected)
+        // if path was successfuly found
+        if (pathSuccess)
         {
-            // moving the object, animate
-            _anim.SetBool("isMoving", true);
+            StopCoroutine(followPath()); // stop following old path
+            path = newPath; // change the path
+            StartCoroutine(followPath()); // and follow it
+        }
 
-            StartCoroutine(Wait(_ea, 2)); //play C'mon! sound
+        // set flags to search for the path again and/or start moving
+        lookingForPath = false;
+        canMove = pathSuccess;
+    }
 
-            // calculate direction (and normalize it so it doesn't change the speed of movement)
-            Vector2 direction = new Vector2(_target.position.x - _enemy.position.x, _target.position.y - _enemy.position.y).normalized;
+    public IEnumerator followPath()
+    {
+        // start with the first waypoint, if it exists
+        if (path.Length >= 1)
+            currentWaypoint = path[0];
 
-            // move enemy according to the direction vector
-            if (_attackScript.isCooldown())
+        // follow the path
+        while (true)
+        {
+            if (Vector2.Distance(transform.position, currentWaypoint) <= epsilon)
             {
-                // make enemy slower while cooldown is active
-                _rb.AddForce(direction * _speed * 0.5f, ForceMode2D.Impulse);
+                targetIndex++;
+                if (targetIndex >= path.Length)
+                {
+                    // stop when reached the target waypoint
+                    yield break;
+                }
+                currentWaypoint = path[targetIndex];
+            }
+            yield return null;
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        // chase player only if in range
+        if (_isInRange)
+        {
+            // calculate distance between enemy and target (player)
+            _distance = Vector2.Distance(transform.position, _target.position);
+
+            // stop chasing when close to player
+            if (_distance >= _minRange)
+            {
+                // start looking for the path and move
+                if (!lookingForPath)
+                {
+                    lookingForPath = true;
+
+                    // find the path to target
+                    //pathManager.startFindPath(transform.position, _target.position);
+                    AStar_PathRequestManager.requestPath(transform.position, _target.position, onPathFound);
+                }
             }
             else
             {
-                _rb.AddForce(direction * _speed, ForceMode2D.Impulse);
+                // object not moving, stop animation
+                _anim.SetBool("isMoving", false);
+                canMove = false;
             }
         }
         else
         {
             // object not moving, stop animation
             _anim.SetBool("isMoving", false);
+            canMove = false;
         }
+
+        ////////////////////////////////////////////////////////////////
+        // if there is a path and demon can move
+        if (canMove)
+        {
+            // moving, animate
+            _anim.SetBool("isMoving", true);
+
+            //play C'mon! sound
+            StartCoroutine(Wait(_ea, 2));
+
+            // modify speed if attacking
+            if (_attackScript.isCooldown()) speedModifier = 0.5f;
+            else speedModifier = 1.0f;
+
+            Vector2 direction = new Vector2(currentWaypoint.x - transform.position.x, currentWaypoint.y - transform.position.y).normalized;
+            _rb.AddForce(direction * _speed * speedModifier, ForceMode2D.Impulse);
+        }
+    }
+
+    // called when enemy is attacked and pick power-up is active
+    public void pushBack()
+    {
+        // calculate direction (and normalize it so it doesn't change the speed of movement)
+        Vector2 direction = new Vector2(transform.position.x - _target.position.x, transform.position.y - _target.position.y).normalized;
+        _rb.AddForce(direction * _speed * _pushBackPower, ForceMode2D.Impulse);
     }
 
     IEnumerator Wait(Enemy_Audio _ea, float delay)  // for playing "Come On!"
@@ -95,25 +151,5 @@ public class Demon_Movement : MonoBehaviour
     public void setIsInRange(bool isInRange)
     {
         _isInRange = isInRange;
-    }
-
-    public void setGuideDetected(Transform guideTF)
-    {
-        // increment counter (to stop following guides after going through corridor)
-        _guideCount++;
-
-        // if it's the second guide, go back to chasing player
-        if (_guideCount>=4)
-        {
-            _guideCount = 0;
-            _guideDetected = false;
-            _target = _player;
-        }
-        else // else go to the second guide
-        {
-            _guideDetected = true;
-            _target = guideTF;
-        }
-        
     }
 }

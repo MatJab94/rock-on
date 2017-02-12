@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 212872615511576378}
   - component: {fileID: 60525651904873726}
   - component: {fileID: 114583073920664202}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RockBig
   m_TagString: Untagged
   m_Icon: {fileID: 0}

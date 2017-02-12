@@ -88,7 +88,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4697035586320442}
   - component: {fileID: 212696235774922288}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: key1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -120,7 +120,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4210302014597386}
   - component: {fileID: 114700374786501118}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Code
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -154,7 +154,7 @@ GameObject:
   - component: {fileID: 4648811831063128}
   - component: {fileID: 212980557572062592}
   - component: {fileID: 114846938722111744}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: KeyHighlighter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -188,7 +188,7 @@ GameObject:
   - component: {fileID: 4717111483924236}
   - component: {fileID: 58631548794717720}
   - component: {fileID: 114675226761848136}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Range
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -255,7 +255,7 @@ GameObject:
   - component: {fileID: 61705530678486630}
   - component: {fileID: 114102854612099310}
   - component: {fileID: 114311281563500048}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ClefColumn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -304,7 +304,7 @@ GameObject:
   - component: {fileID: 4741036366082178}
   - component: {fileID: 212961321680437216}
   - component: {fileID: 95999590549171884}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Clef
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -788,15 +788,10 @@ MonoBehaviour:
   secretCode: ffffffffffffffffffffffffffffffff
   colorIndex: 1
   doorTopSR: {fileID: 212784427593111732}
-  doorSR: {fileID: 212911626497445302}
   doorTopSprites:
   - {fileID: 21300000, guid: 1d23e10ad9b7d9c4399e258d8d4ee7e2, type: 3}
   - {fileID: 21300000, guid: 21ac970aa77380940bd803bc332541d3, type: 3}
   - {fileID: 21300000, guid: eea3c2843d64968409bb12fc87dc5a3f, type: 3}
-  doorSprites:
-  - {fileID: 21300000, guid: 7f7f9d6e9b2a7b944a09b2c10644fe0b, type: 3}
-  - {fileID: 21300000, guid: a1062e9de4713cb46a0026922417fb24, type: 3}
-  - {fileID: 21300000, guid: 803116c013ed64e4d955f7af034d3d05, type: 3}
 --- !u!114 &114846938722111744
 MonoBehaviour:
   m_ObjectHideFlags: 1

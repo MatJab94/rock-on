@@ -184,7 +184,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4115217978423210}
   - component: {fileID: 60795895636463568}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Collision
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -211,7 +211,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1646316442372080}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 83.57, y: -28.9, z: 0}
+  m_LocalPosition: {x: -29.999989, y: 18.499996, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4985040108682734}

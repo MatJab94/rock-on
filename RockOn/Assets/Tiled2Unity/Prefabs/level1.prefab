@@ -94,7 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4845381034482932}
   - component: {fileID: 60259438082629142}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Collision
   m_TagString: Wall
   m_Icon: {fileID: 0}
