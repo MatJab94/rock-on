@@ -21,6 +21,11 @@ public class Demon_Movement : MonoBehaviour
     private bool canMove; // when path was found and target is in range
     private Vector3 currentWaypoint; // waypoint to move to
 
+    // stuff for drawing gizmos and debugging
+    private Vector2 currentDirection;
+    public bool drawPath;
+    private AStar_Grid grid;
+
     void Start()
     {
         _target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
@@ -33,11 +38,16 @@ public class Demon_Movement : MonoBehaviour
         _minRange = 0.67f;
         _pushBackPower = 15.0f;
         _isInRange = false;
-        epsilon = 0.3f;
+        epsilon = 0.05f;
         lookingForPath = false;
         path = null;
         canMove = false;
         currentWaypoint = transform.position;
+    }
+
+    private void Awake()
+    {
+        grid = GameObject.FindGameObjectWithTag("AStar").GetComponent<AStar_Grid>();
     }
 
     public void onPathFound(Vector3[] newPath, bool pathSuccess)
@@ -128,6 +138,9 @@ public class Demon_Movement : MonoBehaviour
             else speedModifier = 1.0f;
 
             Vector2 direction = new Vector2(currentWaypoint.x - transform.position.x, currentWaypoint.y - transform.position.y).normalized;
+
+            currentDirection = direction; // to draw gizmos
+
             _rb.AddForce(direction * _speed * speedModifier, ForceMode2D.Impulse);
         }
     }
@@ -137,10 +150,12 @@ public class Demon_Movement : MonoBehaviour
     {
         // calculate direction (and normalize it so it doesn't change the speed of movement)
         Vector2 direction = new Vector2(transform.position.x - _target.position.x, transform.position.y - _target.position.y).normalized;
+
         _rb.AddForce(direction * _speed * _pushBackPower, ForceMode2D.Impulse);
     }
 
-    IEnumerator Wait(Enemy_Audio _ea, float delay)  // for playing "Come On!"
+    // for playing "Come On!"
+    IEnumerator Wait(Enemy_Audio _ea, float delay)
     {
         _ea.PlayComeOn();
         _ea.enabled = true;
@@ -151,5 +166,28 @@ public class Demon_Movement : MonoBehaviour
     public void setIsInRange(bool isInRange)
     {
         _isInRange = isInRange;
+    }
+
+    // draw the path of the demon in Unity Editor
+    private void OnDrawGizmos()
+    {
+
+        if (drawPath && path != null && grid != null)
+        {
+            Gizmos.color = Color.cyan;
+            for (int i = 0; i + 1 < path.Length; i++)
+            {
+                Gizmos.DrawSphere(path[i + 1], 0.09f);
+                Gizmos.DrawLine(path[i], path[i + 1]);
+            }
+
+            // draw current node
+            Node n = grid.nodeFromWorldPoint(transform.position);
+            Gizmos.color = Color.magenta;
+            Gizmos.DrawWireCube(n.worldPosition, Vector3.one * 0.1f);
+
+            // draw direction where demon is going to move
+            Gizmos.DrawLine(transform.position, new Vector3(transform.position.x + currentDirection.x, transform.position.y + currentDirection.y, transform.position.z));
+        }
     }
 }

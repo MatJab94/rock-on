@@ -5,8 +5,9 @@ using System;
 
 public class AStar_Pathfinding : MonoBehaviour
 {
-    public AStar_Grid grid;
-    public AStar_PathRequestManager manager;
+    public AStar_Grid grid; // grid of Nodes that represent walkable space
+    public AStar_PathRequestManager manager; // script managing pathfinding requests from enemies
+    private int maxStepCount = 30; // to stop searching for path if it takes too many steps
 
     public void startFindPath(Vector3 startPos, Vector3 targetPos)
     {
@@ -24,7 +25,7 @@ public class AStar_Pathfinding : MonoBehaviour
         Node targetNode = grid.nodeFromWorldPoint(targetPos);
 
         // if start or target are not walkable, find their neighbours that are
-        if (!startNode.walkable)
+        /*if (!startNode.walkable)
         {
             List<Node> ns = grid.getNeighbours(startNode);
             foreach (Node n in ns)
@@ -35,7 +36,7 @@ public class AStar_Pathfinding : MonoBehaviour
                     break;
                 }
             }
-        }
+        }*/
         // ditto
         if (!targetNode.walkable)
         {
@@ -51,7 +52,7 @@ public class AStar_Pathfinding : MonoBehaviour
         }
 
         // if start or target are still unwalkable, skip finding path
-        if (startNode.walkable && targetNode.walkable)
+        if (/*startNode.walkable &&*/ targetNode.walkable)
         {
             // the set of Nodes to be evaluated
             List<Node> openSet = new List<Node>();
@@ -62,9 +63,15 @@ public class AStar_Pathfinding : MonoBehaviour
             // add the start Node to openSet
             openSet.Add(startNode);
 
+            // count how many iterations pathfinding took
+            int steps = 0;
+
             // look for a path
             while (openSet.Count > 0)
             {
+                // stop searching for path after max number of steps
+                if (++steps > maxStepCount) break;
+
                 // current Node is the Node in openSet with the lowest fCost (or hCost if fCosts are equal)
                 Node currentNode = openSet[0];
                 for (int i = 1; i < openSet.Count; i++)

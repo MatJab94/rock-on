@@ -55,8 +55,19 @@ public class AStar_Grid : MonoBehaviour
     // translare world position to Node index in grid
     public Node nodeFromWorldPoint(Vector3 _worldPosition)
     {
-        float percentX = (_worldPosition.x + gridWorldSize.x / 2) / gridWorldSize.x;
-        float percentY = (_worldPosition.y + gridWorldSize.y / 2) / gridWorldSize.y;
+        float modifierX = 0.2f;
+        float modifierY = 0.2f;
+        if (_worldPosition.x < 0) // it's on the left
+        {
+            modifierX *= -1;
+        }
+        if (_worldPosition.y < 0) // it's down
+        {
+            modifierY *= -1;
+        }
+        
+        float percentX = (_worldPosition.x + modifierX + gridWorldSize.x / 2) / gridWorldSize.x;
+        float percentY = (_worldPosition.y + modifierY + gridWorldSize.y / 2) / gridWorldSize.y;
         percentX = Mathf.Clamp01(percentX);
         percentY = Mathf.Clamp01(percentY);
 
@@ -73,7 +84,7 @@ public class AStar_Grid : MonoBehaviour
 
         for (int x = -1; x <= 1; x++)
         {
-            for (int y = -1; y <= 1; y++)
+            for (int y = 1; y >= -1; y--)
             {
                 if (x == 0 && y == 0) continue;
 

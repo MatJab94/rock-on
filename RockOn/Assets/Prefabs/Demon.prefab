@@ -141,7 +141,7 @@ PolygonCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_Offset: {x: -0.02, y: 0.07}
+  m_Offset: {x: -0.02, y: 0.24}
   m_Points:
     m_Paths:
     - - {x: -0.28, y: -0.04}
@@ -164,9 +164,9 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_Offset: {x: -0.02, y: -0.17}
+  m_Offset: {x: -0.02, y: 0}
   serializedVersion: 2
-  m_Size: {x: 0.5, y: 0.31}
+  m_Size: {x: 0.4, y: 0.25}
 --- !u!61 &61228281624632030
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -178,7 +178,7 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_Offset: {x: 0, y: -0.06}
+  m_Offset: {x: 0, y: 0.18}
   serializedVersion: 2
   m_Size: {x: 0.89, y: 1.05}
 --- !u!82 &82155983848336568
@@ -318,9 +318,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6733981c774bf2347a416f1085ddaf6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  path: []
-  lookingForPath: 0
-  pathFound: 0
+  drawPath: 0
 --- !u!114 &114163041995711472
 MonoBehaviour:
   m_ObjectHideFlags: 1
