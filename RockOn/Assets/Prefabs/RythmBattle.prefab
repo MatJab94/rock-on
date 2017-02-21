@@ -272,6 +272,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcb1f77d8fe233e458b5ace748f2c962, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 0.08
-  numOfBeatsInClip: 64
   rythmFlag: 0
+  range: 0.1
+  numOfBeatsInClip: 64

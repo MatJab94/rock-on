@@ -24,20 +24,7 @@ public class AStar_Pathfinding : MonoBehaviour
         Node startNode = grid.nodeFromWorldPoint(startPos);
         Node targetNode = grid.nodeFromWorldPoint(targetPos);
 
-        // if start or target are not walkable, find their neighbours that are
-        /*if (!startNode.walkable)
-        {
-            List<Node> ns = grid.getNeighbours(startNode);
-            foreach (Node n in ns)
-            {
-                if (n.walkable)
-                {
-                    startNode = n;
-                    break;
-                }
-            }
-        }*/
-        // ditto
+        // if target node is not walkable, find it's neighbours that are
         if (!targetNode.walkable)
         {
             List<Node> ns = grid.getNeighbours(targetNode);
@@ -51,8 +38,8 @@ public class AStar_Pathfinding : MonoBehaviour
             }
         }
 
-        // if start or target are still unwalkable, skip finding path
-        if (/*startNode.walkable &&*/ targetNode.walkable)
+        // if target node is still unwalkable, skip finding path
+        if (targetNode.walkable)
         {
             // the set of Nodes to be evaluated
             List<Node> openSet = new List<Node>();
