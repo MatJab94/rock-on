@@ -64,7 +64,7 @@ public class Bomb_AoE_Attack : MonoBehaviour
         {
             if (target.tag == "Demon" && !damagePlayer)
             {
-                target.GetComponent<Demon_Health>().applyDamage(2, true, false);
+                target.GetComponent<Demon_Health>().applyDamage(2, true, false, true);
             }
             if (target.tag == "Mag" && !damagePlayer)
             {

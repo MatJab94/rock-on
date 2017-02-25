@@ -15,11 +15,11 @@ public class Enemy_RythmAnimation : MonoBehaviour
         _rb = GameObject.FindGameObjectWithTag("RythmBattle").GetComponent<RythmBattle>();
         if (gameObject.tag.Equals("GUI_Health") || gameObject.tag.Equals("GUI_Mana"))
         {
-            scale = 0.25f;
+            scale = 0.5f;
         }
         else
         {
-            scale = 0.5f;
+            scale = 1.0f;
         }
     }
 

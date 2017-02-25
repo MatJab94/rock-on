@@ -36,6 +36,9 @@ public class Player_AoE_Attack : MonoBehaviour
     // script that stops player from continuously attacking
     private Player_AttackTimeOut _timeoutScript;
 
+    // to get value of rythm flag
+    private RythmBattle rythmBattleScript;
+
     // for disabling the attacking on first level [no longer used, but can stay]
     public bool aoeDisabled;
 
@@ -69,6 +72,7 @@ public class Player_AoE_Attack : MonoBehaviour
         _playerMana = GameObject.FindGameObjectWithTag("Player").GetComponent<Player_Mana>();
         _timeoutScript = GameObject.FindGameObjectWithTag("Player").GetComponent<Player_AttackTimeOut>();
         _camShake = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<Camera_Shake>();
+        rythmBattleScript = GameObject.FindGameObjectWithTag("RythmBattle").GetComponent<RythmBattle>();
 
         _scaleAoE = 1;
         _damageAoE = 1;
@@ -88,16 +92,38 @@ public class Player_AoE_Attack : MonoBehaviour
         if (Input.GetButtonDown("Attack_AoE") && _timeoutScript.getTimeoutFlag() == false && !aoeDisabled)
         {
             // do the AoE attack
-            aoeAttack();
+            aoeAttack(rythmBattleScript.getRythmFlag());
 
             // start timeout after attacking
             _timeoutScript.startTimeout();
         }
     }
 
-    private void aoeAttack()
+    private void aoeAttack(bool rythmFlag)
     {
-        // awesomness of AoE attack depends on amount of mana player has
+        // attack only if player has mana
+        if (_playerMana.getMana() > 0)
+        {
+            // set damage, range and so on, based on amount of mana
+            setAttackStats();
+
+            // change sprite of the range to match chosen color
+            updateSprite();
+
+            // subtract mana for attack
+            _playerMana.subtractMana();
+
+            // play attack's sound
+            _playerAudio.playChordSound();
+
+            // animates the range while attacking and applies damage to targets
+            StartCoroutine(animateAndAttack(rythmFlag));
+        }
+    }
+
+    private void setAttackStats()
+    {
+        // 'awesomness' of AoE attack depends on amount of mana player has
         switch (_playerMana.getMana())
         {
             case 1:
@@ -143,7 +169,7 @@ public class Player_AoE_Attack : MonoBehaviour
                 _pushBack = false;
                 break;
         }
-
+        
         // better AoE when Microphone power-up is active
         if (_micActive)
         {
@@ -152,22 +178,6 @@ public class Player_AoE_Attack : MonoBehaviour
             _pushBack = true;
             _damageOtherColors = true;
             _shakeCamera = true;
-        }
-
-        // attack only if player has mana
-        if (_playerMana.getMana() > 0)
-        {
-            // change sprite of the range to match chosen color
-            updateSprite();
-
-            // subtract mana for attack
-            _playerMana.subtractMana();
-
-            // play attack's sound
-            _playerAudio.playChordSound();
-
-            // animates the range while attacking and applies damage to targets
-            StartCoroutine(animateAndAttack());
         }
     }
 
@@ -183,7 +193,7 @@ public class Player_AoE_Attack : MonoBehaviour
         }
     }
 
-    private void attackTargets()
+    private void attackTargets(bool rythmFlag)
     {
         foreach (GameObject target in _targets)
         {
@@ -193,7 +203,7 @@ public class Player_AoE_Attack : MonoBehaviour
                 {
                     target.GetComponent<Demon_Movement>().pushBack();
                 }
-                target.GetComponent<Demon_Health>().applyDamage(_damageAoE, false, _damageOtherColors);
+                target.GetComponent<Demon_Health>().applyDamage(_damageAoE, false, _damageOtherColors, rythmFlag);
             }
             if (target.tag == "Mag")
             {
@@ -211,8 +221,9 @@ public class Player_AoE_Attack : MonoBehaviour
     }
 
     // highlights the collider while attacking
-    IEnumerator animateAndAttack()
+    IEnumerator animateAndAttack(bool rythmFlag)
     {
+        // setting starting values of color and scale
         Color c = Color.white;
         Vector3 scale = Vector3.zero;
         _sr.color = c;
@@ -233,7 +244,7 @@ public class Player_AoE_Attack : MonoBehaviour
         }
 
         // apply damage to every enemy in range after range's scale is maximum
-        attackTargets();
+        attackTargets(rythmFlag);
 
         // fades range to transparent
         for (float f = 1.0f; f >= 0.0f; f -= Time.deltaTime * 7)

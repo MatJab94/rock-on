@@ -66,7 +66,7 @@ public class Demon_Health : MonoBehaviour
 
 
     // called when player attacks the Demon
-    public void applyDamage(int damage, bool ignoreColor, bool damageOtherColors)
+    public void applyDamage(int damage, bool ignoreColor, bool damageOtherColors, bool rythmFlag)
     {
         // if Player's and Demon's color match
         if (_playerColor.currentColorIndex == _currentColorIndex || ignoreColor || damageOtherColors)

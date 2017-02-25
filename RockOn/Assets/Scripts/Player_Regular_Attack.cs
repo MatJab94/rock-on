@@ -30,6 +30,9 @@ public class Player_Regular_Attack : MonoBehaviour
     // script that stops player from continuously attacking
     private Player_AttackTimeOut _timeoutScript;
 
+    // to get value of rythm flag
+    private RythmBattle rythmBattleScript;
+
     // for disabling the attacking on first level
     public bool attackDisabled;
 
@@ -52,6 +55,7 @@ public class Player_Regular_Attack : MonoBehaviour
         _playerAudio = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<Player_Audio>();
         _lr = GetComponent<LineRenderer>();
         _timeoutScript = GameObject.FindGameObjectWithTag("Player").GetComponent<Player_AttackTimeOut>();
+        rythmBattleScript = GameObject.FindGameObjectWithTag("RythmBattle").GetComponent<RythmBattle>();
         _lr.sortingLayerName = "UI";
 
         _regularDamage = 1;
@@ -82,37 +86,35 @@ public class Player_Regular_Attack : MonoBehaviour
         // if player clicks the attack button (mouse 0 by default)
         if (Input.GetButtonDown("Regular_Attack") && _timeoutScript.getTimeoutFlag() == false && !attackDisabled)
         {
+            //getting rythm flag for bonuses to mana if attacking in rythm
+            regularAttack(rythmBattleScript.getRythmFlag());
+
             // start timeout after attacking
             _timeoutScript.startTimeout();
+        }
+    }
 
-            // select current target
-            _target = _targetDetection.getTarget();
+    private void regularAttack(bool rythmFlag)
+    {
+        // select current target
+        _target = _targetDetection.getTarget();
 
-            // if there is a target
-            if (_target != null)
+        // if there is a target
+        if (_target != null)
+        {
+            // and check if target is in range
+            if (isInRange(_target.GetComponent<Transform>().position))
             {
-                // and check if target is in range
-                if (isInRange(_target.GetComponent<Transform>().position))
-                {
-                    // play attack's sound
-                    _playerAudio.playChordSound();
+                // play attack's sound
+                _playerAudio.playChordSound();
 
-                    // draw a line from player to target
-                    StartCoroutine(drawLine(_target.GetComponent<Transform>().position));
+                // draw a line from player to target
+                StartCoroutine(drawLine(_target.GetComponent<Transform>().position));
 
-                    // hit or interact with the target object
-                    interactWithTarget();
-                }
-                else // if target is out of range
-                {
-                    // play bad sound (TO-DO, currently playing regular attack sound)
-                    _playerAudio.playChordSound();
-
-                    // draw the line from player to cursor
-                    calculateAndDrawLine();
-                }
+                // hit or interact with the target object
+                interactWithTarget(rythmFlag);
             }
-            else // if there isn't any target there
+            else // if target is out of range
             {
                 // play bad sound (TO-DO, currently playing regular attack sound)
                 _playerAudio.playChordSound();
@@ -120,6 +122,14 @@ public class Player_Regular_Attack : MonoBehaviour
                 // draw the line from player to cursor
                 calculateAndDrawLine();
             }
+        }
+        else // if there isn't any target there
+        {
+            // play bad sound (TO-DO, currently playing regular attack sound)
+            _playerAudio.playChordSound();
+
+            // draw the line from player to cursor
+            calculateAndDrawLine();
         }
     }
 
@@ -141,11 +151,11 @@ public class Player_Regular_Attack : MonoBehaviour
         StartCoroutine(drawLine(pointInRange)); // draw the line from player to target point
     }
 
-    private void interactWithTarget()
+    private void interactWithTarget(bool rythmFlag)
     {
         if (_target.transform.parent.gameObject.tag == "Demon")
         {
-            _target.GetComponentInParent<Demon_Health>().applyDamage(_currentDamage, false, false);
+            _target.GetComponentInParent<Demon_Health>().applyDamage(_currentDamage, false, false, rythmFlag);
         }
         if (_target.transform.parent.gameObject.tag == "Mag")
         {

@@ -97,17 +97,12 @@ public class RythmBattle : MonoBehaviour
 
     public void addBonus()
     {
-        //  _combo++;
         _isBonusAdded = true;
-        //Debug.Log("C-c-c-combo!!! Combo = " + _combo);
         _playerMana.addMana(1);
-
-        //Combo counter / display
-        //_textCombo.GetComponent<Text>().text = "Combo = " + _combo.ToString();
-        if (_playerMana.getMana() >= 5)  //_combo >= 5)
+        
+        if (_playerMana.getMana() >= 5)
         {
-            StartCoroutine(ShowMessage("Combo!", 1)); //combo message
-                                                      //  resetBonus();                   
+            StartCoroutine(ShowMessage("Combo!", 1)); //combo message               
         }
     }
 
