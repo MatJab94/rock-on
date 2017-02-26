@@ -211,11 +211,11 @@ public class Player_AoE_Attack : MonoBehaviour
                 {
                     target.GetComponent<Mag_Movement>().pushBack();
                 }
-                target.GetComponent<Mag_Health>().applyDamage(_damageAoE, false, _damageOtherColors);
+                target.GetComponent<Mag_Health>().applyDamage(_damageAoE, false, _damageOtherColors, rythmFlag);
             }
             if (target.tag == "Fireball")
             {
-                target.GetComponent<Fireball_Health>().applyDamage(_damageAoE, false, _damageOtherColors);
+                target.GetComponent<Fireball_Health>().applyDamage(_damageAoE, false, _damageOtherColors, rythmFlag);
             }
         }
     }

@@ -51,13 +51,13 @@ public class Fireball_Health : MonoBehaviour
 
 
     // called when player attacks the fireball
-    public void applyDamage(int damage, bool collision, bool ignoreColor)
+    public void applyDamage(int damage, bool collision, bool ignoreColor, bool rythmFlag)
     {
         // if Player's and Mag's color match
         if ((_playerColor.currentColorIndex == _currentColorIndex) || collision || ignoreColor)
         {
             // add bonus if enemy was hit in rythm
-            if (rythmBattle.rythmFlag == true && !collision)
+            if (rythmFlag && !collision)
             {
                 rythmBattle.addBonus();
             }

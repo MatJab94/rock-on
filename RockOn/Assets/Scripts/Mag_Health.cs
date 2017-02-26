@@ -67,7 +67,7 @@ public class Mag_Health : MonoBehaviour
 
 
     // called when player attacks the enemy
-    public void applyDamage(int damage, bool ignoreColor, bool damageOtherColors)
+    public void applyDamage(int damage, bool ignoreColor, bool damageOtherColors, bool rythmFlag)
     {
         // if Player's and Mag's color match
         if (_playerColor.currentColorIndex == _primaryColorIndex || _playerColor.currentColorIndex == _secondaryColorIndex || ignoreColor || damageOtherColors)
@@ -91,20 +91,16 @@ public class Mag_Health : MonoBehaviour
             }
 
             // add bonus if enemy was hit in rythm
-            if (rythmBattle.rythmFlag == true)
+            if (rythmFlag)
             {
                 rythmBattle.addBonus();
             }
-            if (rythmBattle.rythmFlag == false)
+            else
             {
                 if (_health != 0)
                 {
                     rythmBattle.addReprimand();
                 }
-            }
-            if (_health == 0)
-            {
-                rythmBattle.addPraise();
             }
 
             //if pick is active push back the enemy
@@ -119,6 +115,7 @@ public class Mag_Health : MonoBehaviour
             // if it's dead destroy the object
             if (_health <= 0)
             {
+                rythmBattle.addPraise();
                 _audioSource.pitch = 0.90f;
                 _audioSource.Play(); //play dying sound
                 StartCoroutine(killEnemy());

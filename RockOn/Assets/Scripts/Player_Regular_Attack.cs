@@ -159,11 +159,11 @@ public class Player_Regular_Attack : MonoBehaviour
         }
         if (_target.transform.parent.gameObject.tag == "Mag")
         {
-            _target.GetComponentInParent<Mag_Health>().applyDamage(_currentDamage, false, false);
+            _target.GetComponentInParent<Mag_Health>().applyDamage(_currentDamage, false, false, rythmFlag);
         }
         if (_target.transform.parent.gameObject.tag == "Fireball")
         {
-            _target.GetComponentInParent<Fireball_Health>().applyDamage(_currentDamage, false, false);
+            _target.GetComponentInParent<Fireball_Health>().applyDamage(_currentDamage, false, false, rythmFlag);
         }
         if (_target.transform.parent.gameObject.tag == "Chest")
         {

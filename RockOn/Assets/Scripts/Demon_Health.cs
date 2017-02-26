@@ -55,7 +55,7 @@ public class Demon_Health : MonoBehaviour
         _anim = GetComponent<Animator>();
 
         _audioSource = gameObject.GetComponent<AudioSource>();
-        
+
 
         // max health for Demon is 3
         _maxHealth = 3;
@@ -86,22 +86,18 @@ public class Demon_Health : MonoBehaviour
             }
 
             // add bonus if enemy was hit in rythm
-            if (rythmBattle.rythmFlag == true)
+            if (rythmFlag)
             {
                 rythmBattle.addBonus();
             }
-            if (rythmBattle.rythmFlag == false)
+            else
             {
                 if (_health != 0)
                 {
                     rythmBattle.addReprimand();
                 }
             }
-            if (_health == 0)
-            {
-                rythmBattle.addPraise();
-            }
-            
+
             //if pick is active push back the enemy
             if (_playerAttackScript.getPickActive())
             {
@@ -114,6 +110,7 @@ public class Demon_Health : MonoBehaviour
             // if it's dead destroy the object
             if (_health <= 0)
             {
+                rythmBattle.addPraise();
                 _audioSource.pitch = 0.90f;
                 _audioSource.Play(); //play dying sound
                 StartCoroutine(killEnemy());
