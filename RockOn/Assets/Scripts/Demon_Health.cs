@@ -51,12 +51,9 @@ public class Demon_Health : MonoBehaviour
         rythmBattle = GameObject.FindGameObjectWithTag("RythmBattle").GetComponent<RythmBattle>();
         _sr = GetComponent<SpriteRenderer>();
         _demonMoveScript = GetComponent<Demon_Movement>();
-
         _anim = GetComponent<Animator>();
-
         _audioSource = gameObject.GetComponent<AudioSource>();
-
-
+        
         // max health for Demon is 3
         _maxHealth = 3;
 
@@ -118,8 +115,7 @@ public class Demon_Health : MonoBehaviour
             // if not dead just update sprite
             else
             {
-                // update animation form
-                _anim.SetTrigger("applyDamage");
+                updateAnimatorParameters();
                 _audioSource.pitch = 1;
                 _audioSource.Play(); // play damage sound
             }
@@ -152,8 +148,15 @@ public class Demon_Health : MonoBehaviour
                 break;
         }
 
-        // update animation color
+        updateAnimatorParameters();
+    }
+
+    private void updateAnimatorParameters()
+    {
+        // update animation color and health
         _anim.SetInteger("colorIndex", _currentColorIndex);
+        _anim.SetInteger("health", _health);
+        _anim.SetTrigger("update");
     }
 
     // fades enemy after he's hit

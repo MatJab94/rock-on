@@ -20,7 +20,7 @@ public class Demon_Movement : MonoBehaviour
     private bool lookingForPath; // is path finding algorithm running
     private bool canMove; // when path was found and target is in range
     private Vector3 currentWaypoint; // waypoint to move to
-
+    private bool isMoving = false; // flag for animating in rythm
     // stuff for drawing gizmos and debugging
     private Vector2 currentDirection;
     public bool drawPath;
@@ -112,14 +112,14 @@ public class Demon_Movement : MonoBehaviour
             else
             {
                 // object not moving, stop animation
-                _anim.SetBool("isMoving", false);
+                isMoving = false;
                 canMove = false;
             }
         }
         else
         {
             // object not moving, stop animation
-            _anim.SetBool("isMoving", false);
+            isMoving = false;
             canMove = false;
         }
 
@@ -128,7 +128,7 @@ public class Demon_Movement : MonoBehaviour
         if (canMove)
         {
             // moving, animate
-            _anim.SetBool("isMoving", true);
+            isMoving = true;
 
             //play C'mon! sound
             StartCoroutine(Wait(_ea, 2));
@@ -166,6 +166,25 @@ public class Demon_Movement : MonoBehaviour
     public void setIsInRange(bool isInRange)
     {
         _isInRange = isInRange;
+    }
+
+    // objects need to subscribe and unsubscribe from events when they're enabled/disabled
+    private void OnEnable()
+    {
+        RythmBattle.OnGoodRythm += rythmAnimation;
+    }
+    private void OnDisable()
+    {
+        RythmBattle.OnGoodRythm -= rythmAnimation;
+    }
+
+    // animate player on rythm events
+    void rythmAnimation()
+    {
+        if (isMoving)
+        {
+            _anim.SetTrigger("beat");
+        }
     }
 
     // draw the path of the demon in Unity Editor
