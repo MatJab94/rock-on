@@ -10,6 +10,7 @@ public class Fireball_Movement : MonoBehaviour
     private Transform _fireball; // this object's position
     private Rigidbody2D _rb; // this objects's rigidbody2d
     private float _distance; // distance between enemy and target
+    private Animator _anim; // animator of this object
 
     void Start()
     {
@@ -17,6 +18,7 @@ public class Fireball_Movement : MonoBehaviour
         _target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         _fireball = GetComponent<Transform>();
         _rb = GetComponent<Rigidbody2D>();
+        _anim = GetComponent<Animator>();
 
         _moveSpeed = 1.2f;
         _rotateSpeed = 1.5f;
@@ -49,5 +51,21 @@ public class Fireball_Movement : MonoBehaviour
         Vector3 vectorToTarget = _target.position - _fireball.position;
         float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg;
         return Quaternion.AngleAxis(angle, Vector3.forward);
+    }
+
+    // objects need to subscribe and unsubscribe from events when they're enabled/disabled
+    private void OnEnable()
+    {
+        RythmBattle.OnGoodRythm += rythmAnimation;
+    }
+    private void OnDisable()
+    {
+        RythmBattle.OnGoodRythm -= rythmAnimation;
+    }
+
+    // animate player on rythm events
+    void rythmAnimation()
+    {
+        _anim.SetTrigger("beat");
     }
 }

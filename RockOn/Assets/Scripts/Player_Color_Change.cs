@@ -52,6 +52,7 @@ public class Player_Color_Change : MonoBehaviour
             currentColorIndex = 0;
 
             _anim.SetInteger("color", 0);
+            _anim.SetTrigger("colorChange");
 
             _lr.startColor = _red;
             _lr.endColor = _red2;
@@ -63,6 +64,7 @@ public class Player_Color_Change : MonoBehaviour
             currentColorIndex = 1;
 
             _anim.SetInteger("color", 1);
+            _anim.SetTrigger("colorChange");
 
             _lr.startColor = _green;
             _lr.endColor = _green2;
@@ -74,6 +76,7 @@ public class Player_Color_Change : MonoBehaviour
             currentColorIndex = 2;
 
             _anim.SetInteger("color", 2);
+            _anim.SetTrigger("colorChange");
 
             _lr.startColor = _blue;
             _lr.endColor = _blue2;
@@ -85,6 +88,7 @@ public class Player_Color_Change : MonoBehaviour
             currentColorIndex = (currentColorIndex + 1) % 3;
 
             _anim.SetInteger("color", currentColorIndex);
+            _anim.SetTrigger("colorChange");
 
             _lr.startColor = _primary[currentColorIndex];
             _lr.endColor = _secondary[currentColorIndex];
@@ -96,6 +100,7 @@ public class Player_Color_Change : MonoBehaviour
             currentColorIndex = (currentColorIndex + 2) % 3;
 
             _anim.SetInteger("color", currentColorIndex);
+            _anim.SetTrigger("colorChange");
 
             _lr.startColor = _primary[currentColorIndex];
             _lr.endColor = _secondary[currentColorIndex];

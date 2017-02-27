@@ -6,7 +6,6 @@ public class Mag_Movement : MonoBehaviour
 {
     private float _speed; // movement speed
     private float _maxRange; // max range at which it stops chasing the target (it's too far)
-
     private Transform _target; // target's position
     private Transform _enemy; // this object's position
     private Rigidbody2D _rb; // this objects's rigidbody2d
@@ -14,8 +13,8 @@ public class Mag_Movement : MonoBehaviour
     private Mag_Attack_Range _attackScript; // for changing speed when attacking
     private float _distance; // distance between enemy and target
     private float _pushBackPower; // how strong is enemy pushed back when pick is active
-
     private Enemy_Audio _ea; // C'mon! sounds
+    private bool isMoving = false, beatEven = false; // flags for animating in rythm
 
     // Use this for initialization
     void Start()
@@ -49,8 +48,7 @@ public class Mag_Movement : MonoBehaviour
         // enemy moves only if it's not attacking and in range
         if (!_attackScript.isAttacking() && _distance <= _maxRange)
         {
-            // moving the object, animate
-            _anim.SetBool("isMoving", true);
+            isMoving = true;
 
             StartCoroutine(Wait(_ea, 2)); //play C'mon! sound
 
@@ -63,15 +61,36 @@ public class Mag_Movement : MonoBehaviour
         }
         else
         {
-            // object not moving, stop animation
-            _anim.SetBool("isMoving", false);
+            isMoving = false;
         }
     }
+
     IEnumerator Wait(Enemy_Audio _ea, float delay)  // for playing "Come On!"
     {
         _ea.PlayComeOn();
         _ea.enabled = true;
         yield return new WaitForSeconds(delay);
         _ea.enabled = false;
+    }
+
+    // objects need to subscribe and unsubscribe from events when they're enabled/disabled
+    private void OnEnable()
+    {
+        RythmBattle.OnGoodRythm += rythmAnimation;
+    }
+    private void OnDisable()
+    {
+        RythmBattle.OnGoodRythm -= rythmAnimation;
+    }
+
+    // animate player on rythm events
+    void rythmAnimation()
+    {
+        beatEven = !beatEven;
+        if (isMoving)
+        {
+            if (beatEven) _anim.SetTrigger("beatEven");
+            else _anim.SetTrigger("beatOdd");
+        }
     }
 }
