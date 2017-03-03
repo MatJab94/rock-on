@@ -1,18 +1,21 @@
 fileFormatVersion: 2
-guid: 6b4b003920a5d424690f72413c365cd9
-timeCreated: 1488445295
+guid: 9f0702d9a127d7949b272ce8583d7d69
+timeCreated: 1488553982
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
     21300000: slider
-    21300002: bttn_nonActive
-    21300004: menuElem_0
+    21300002: slider_bttn
+    21300004: bttn_nonActive
     21300006: bttn_red_default
     21300008: bttn_red_active
     21300010: bttn_blue_default
     21300012: bttn_blue_active
     21300014: bttn_green_default
     21300016: bttn_green_active
+    21300018: bttn_red_hover
+    21300020: bttn_blue_hover
+    21300022: bttn_green_hover
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -108,25 +111,25 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: bttn_nonActive
+      name: slider_bttn
       rect:
         serializedVersion: 2
-        x: 0
-        y: 96
-        width: 67
-        height: 16
+        x: 77
+        y: 97
+        width: 14
+        height: 14
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: menuElem_0
+      name: bttn_nonActive
       rect:
         serializedVersion: 2
         x: 0
-        y: 112
-        width: 128
+        y: 96
+        width: 67
         height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -204,6 +207,45 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
+        width: 67
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: bttn_red_hover
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 80
+        width: 67
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: bttn_blue_hover
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 48
+        width: 67
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: bttn_green_hover
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 16
         width: 67
         height: 16
       alignment: 0
