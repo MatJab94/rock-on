@@ -1,10 +1,10 @@
 fileFormatVersion: 2
 guid: 9f0702d9a127d7949b272ce8583d7d69
-timeCreated: 1488553982
+timeCreated: 1491431107
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: slider
+    21300000: slider-slide-area
     21300002: slider_bttn
     21300004: bttn_nonActive
     21300006: bttn_red_default
@@ -16,6 +16,9 @@ TextureImporter:
     21300018: bttn_red_hover
     21300020: bttn_blue_hover
     21300022: bttn_green_hover
+    21300024: slider-left_arrow
+    21300026: slider-right-arrow
+    21300028: slider
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -98,12 +101,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: slider
+      name: slider-slide-area
       rect:
         serializedVersion: 2
-        x: 0
+        x: 15
         y: 112
-        width: 128
+        width: 98
         height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -247,6 +250,45 @@ TextureImporter:
         x: 67
         y: 16
         width: 67
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: slider-left_arrow
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 112
+        width: 15
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: slider-right-arrow
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 112
+        width: 15
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: slider
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 112
+        width: 128
         height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}

@@ -14,7 +14,7 @@ public class UIControl : MonoBehaviour {
     {
         // VolumeSlider.value = audioSource.volume;
       //  audioSource.volume = PlayerPrefs.GetFloat(volumeSliderValue);
-        VolumeSlider.value = PlayerPrefs.GetFloat(volumeSliderValue);
+        VolumeSlider.value = PlayerPrefs.GetFloat(volumeSliderValue, 0.5f);
     }
     public void changeVolume()
     {
