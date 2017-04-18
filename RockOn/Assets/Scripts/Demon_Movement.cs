@@ -132,7 +132,7 @@ public class Demon_Movement : MonoBehaviour
 
             //play C'mon! sound
             StartCoroutine(Wait(_ea, 2));
-
+            
             // modify speed if attacking
             if (_attackScript.isCooldown()) speedModifier = 0.5f;
             else speedModifier = 1.0f;

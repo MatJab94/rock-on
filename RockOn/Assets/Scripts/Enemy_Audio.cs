@@ -4,43 +4,33 @@ using UnityEngine;
 
 public class Enemy_Audio : MonoBehaviour {
 
-    public AudioClip ComeOn1;
     public AudioClip ComeOn2;
-    public AudioClip ComeOn3;
 
     private AudioSource _audioSource;
     private int _comeonSound;
     public int maxRange;
+    private bool _played;
    
     // Use this for initialization
     void Start () {
         _audioSource = GetComponent<AudioSource>();
 
         _audioSource.volume = 0.5f;
+        _played = false;
     }
 	
     public void PlayComeOn()
     {
         _comeonSound = Random.Range(0, maxRange);
 
-        switch (_comeonSound)
+        if (_played == false)
         {
-            case 0:
-                _audioSource.Stop();
-                _audioSource.PlayOneShot(ComeOn1);
-                break;
-            case 1:
+            if (_comeonSound == 1)
+            {
                 _audioSource.Stop();
                 _audioSource.PlayOneShot(ComeOn2);
-                break;
-            case 2:
-                _audioSource.Stop();
-                _audioSource.PlayOneShot(ComeOn3);
-                break;
-            case 3:
-                break;
-            default:
-                break;
-        }      
+                _played = true;
+            }
+        }
     }
 }
