@@ -17,11 +17,18 @@ public class Player_Movement : MonoBehaviour
     // flags for animating in rythm on odd and even beats
     bool isMoving = false, beatEven = false;
 
+    // audio file with footsteps sound used as "metronome"
+    public AudioClip footsteps;
+
+    // this GameObject's AudioSource component
+    private AudioSource _audioSource;
+
     void Start()
     {
         // initialising variables with this object's components
         _rb = GetComponent<Rigidbody2D>();
         _anim = GetComponent<Animator>();
+        _audioSource = GetComponent<AudioSource>();
     }
 
     // using FixedUpdate for constant movement speed, regardless of framerate
@@ -54,12 +61,17 @@ public class Player_Movement : MonoBehaviour
         RythmBattle.OnGoodRythm -= rythmAnimation;
     }
 
-    // animate player on rythm events
+    // animate player on rythm events while moving
     void rythmAnimation()
     {
+        // change flag to remember if beat is even or odd
         beatEven = !beatEven;
         if (isMoving)
         {
+            // play footstep sound
+            _audioSource.PlayOneShot(footsteps);
+
+            // different animation frame for every other beat
             if (beatEven) _anim.SetTrigger("beatEven");
             else _anim.SetTrigger("beatOdd");
         }

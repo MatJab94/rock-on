@@ -32,6 +32,12 @@ public class Chest_Open : MonoBehaviour
 
     public GameObject targetForCursor;
 
+    // this GameObject's AudioSource component
+    private AudioSource _audioSource;
+
+    // audio file with chest opening sound
+    public AudioClip chestOpenSound;
+
     // Use this for initialization
     void Start()
     {
@@ -39,7 +45,7 @@ public class Chest_Open : MonoBehaviour
         _sr = GetComponent<SpriteRenderer>();
         _tf = GetComponent<Transform>();
         _codeScript = GetComponentInChildren<Chest_Code>();
-
+        _audioSource = GetComponent<AudioSource>();
         _codeScript.setChestCode(secretCode);
     }
 
@@ -76,6 +82,9 @@ public class Chest_Open : MonoBehaviour
     // opens the chest, spawn a treasure and dosposes of the chest object
     IEnumerator openChestCoroutine(bool goodGuess)
     {
+        // play opening sound
+        _audioSource.PlayOneShot(chestOpenSound);
+
         // play opening animation
         _anim.SetTrigger("open");
 

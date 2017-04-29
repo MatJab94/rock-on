@@ -18,10 +18,17 @@ public class Demon_Attack_Range : MonoBehaviour
     // Player's Health script
     private Player_Health _playerHealth;
 
+    // this GameObject's AudioSource component
+    private AudioSource _audioSource;
+
+    // audio file with demon attack sound
+    public AudioClip demonAttackSound;
+
     void Start()
     {
         _playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<Player_Health>();
         _sr = GetComponentInParent<SpriteRenderer>();
+        _audioSource = GetComponent<AudioSource>();
     }
 
     void FixedUpdate()
@@ -48,6 +55,9 @@ public class Demon_Attack_Range : MonoBehaviour
 
         // attack
         _playerHealth.applyDamage(1);
+
+        // play attack sound
+        _audioSource.PlayOneShot(demonAttackSound);
 
         // small delay
         yield return new WaitForSeconds(0.25f);
