@@ -794,9 +794,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77aae2e87c32d8f45824e935c974d491, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  A_chord: {fileID: 8300000, guid: 687fca6d4a4afa948989e9868b5af487, type: 3}
-  G_chord: {fileID: 8300000, guid: 04012d01fb853334280f0afab5a44945, type: 3}
-  F_chord: {fileID: 8300000, guid: a3bc377b693700b4f8256cc5b5918a7f, type: 3}
+  A_chord: {fileID: 8300000, guid: 0aa6d342b7956c94390bff8fc55a2e28, type: 3}
+  G_chord: {fileID: 8300000, guid: de2b54f06f376264d97b9b29bdc282b0, type: 3}
+  F_chord: {fileID: 8300000, guid: 603bd79c8fc0d3c4d8428e6210309b0d, type: 3}
 --- !u!114 &114869794962346974
 MonoBehaviour:
   m_ObjectHideFlags: 1
