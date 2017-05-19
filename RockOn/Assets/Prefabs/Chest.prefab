@@ -69,9 +69,10 @@ GameObject:
   - component: {fileID: 4383983857066254}
   - component: {fileID: 212894142043782948}
   - component: {fileID: 114414898833723422}
+  - component: {fileID: 114052532316768668}
   m_Layer: 0
   m_Name: KeyHighlighter
-  m_TagString: Untagged
+  m_TagString: Lamps
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -150,7 +151,7 @@ Transform:
   m_GameObject: {fileID: 1518180651228712}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.9, y: 2, z: 1}
+  m_LocalScale: {x: 1.65, y: 1.75, z: 1}
   m_Children: []
   m_Father: {fileID: 4541722625278728}
   m_RootOrder: 3
@@ -217,8 +218,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1644872948772408}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 12.670589, y: -11.343256, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -4.47, y: 27.24, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4786705646415302}
@@ -362,6 +363,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a6a82e90b3a317419b93571fbac92ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114052532316768668
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1518180651228712}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdc0d85dec1fe5b4ea62c2f18e3c6aa4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114194161444636720
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -389,7 +401,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1518180651228712}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 59f672097780c2742b7155e5eb8a5047, type: 3}
   m_Name: 
@@ -409,10 +421,6 @@ MonoBehaviour:
   - {fileID: 1561614059241030, guid: f8f276e0506de114cbc22c68eed6faf3, type: 2}
   - {fileID: 1498533612468378, guid: 88a1b7875860ff440a400de8be043e07, type: 2}
   - {fileID: 1498533612468378, guid: 88a1b7875860ff440a400de8be043e07, type: 2}
-  - {fileID: 1002904407436320, guid: 53f800b91cd291d4e889a75d55c43786, type: 2}
-  - {fileID: 1002904407436320, guid: 53f800b91cd291d4e889a75d55c43786, type: 2}
-  - {fileID: 1927440674092008, guid: 005e24a0cf3b567469e4dfd5f5b4ee4e, type: 2}
-  - {fileID: 1927440674092008, guid: 005e24a0cf3b567469e4dfd5f5b4ee4e, type: 2}
   badTreasures:
   - {fileID: 1439231446090428, guid: 84f17f53a71f5124c9e054d46a1f14eb, type: 2}
   - {fileID: 1439231446090428, guid: 84f17f53a71f5124c9e054d46a1f14eb, type: 2}

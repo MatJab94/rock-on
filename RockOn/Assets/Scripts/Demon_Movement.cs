@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Demon_Movement : MonoBehaviour
 {
-    private float _speed; // movement speed
+    public float _speed = 2.0f; // movement speed
     float speedModifier; // for slowing down etc
     private float _minRange; // min range at which it stops chasing the target (it's too close)
     private Transform _target; // current target's position
@@ -34,7 +34,7 @@ public class Demon_Movement : MonoBehaviour
         _attackScript = GetComponentInChildren<Demon_Attack_Range>();
         _ea = GetComponent<Enemy_Audio>();
 
-        _speed = 2.0f;
+        //_speed = 2.0f;
         _minRange = 0.67f;
         _pushBackPower = 15.0f;
         _isInRange = false;

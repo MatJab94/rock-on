@@ -21,10 +21,6 @@ public class Cursor_Movement : MonoBehaviour {
     void Start () {
         tf = gameObject.GetComponent<Transform>();
         mainCamera = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<Camera>();
-
-        // calculate normalising value, for better performance (multiplying is better than division)
-        xNormalise = 1.0f / Screen.width;
-        yNormalise = 1.0f / Screen.height;
     }
 	
 	// Update is called once per frame
@@ -39,5 +35,12 @@ public class Cursor_Movement : MonoBehaviour {
         tf.position = mainCamera.ViewportToWorldPoint(new Vector3(x, y, mainCamera.nearClipPlane));
         
         // Debug.Log("position is [ " + tf.position.x + " ; " + tf.position.y + " ; " + tf.position.z + " ]");
+    }
+
+    private void FixedUpdate()
+    {
+        // calculate normalising value, for better performance (multiplying is better than division)
+        xNormalise = 1.0f / Screen.width;
+        yNormalise = 1.0f / Screen.height;
     }
 }

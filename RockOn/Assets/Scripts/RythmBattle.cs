@@ -9,6 +9,8 @@ public class RythmBattle : MonoBehaviour
     public static event goodRythm OnGoodRythm;
     public delegate void badRythm();
     public static event badRythm OnBadRythm;
+    public delegate void Beat();
+    public static event Beat OnBeat;
     [HideInInspector]
     public bool rythmFlag; // true when it's the right "moment" in the beat, false otherwise
     public float range; // how much time there is before and after the beat, set in Inspector
@@ -17,6 +19,7 @@ public class RythmBattle : MonoBehaviour
     private float _beatLength; // how long is single beat in this clip
     private AudioClip _audioClip; // this gameObject's audio clip
     private AudioSource _audioSource; // this gameObject's audio source
+    public AudioSource _audioSourceMetronome; // Metronome's audio source
     private float _clipLength; // length of this clip
     private int _numOfBeatsElapsed; // number of beats played so far
     private float _badRythmStart; // the beginning of range in which rythmFlag is false
@@ -45,25 +48,25 @@ public class RythmBattle : MonoBehaviour
         _numOfBeatsElapsed = 0;
         _f = 0.0f;
         rythmFlag = true;
-        Debug.Log("Audio length = " + _clipLength);
-        Debug.Log("Beat length = " + _beatLength);
-        Debug.Log("Bad Rythm Start = " + _badRythmStart);
-        Debug.Log("Bad Rythm End = " + _badRythmEnd);
+        // Debug.Log("Audio length = " + _clipLength);
+        // Debug.Log("Beat length = " + _beatLength);
+        // Debug.Log("Bad Rythm Start = " + _badRythmStart);
+        // Debug.Log("Bad Rythm End = " + _badRythmEnd);
+        _audioSource.Play();
+        _audioSourceMetronome.Play();
     }
 
     // Update is called once per frame
     void Update()
     {
-        // every frame add differance in time since last frame
+        // every frame add difference in time since last frame
         _f += Time.deltaTime;
-        //Debug.Log("f = " + _f);
 
-        // allign script with the clip every time all beats were played (track ended)
+        // synchronise the script with the clip every time all beats were played (track ended)
         if (rythmFlag == false && _numOfBeatsElapsed == numOfBeatsInClip)
         {
             _f = _audioSource.time;
             _numOfBeatsElapsed = 0;
-            //Debug.Log("TRACK ENDED");
         }
 
         // _f goes from 0 to _beatLength and restarts
@@ -71,7 +74,8 @@ public class RythmBattle : MonoBehaviour
         {
             _f -= _beatLength;
             _numOfBeatsElapsed++;
-            //Debug.Log("BEAT");
+            // fire the event and notify objects about beat
+            if (OnBeat != null) OnBeat();
         }
 
         // if flag is true and we're in bad rythm range, turn the flag to false
@@ -81,7 +85,6 @@ public class RythmBattle : MonoBehaviour
             if (OnBadRythm != null) OnBadRythm();
 
             rythmFlag = false;
-            //Debug.Log("Flag is false");
         }
 
         // if flag is false and we're in good rythm range, turn the flag to true
@@ -91,7 +94,6 @@ public class RythmBattle : MonoBehaviour
             if (OnGoodRythm != null) OnGoodRythm();
 
             rythmFlag = true;
-            //Debug.Log("Flag is true");
         }
     }
 

@@ -54,11 +54,11 @@ public class Player_Movement : MonoBehaviour
     // objects need to subscribe and unsubscribe from events when they're enabled/disabled
     private void OnEnable()
     {
-        RythmBattle.OnGoodRythm += rythmAnimation;
+        RythmBattle.OnBeat += rythmAnimation;
     }
     private void OnDisable()
     {
-        RythmBattle.OnGoodRythm -= rythmAnimation;
+        RythmBattle.OnBeat -= rythmAnimation;
     }
 
     // animate player on rythm events while moving

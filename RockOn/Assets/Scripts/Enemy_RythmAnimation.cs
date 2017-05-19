@@ -19,7 +19,14 @@ public class Enemy_RythmAnimation : MonoBehaviour
         }
         else
         {
-            scale = 1.0f;
+            if (gameObject.tag.Equals("Lamps"))
+            {
+                scale = 2.0f;
+            }
+            else
+            {
+                scale = 1.0f;
+            }
         }
     }
 

@@ -53,9 +53,10 @@ GameObject:
   - component: {fileID: 4672520451947160}
   - component: {fileID: 212419487866247374}
   - component: {fileID: 114392287174233874}
+  - component: {fileID: 114200192175661258}
   m_Layer: 0
   m_Name: KeyHighlighter
-  m_TagString: Untagged
+  m_TagString: Lamps
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -121,7 +122,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1757240028504684}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -26.025244, y: 7.4399295, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4787551041514886}
@@ -164,7 +165,7 @@ Transform:
   m_GameObject: {fileID: 1551878316801980}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.6, z: 1}
+  m_LocalScale: {x: 1.15, y: 1.2, z: 1}
   m_Children: []
   m_Father: {fileID: 4804579487844440}
   m_RootOrder: 1
@@ -270,13 +271,24 @@ MonoBehaviour:
   _sprites:
   - {fileID: 21300000, guid: cf7b4f3a7f4ffa24883ff691cb75522a, type: 3}
   - {fileID: 21300002, guid: cf7b4f3a7f4ffa24883ff691cb75522a, type: 3}
---- !u!114 &114392287174233874
+--- !u!114 &114200192175661258
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1551878316801980}
   m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdc0d85dec1fe5b4ea62c2f18e3c6aa4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114392287174233874
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1551878316801980}
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 59f672097780c2742b7155e5eb8a5047, type: 3}
   m_Name: 

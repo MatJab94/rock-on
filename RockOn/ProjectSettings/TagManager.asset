@@ -28,6 +28,7 @@ TagManager:
   - ViewRange
   - Guide
   - AStar
+  - Lamps
   layers:
   - Default
   - TransparentFX

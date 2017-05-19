@@ -61,18 +61,18 @@ public class ClefColumn_Code : MonoBehaviour
                 keySR.color = Color.white;
 
                 // wait for some time
-                yield return new WaitForSeconds(0.5f);
+                yield return new WaitForSeconds(0.7f);
 
                 // change sprite to default before showing the next one
                 keySR.sprite = defaultSprite;
                 keySR.color = Color.grey;
 
                 // wait for some time
-                yield return new WaitForSeconds(0.2f);
+                yield return new WaitForSeconds(0.128f);
             }
 
             // short pause before showing the code again
-            yield return new WaitForSeconds(0.75f);
+            yield return new WaitForSeconds(0.828f);
         }
     }
 

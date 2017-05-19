@@ -606,11 +606,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4000012821799044, guid: b728fd60472e3a4438db263204f970ba, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -31.407
+      value: -31.516
       objectReference: {fileID: 0}
     - target: {fileID: 4000012821799044, guid: b728fd60472e3a4438db263204f970ba, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 7.442
+      value: 7.225
       objectReference: {fileID: 0}
     - target: {fileID: 4000012821799044, guid: b728fd60472e3a4438db263204f970ba, type: 2}
       propertyPath: m_LocalPosition.z
@@ -973,11 +973,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 506034767}
     m_Modifications:
-    - target: {fileID: 114528535023771246, guid: 063c1a1fdfae4c04f991e30388e54bd2,
-        type: 2}
-      propertyPath: goodTreasures.Array.size
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 4974605390656292, guid: 063c1a1fdfae4c04f991e30388e54bd2, type: 2}
       propertyPath: m_LocalPosition.x
       value: -4.47
@@ -1014,30 +1009,6 @@ Prefab:
       propertyPath: m_Name
       value: Chest (8)
       objectReference: {fileID: 0}
-    - target: {fileID: 114528535023771246, guid: 063c1a1fdfae4c04f991e30388e54bd2,
-        type: 2}
-      propertyPath: goodTreasures.Array.data[3]
-      value: 
-      objectReference: {fileID: 1002904407436320, guid: 53f800b91cd291d4e889a75d55c43786,
-        type: 2}
-    - target: {fileID: 114528535023771246, guid: 063c1a1fdfae4c04f991e30388e54bd2,
-        type: 2}
-      propertyPath: goodTreasures.Array.data[4]
-      value: 
-      objectReference: {fileID: 1002904407436320, guid: 53f800b91cd291d4e889a75d55c43786,
-        type: 2}
-    - target: {fileID: 114528535023771246, guid: 063c1a1fdfae4c04f991e30388e54bd2,
-        type: 2}
-      propertyPath: goodTreasures.Array.data[5]
-      value: 
-      objectReference: {fileID: 1927440674092008, guid: 005e24a0cf3b567469e4dfd5f5b4ee4e,
-        type: 2}
-    - target: {fileID: 114528535023771246, guid: 063c1a1fdfae4c04f991e30388e54bd2,
-        type: 2}
-      propertyPath: goodTreasures.Array.data[6]
-      value: 
-      objectReference: {fileID: 1927440674092008, guid: 005e24a0cf3b567469e4dfd5f5b4ee4e,
-        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 063c1a1fdfae4c04f991e30388e54bd2, type: 2}
   m_IsPrefabParent: 0
@@ -2816,11 +2787,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4418585175287528, guid: 828ee5bc2b1f5d74cb29e702b947c1d4, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -34
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4418585175287528, guid: 828ee5bc2b1f5d74cb29e702b947c1d4, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 19
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4418585175287528, guid: 828ee5bc2b1f5d74cb29e702b947c1d4, type: 2}
       propertyPath: m_LocalPosition.z
@@ -2856,11 +2827,6 @@ Prefab:
       propertyPath: VolumeSlider
       value: 
       objectReference: {fileID: 877826817}
-    - target: {fileID: 82967971911700620, guid: 828ee5bc2b1f5d74cb29e702b947c1d4,
-        type: 2}
-      propertyPath: m_Volume
-      value: 0.5
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 828ee5bc2b1f5d74cb29e702b947c1d4, type: 2}
   m_IsPrefabParent: 0
