@@ -29,6 +29,7 @@ TagManager:
   - Guide
   - AStar
   - Lamps
+  - PlayerFireball
   layers:
   - Default
   - TransparentFX
