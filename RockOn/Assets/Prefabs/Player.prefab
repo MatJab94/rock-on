@@ -30,6 +30,7 @@ GameObject:
   - component: {fileID: 114069619547874684}
   - component: {fileID: 114869794962346974}
   - component: {fileID: 82927220666503250}
+  - component: {fileID: 114431664767694056}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -159,7 +160,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012172352448}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -31.516, y: 7.225, z: 0}
+  m_LocalPosition: {x: -26.44, y: 18.74, z: -4.25}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4000013810563244}
@@ -477,7 +478,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 2ddaa427a2f438543937299441fb8354, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -515,7 +516,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 2
       time: 0
-      value: 0
+      value: 0.131
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -701,6 +702,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd55b926fe1752248beb8faac3f766bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114431664767694056
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012172352448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2cbef30bba1e2e54cb46860496b13108, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioSource: {fileID: 82927220666503250}
+  VolumeSlider: {fileID: 0}
+  volumeSliderValue: metronome
 --- !u!114 &114515672205122766
 MonoBehaviour:
   m_ObjectHideFlags: 1

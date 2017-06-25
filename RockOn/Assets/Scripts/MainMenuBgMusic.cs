@@ -13,6 +13,17 @@ public class MainMenuBgMusic : MonoBehaviour {
         AudioListener.pause = false;
         Time.timeScale = 1;
         bgAudio.Play();
-	}
-	
+
+}
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            if (bgAudio.mute)
+                bgAudio.mute = false;
+            else
+                bgAudio.mute = true;
+        }
+    }
+
 }

@@ -3927,11 +3927,6 @@ Prefab:
       propertyPath: VolumeSlider
       value: 
       objectReference: {fileID: 1343915718}
-    - target: {fileID: 82967971911700620, guid: 828ee5bc2b1f5d74cb29e702b947c1d4,
-        type: 2}
-      propertyPath: m_Volume
-      value: 0.5
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 828ee5bc2b1f5d74cb29e702b947c1d4, type: 2}
   m_IsPrefabParent: 0
@@ -4814,103 +4809,55 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114189762650117010, guid: 75b2e99361115474bb290d785e2a8d2a,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 130735674}
+    - target: {fileID: 114371918593378312, guid: 75b2e99361115474bb290d785e2a8d2a,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 130735674}
+    - target: {fileID: 114235325172849660, guid: 75b2e99361115474bb290d785e2a8d2a,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 130735674}
+    - target: {fileID: 223648952020860668, guid: 75b2e99361115474bb290d785e2a8d2a,
+        type: 2}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 130735678}
+    - target: {fileID: 114449267248845134, guid: 75b2e99361115474bb290d785e2a8d2a,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 130735674}
+    - target: {fileID: 114651894837804450, guid: 75b2e99361115474bb290d785e2a8d2a,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 130735674}
     - target: {fileID: 1682038562510684, guid: 75b2e99361115474bb290d785e2a8d2a, type: 2}
       propertyPath: m_Name
       value: PauseMenu (2)
-      objectReference: {fileID: 0}
-    - target: {fileID: 114189762650117010, guid: 75b2e99361115474bb290d785e2a8d2a,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 130735674}
-    - target: {fileID: 114189762650117010, guid: 75b2e99361115474bb290d785e2a8d2a,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Resume
-      objectReference: {fileID: 0}
-    - target: {fileID: 114371918593378312, guid: 75b2e99361115474bb290d785e2a8d2a,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 130735674}
-    - target: {fileID: 114371918593378312, guid: 75b2e99361115474bb290d785e2a8d2a,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: MainMenu
-      objectReference: {fileID: 0}
-    - target: {fileID: 114235325172849660, guid: 75b2e99361115474bb290d785e2a8d2a,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 130735674}
-    - target: {fileID: 114235325172849660, guid: 75b2e99361115474bb290d785e2a8d2a,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Options
-      objectReference: {fileID: 0}
-    - target: {fileID: 114651894837804450, guid: 75b2e99361115474bb290d785e2a8d2a,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 130735674}
-    - target: {fileID: 114651894837804450, guid: 75b2e99361115474bb290d785e2a8d2a,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Quit
-      objectReference: {fileID: 0}
-    - target: {fileID: 114449267248845134, guid: 75b2e99361115474bb290d785e2a8d2a,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 130735674}
-    - target: {fileID: 114449267248845134, guid: 75b2e99361115474bb290d785e2a8d2a,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Options
       objectReference: {fileID: 0}
     - target: {fileID: 114673288182658100, guid: 75b2e99361115474bb290d785e2a8d2a,
         type: 2}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1033731008}
-    - target: {fileID: 114673288182658100, guid: 75b2e99361115474bb290d785e2a8d2a,
-        type: 2}
-      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: changeVolume
-      objectReference: {fileID: 0}
     - target: {fileID: 114731222703942642, guid: 75b2e99361115474bb290d785e2a8d2a,
         type: 2}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1307240301}
-    - target: {fileID: 114731222703942642, guid: 75b2e99361115474bb290d785e2a8d2a,
-        type: 2}
-      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: changeVolume
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1829422362}
     - target: {fileID: 114275583910270844, guid: 75b2e99361115474bb290d785e2a8d2a,
         type: 2}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1206009763}
-    - target: {fileID: 114275583910270844, guid: 75b2e99361115474bb290d785e2a8d2a,
-        type: 2}
-      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: changeVolume
-      objectReference: {fileID: 0}
-    - target: {fileID: 1682038562510684, guid: 75b2e99361115474bb290d785e2a8d2a, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 223648952020860668, guid: 75b2e99361115474bb290d785e2a8d2a,
-        type: 2}
-      propertyPath: m_Camera
-      value: 
-      objectReference: {fileID: 130735678}
-    - target: {fileID: 1704753071598200, guid: 75b2e99361115474bb290d785e2a8d2a, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 75b2e99361115474bb290d785e2a8d2a, type: 2}
   m_IsPrefabParent: 0
@@ -8766,12 +8713,6 @@ Transform:
   m_PrefabParentObject: {fileID: 4474747731356404, guid: 985567b4953458c40aabe0ce13e34dee,
     type: 2}
   m_PrefabInternal: {fileID: 1297088442}
---- !u!114 &1307240301 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114632125552487958, guid: 828ee5bc2b1f5d74cb29e702b947c1d4,
-    type: 2}
-  m_PrefabInternal: {fileID: 526958322}
-  m_Script: {fileID: 11500000, guid: 2cbef30bba1e2e54cb46860496b13108, type: 3}
 --- !u!114 &1343915718 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114731222703942642, guid: 75b2e99361115474bb290d785e2a8d2a,
@@ -11001,29 +10942,35 @@ Prefab:
       propertyPath: m_Name
       value: Player (2)
       objectReference: {fileID: 0}
-    - target: {fileID: 114515672205122766, guid: b728fd60472e3a4438db263204f970ba,
+    - target: {fileID: 114431664767694056, guid: b728fd60472e3a4438db263204f970ba,
         type: 2}
       propertyPath: VolumeSlider
       value: 
-      objectReference: {fileID: 1622404235}
-    - target: {fileID: 114828259683461070, guid: b728fd60472e3a4438db263204f970ba,
-        type: 2}
-      propertyPath: PauseUI
-      value: 
-      objectReference: {fileID: 375754107}
+      objectReference: {fileID: 1343915718}
     - target: {fileID: 114828259683461070, guid: b728fd60472e3a4438db263204f970ba,
         type: 2}
       propertyPath: OptionsMenu
       value: 
       objectReference: {fileID: 1733647017}
-    - target: {fileID: 82372867898526768, guid: b728fd60472e3a4438db263204f970ba,
+    - target: {fileID: 114828259683461070, guid: b728fd60472e3a4438db263204f970ba,
         type: 2}
-      propertyPath: m_Volume
-      value: 0.5
-      objectReference: {fileID: 0}
+      propertyPath: PauseUI
+      value: 
+      objectReference: {fileID: 375754107}
+    - target: {fileID: 114515672205122766, guid: b728fd60472e3a4438db263204f970ba,
+        type: 2}
+      propertyPath: VolumeSlider
+      value: 
+      objectReference: {fileID: 1622404235}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b728fd60472e3a4438db263204f970ba, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &1829422362 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114431664767694056, guid: b728fd60472e3a4438db263204f970ba,
+    type: 2}
+  m_PrefabInternal: {fileID: 1829422361}
+  m_Script: {fileID: 11500000, guid: 2cbef30bba1e2e54cb46860496b13108, type: 3}
 --- !u!1001 &1832046089
 Prefab:
   m_ObjectHideFlags: 0
