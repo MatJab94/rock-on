@@ -3915,7 +3915,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1423657312848510, guid: 828ee5bc2b1f5d74cb29e702b947c1d4, type: 2}
       propertyPath: m_Name
-      value: RythmBattle (2)
+      value: RythmBattle
       objectReference: {fileID: 0}
     - target: {fileID: 114631582489885760, guid: 828ee5bc2b1f5d74cb29e702b947c1d4,
         type: 2}
@@ -4841,7 +4841,7 @@ Prefab:
       objectReference: {fileID: 130735674}
     - target: {fileID: 1682038562510684, guid: 75b2e99361115474bb290d785e2a8d2a, type: 2}
       propertyPath: m_Name
-      value: PauseMenu (2)
+      value: PauseMenu
       objectReference: {fileID: 0}
     - target: {fileID: 114673288182658100, guid: 75b2e99361115474bb290d785e2a8d2a,
         type: 2}
@@ -10940,7 +10940,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1000012172352448, guid: b728fd60472e3a4438db263204f970ba, type: 2}
       propertyPath: m_Name
-      value: Player (2)
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 114431664767694056, guid: b728fd60472e3a4438db263204f970ba,
         type: 2}
@@ -11219,7 +11219,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1240450398281384, guid: 83a668553da6e5244a56378993869f87, type: 2}
       propertyPath: m_Name
-      value: GUI (2)
+      value: GUI
       objectReference: {fileID: 0}
     - target: {fileID: 223436299076479220, guid: 83a668553da6e5244a56378993869f87,
         type: 2}
