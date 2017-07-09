@@ -10,15 +10,15 @@ public class Camera_changeSize : MonoBehaviour
         cam = gameObject.GetComponent<Camera>();
 	}
 
-	void Update()
+	void FixedUpdate()
 	{
         if (Input.GetKey(KeyCode.P))
         {
-            cam.orthographicSize += 0.5f;
+            cam.orthographicSize += 0.25f;
         }
         if (Input.GetKey(KeyCode.O))
         {
-            cam.orthographicSize -= 0.5f;
+            cam.orthographicSize -= 0.25f;
         }
     }
 }
