@@ -2766,7 +2766,7 @@ Prefab:
     - target: {fileID: 114747536906539594, guid: 2478ca8a2e1aca545947b60dc17c37a2,
         type: 2}
       propertyPath: nextLevelstring
-      value: MainMenu
+      value: level3
       objectReference: {fileID: 0}
     - target: {fileID: 60605640021933988, guid: 2478ca8a2e1aca545947b60dc17c37a2,
         type: 2}
