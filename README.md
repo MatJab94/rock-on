@@ -1,4 +1,4 @@
-# RockOn-EPG-UnityVideoGameProject
+# Rock On
 School project - video game made in Unity 5.5
 
 Team:
